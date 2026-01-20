@@ -1,0 +1,53 @@
+# ===========================================
+# KineLab - Docker Compose
+# ===========================================
+#
+# Database: usa vps-panel-postgres esistente
+# Storage: usa vps-panel-minio esistente
+# Routing: Traefik con SSL
+#
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: kinelab_app
+    restart: unless-stopped
+    env_file:
+      - .env.docker
+    environment:
+      - NODE_ENV=production
+    # Nessuna porta pubblica - accesso solo via Traefik
+    networks:
+      - traefik-public
+      - panel-internal
+    labels:
+      # Traefik routing
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik-public"
+
+      # Router preview (kinelab.fodivps2.cloud)
+      - "traefik.http.routers.kinelab-preview.rule=Host(`kinelab.fodivps2.cloud`)"
+      - "traefik.http.routers.kinelab-preview.entrypoints=websecure"
+      - "traefik.http.routers.kinelab-preview.tls=true"
+      - "traefik.http.routers.kinelab-preview.tls.certresolver=letsencrypt"
+
+      # Service
+      - "traefik.http.services.kinelab-preview.loadbalancer.server.port=3000"
+
+      # Metadata per VPS Panel
+      - "com.docker.compose.project=kinelab"
+      - "vps.project.slug=kinelab"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+networks:
+  traefik-public:
+    external: true
+  panel-internal:
+    external: true

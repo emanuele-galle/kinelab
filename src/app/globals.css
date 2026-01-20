@@ -1,0 +1,737 @@
+@import "tailwindcss";
+
+/* KineLab v3 - Premium Spa/Wellness Design */
+
+@theme inline {
+  /* Base colors needed by Tailwind */
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* Palette Earth Tones - Warm & Elegant */
+  --color-primary: #8B7355;         /* Marrone caldo/Taupe */
+  --color-primary-light: #A89078;
+  --color-primary-dark: #6D5A44;
+
+  /* Background */
+  --color-bg: #FAF8F5;              /* Crema caldo off-white */
+  --color-bg-dark: #2C2825;         /* Marrone scuro per sezioni alternate */
+  --color-bg-accent: #F5F0EA;       /* Beige chiaro */
+  --color-background: #FAF8F5;      /* Alias per --color-bg */
+
+  /* Surface - for cards and containers */
+  --color-surface: #F5F0EA;         /* Alias per bg-accent */
+  --color-surface-warm: #F8F4EE;    /* Beige caldo per card */
+  --color-surface-sage: #EDF2EA;    /* Verde salvia chiaro */
+  --color-surface-beige: #F5F0EA;   /* Alias per bg-accent */
+
+  /* Text */
+  --color-text: #2C2825;            /* Marrone scuro */
+  --color-text-light: #706862;      /* Grigio-marrone (WCAG AA compliant) */
+  --color-text-muted: #5D564F;      /* Grigio medio (WCAG AA compliant) */
+  --color-text-on-dark: #FAF8F5;    /* Testo su sfondo scuro */
+
+  /* Accent */
+  --color-accent: #C9A962;          /* Gold muted */
+  --color-accent-dark: #A88B4A;     /* Gold scuro */
+  --color-accent-green: #7A8B6E;    /* Verde salvia */
+  --color-accent-sage: #7A8B6E;     /* Alias per accent-green */
+
+  /* Border */
+  --color-border: #E5DED4;
+  --color-border-light: #F0EBE3;
+
+  /* Typography */
+  --font-display: var(--font-cormorant), Georgia, serif;
+  --font-sans: var(--font-dm-sans), system-ui, sans-serif;
+
+  /* Spacing */
+  --section-padding: clamp(5rem, 10vw, 8rem);
+
+  /* Shadows - soft */
+  --shadow-sm: 0 2px 8px rgba(44, 40, 37, 0.04);
+  --shadow-md: 0 4px 16px rgba(44, 40, 37, 0.06);
+  --shadow-lg: 0 12px 32px rgba(44, 40, 37, 0.10);
+  --shadow-lift: 0 16px 48px rgba(44, 40, 37, 0.12);
+
+  /* Border radius - soft */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-medium: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+
+/* Base styles - wrapped in @layer base so utilities can override */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Typography - Elegant Serif Headings */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: 0.02em;
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+  }
+
+  h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+  }
+
+  h3 {
+    font-size: clamp(1.5rem, 2.5vw, 1.875rem);
+  }
+
+  h4 {
+    font-size: 1.25rem;
+  }
+
+  p {
+    line-height: 1.8;
+    font-size: 1.0625rem;
+  }
+
+  /* Links */
+  a {
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+}
+
+/* Decorative Line */
+.line-decorative {
+  display: inline-block;
+  width: 48px;
+  height: 1px;
+  background: var(--color-primary);
+}
+
+.line-decorative-accent {
+  background: var(--color-accent);
+}
+
+.line-decorative-white {
+  background: white;
+}
+
+/* Buttons - Elegant with rounded corners */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-medium);
+  cursor: pointer;
+  border: none;
+  letter-spacing: 0.02em;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-accent {
+  background: var(--color-accent);
+  color: var(--color-text);
+}
+
+.btn-accent:hover {
+  background: var(--color-accent-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-text);
+  border: 1.5px solid var(--color-text);
+}
+
+.btn-outline:hover {
+  background: var(--color-text);
+  color: white;
+}
+
+.btn-outline-white {
+  background: transparent;
+  color: white;
+  border: 1.5px solid white;
+}
+
+.btn-outline-white:hover {
+  background: white;
+  color: var(--color-text);
+}
+
+.btn-white {
+  background: white;
+  color: var(--color-text);
+}
+
+.btn-white:hover {
+  background: var(--color-bg);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Sections */
+.section {
+  padding: var(--section-padding) 0;
+}
+
+.section-dark {
+  background: var(--color-bg-dark);
+  color: var(--color-text-on-dark);
+}
+
+.section-dark h1,
+.section-dark h2,
+.section-dark h3,
+.section-dark h4 {
+  color: var(--color-text-on-dark);
+}
+
+.section-dark p {
+  color: rgba(250, 248, 245, 0.75);
+}
+
+.section-accent {
+  background: var(--color-bg-accent);
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 2rem;
+  }
+}
+
+/* Cards - Elegant with lift effect */
+.card {
+  background: white;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: all var(--transition-medium);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lift);
+}
+
+.card-bordered {
+  border: 1px solid var(--color-border);
+}
+
+/* Form inputs - Elegant */
+input, textarea, select {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  font-size: 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: white;
+  color: var(--color-text);
+  transition: all var(--transition-fast);
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(139, 115, 85, 0.1);
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--color-text-light);
+}
+
+label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.animate-bounce {
+  animation: bounce 2s ease-in-out infinite;
+}
+
+/* Utility classes */
+.text-primary {
+  color: var(--color-primary);
+}
+
+.text-accent {
+  color: var(--color-accent);
+}
+
+.text-on-dark {
+  color: var(--color-text-on-dark);
+}
+
+.bg-dark {
+  background: var(--color-bg-dark);
+}
+
+.bg-accent {
+  background: var(--color-bg-accent);
+}
+
+/* Focus for accessibility */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+  background: var(--color-primary);
+  color: white;
+}
+
+/* Hide scrollbar */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Lightbox */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(44, 40, 37, 0.95);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+/* Image hover effect */
+.image-hover {
+  overflow: hidden;
+  border-radius: var(--radius-md);
+}
+
+.image-hover img {
+  transition: transform var(--transition-slow);
+}
+
+.image-hover:hover img {
+  transform: scale(1.05);
+}
+
+/* Overlay gradient */
+.overlay-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(44, 40, 37, 0.8) 0%,
+    rgba(44, 40, 37, 0.4) 50%,
+    rgba(44, 40, 37, 0.1) 100%
+  );
+}
+
+.overlay-dark {
+  position: absolute;
+  inset: 0;
+  background: rgba(44, 40, 37, 0.5);
+}
+
+/* Icon container - outline style */
+.icon-container {
+  width: 64px;
+  height: 64px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-medium);
+}
+
+.icon-container:hover {
+  border-color: var(--color-primary);
+  background: var(--color-bg-accent);
+}
+
+/* Section title with decorative line */
+.section-title {
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 1px;
+  background: var(--color-primary);
+  margin-top: 1rem;
+}
+
+.section-title-center::after {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Counter animation helper */
+.counter-number {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 5vw, 4rem);
+  font-weight: 500;
+  line-height: 1;
+  color: var(--color-accent);
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: white;
+  opacity: 0.7;
+}
+
+.scroll-indicator-line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, white, transparent);
+}
+
+/* Parallax container */
+.parallax-bg {
+  position: absolute;
+  inset: -10% 0;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+@media (max-width: 768px) {
+  .parallax-bg {
+    background-attachment: scroll;
+  }
+}
+
+/* Decorative Elements */
+.decorative-blob {
+  background: linear-gradient(135deg, var(--color-accent-sage) 0%, var(--color-surface-sage) 100%);
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  opacity: 0.3;
+}
+
+.decorative-circle {
+  background: radial-gradient(circle, var(--color-accent) 0%, transparent 70%);
+  border-radius: 50%;
+  opacity: 0.2;
+}
+
+.blob-shape {
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+}
+
+.organic-shape-1 {
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+}
+
+.organic-shape-2 {
+  border-radius: 50% 50% 30% 70% / 50% 70% 30% 50%;
+}
+
+/* Dividers */
+.divider {
+  width: 48px;
+  height: 1px;
+  background: var(--color-primary);
+  margin: 1rem auto;
+}
+
+.divider-sage {
+  background: var(--color-accent-sage);
+}
+
+.divider-accent {
+  background: var(--color-accent);
+}
+
+/* Section subtitle */
+.section-subtitle {
+  max-width: 36rem;
+  margin: 0 auto;
+  color: var(--color-text-muted);
+  font-size: 1.0625rem;
+  line-height: 1.8;
+}
+
+/* Button secondary */
+.btn-secondary {
+  background: transparent;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+}
+
+.btn-secondary:hover {
+  background: var(--color-bg-accent);
+  border-color: var(--color-primary);
+  color: var(--color-text);
+}
+
+/* Sticky CTA Mobile */
+.sticky-cta-mobile {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: white;
+  border-top: 1px solid var(--color-border);
+  box-shadow: 0 -4px 20px rgba(44, 40, 37, 0.1);
+  z-index: 40;
+  transform: translateY(100%);
+  transition: transform var(--transition-medium);
+}
+
+.sticky-cta-mobile.visible {
+  transform: translateY(0);
+}
+
+@media (min-width: 768px) {
+  .sticky-cta-mobile {
+    display: none;
+  }
+}
+
+/* Trust badges */
+.trust-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--color-bg-accent);
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+/* Star rating */
+.star-rating {
+  display: inline-flex;
+  gap: 0.125rem;
+}
+
+.star-rating .star {
+  color: var(--color-accent);
+}
+
+.star-rating .star-empty {
+  color: var(--color-border);
+}
+
+/* Quote decorative */
+.quote-marks {
+  font-family: Georgia, serif;
+  font-size: 4rem;
+  line-height: 1;
+  color: var(--color-accent-sage);
+  opacity: 0.3;
+}
+
+/* ============================================
+   ACCESSIBILITY - prefers-reduced-motion
+   ============================================
+   Rispetta le preferenze utente per ridurre le animazioni.
+   Importante per utenti con disturbi vestibolari o sensibilità al movimento.
+*/
+
+@media (prefers-reduced-motion: reduce) {
+  /* Disabilita scroll smooth */
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  /* Disabilita tutte le transizioni */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Disabilita animazioni specifiche */
+  .animate-fade-in,
+  .animate-fade-in-up,
+  .animate-bounce {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Cards e hover effects */
+  .card:hover,
+  .image-hover:hover img {
+    transform: none !important;
+  }
+
+  /* Parallax - rimuovi effetto */
+  .parallax-bg {
+    background-attachment: scroll !important;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY - focus-visible enhancements
+   ============================================ */
+
+/* Migliora visibilità focus per keyboard navigation */
+:focus-visible {
+  outline: 3px solid var(--color-primary) !important;
+  outline-offset: 3px !important;
+}
+
+/* Skip link per screen reader */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: var(--color-primary);
+  color: white;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
