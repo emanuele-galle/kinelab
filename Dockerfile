@@ -23,6 +23,9 @@ COPY . .
 # Set environment for build
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=production
+# Skip database validation during build
+ENV PAYLOAD_DROP_DATABASE=false
+ENV DATABASE_URL=postgresql://dummy:dummy@localhost:5432/dummy
 
 # Build Next.js
 RUN npm run build
