@@ -79,6 +79,14 @@ export const Services: CollectionConfig = {
       },
     },
     {
+      name: 'originalPrice',
+      type: 'number',
+      label: 'Prezzo Originale (opzionale)',
+      admin: {
+        description: 'Se presente, il prezzo originale verrà mostrato barrato e il campo "price" sarà il prezzo scontato',
+      },
+    },
+    {
       name: 'image',
       type: 'upload',
       relationTo: 'media',

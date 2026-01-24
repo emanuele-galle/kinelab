@@ -15,14 +15,14 @@
   /* Background */
   --color-bg: #FAF8F5;              /* Crema caldo off-white */
   --color-bg-dark: #2C2825;         /* Marrone scuro per sezioni alternate */
-  --color-bg-accent: #F5F0EA;       /* Beige chiaro */
+  --color-bg-accent: #EDE7DD;       /* Beige più visibile (era #F5F0EA) */
   --color-background: #FAF8F5;      /* Alias per --color-bg */
 
   /* Surface - for cards and containers */
-  --color-surface: #F5F0EA;         /* Alias per bg-accent */
+  --color-surface: #EDE7DD;         /* Alias per bg-accent (aggiornato) */
   --color-surface-warm: #F8F4EE;    /* Beige caldo per card */
   --color-surface-sage: #EDF2EA;    /* Verde salvia chiaro */
-  --color-surface-beige: #F5F0EA;   /* Alias per bg-accent */
+  --color-surface-beige: #EDE7DD;   /* Alias per bg-accent (aggiornato) */
 
   /* Text */
   --color-text: #2C2825;            /* Marrone scuro */

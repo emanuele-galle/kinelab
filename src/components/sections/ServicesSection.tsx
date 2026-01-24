@@ -181,10 +181,26 @@ export function ServicesSection({ services }: ServicesSectionProps) {
                     {/* Price and CTA */}
                     <div className="flex items-center justify-between pt-4 border-t border-[--color-border-light]">
                       <div>
-                        <span className="text-[--color-accent] font-medium text-lg">
-                          da {service.price || '50'}
-                        </span>
-                        <span className="text-[--color-text-muted] text-sm">/sessione</span>
+                        {service.originalPrice && service.originalPrice > 0 ? (
+                          <div className="flex flex-col">
+                            <span className="text-[--color-text-light] text-sm line-through">
+                              €{service.originalPrice}
+                            </span>
+                            <div>
+                              <span className="text-[--color-accent] font-medium text-lg">
+                                {service.price === 0 ? 'GRATIS' : `€${service.price}`}
+                              </span>
+                              <span className="text-[--color-text-muted] text-sm">/sessione</span>
+                            </div>
+                          </div>
+                        ) : (
+                          <>
+                            <span className="text-[--color-accent] font-medium text-lg">
+                              da €{service.price || '50'}
+                            </span>
+                            <span className="text-[--color-text-muted] text-sm">/sessione</span>
+                          </>
+                        )}
                       </div>
                       <span className="inline-flex items-center gap-2 text-[--color-primary] text-sm font-medium group-hover:gap-3 transition-all">
                         Prenota

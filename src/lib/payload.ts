@@ -37,6 +37,7 @@ export interface Service {
   shortDescription?: string
   duration?: number
   price?: number
+  originalPrice?: number
   icon?: string
   order?: number
   isActive?: boolean
