@@ -8,6 +8,8 @@ import { fileURLToPath } from 'url'
 // Collections
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
+import { Portfolio } from './collections/Portfolio'
+import { PortfolioMedia } from './collections/PortfolioMedia'
 import { Services } from './collections/Services'
 import { Packages } from './collections/Packages'
 import { TeamMembers } from './collections/TeamMembers'
@@ -37,6 +39,8 @@ export default buildConfig({
   collections: [
     Users,
     Media,
+    Portfolio,
+    PortfolioMedia,
     Services,
     Packages,
     TeamMembers,
@@ -71,6 +75,9 @@ export default buildConfig({
       collections: {
         media: {
           prefix: 'kinelab',
+        },
+        'portfolio-media': {
+          prefix: 'kinelab/portfolio',
         },
       },
       bucket: process.env.S3_BUCKET || 'kinelab-media',
