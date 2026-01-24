@@ -54,12 +54,7 @@ export async function POST(request: NextRequest) {
       format: 'webp',
     })
 
-    // Create new file from optimized buffer
-    const optimizedFile = new File(
-      [optimized],
-      file.name.replace(/\.[^/.]+$/, '.webp'),
-      { type: 'image/webp' }
-    )
+    const optimizedFileName = file.name.replace(/\.[^/.]+$/, '.webp')
 
     // Upload to Payload
     const payload = await getPayload({ config })
@@ -87,7 +82,7 @@ export async function POST(request: NextRequest) {
       file: {
         data: optimized,
         mimetype: 'image/webp',
-        name: optimizedFile.name,
+        name: optimizedFileName,
         size: optimized.length,
       },
     })
