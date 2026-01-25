@@ -48,6 +48,7 @@ const nextConfig: NextConfig = {
               "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://maps.googleapis.com",
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "img-src 'self' data: https: blob:",
+              "media-src 'self' https://videos.pexels.com https://player.vimeo.com blob:",
               "font-src 'self' data: https://fonts.gstatic.com",
               "connect-src 'self' https://api.fodivps2.cloud wss://fodivps2.cloud wss://api.fodivps2.cloud https://maps.googleapis.com",
               "frame-src 'self' https://maps.google.com https://www.google.com https://maps.googleapis.com https://*.google.com",

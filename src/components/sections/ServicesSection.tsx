@@ -13,19 +13,40 @@ const urgencyBadges: Record<string, { text: string; icon: 'flame' | 'trending'; 
   functional: null, // No badge per questo
 }
 
-// Immagini placeholder da Unsplash (fitness professionali)
-const categoryImages: Record<string, { src: string; alt: string }> = {
+// Media assets per categoria (immagine + video)
+const categoryMedia: Record<string, {
+  image: { src: string; alt: string }
+  video: { src: string; poster: string }
+}> = {
   pilates: {
-    src: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=80',
-    alt: 'Pilates training session',
+    image: {
+      src: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=80',
+      alt: 'Pilates training session',
+    },
+    video: {
+      src: 'https://videos.pexels.com/video-files/6740304/6740304-uhd_2560_1440_25fps.mp4',
+      poster: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=80',
+    },
   },
   functional: {
-    src: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&q=80',
-    alt: 'Functional training workout',
+    image: {
+      src: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&q=80',
+      alt: 'Functional training workout',
+    },
+    video: {
+      src: 'https://videos.pexels.com/video-files/4662346/4662346-uhd_2560_1440_25fps.mp4',
+      poster: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&q=80',
+    },
   },
   personal: {
-    src: 'https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&q=80',
-    alt: 'Personal training one-on-one',
+    image: {
+      src: 'https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&q=80',
+      alt: 'Personal training one-on-one',
+    },
+    video: {
+      src: 'https://videos.pexels.com/video-files/4662389/4662389-uhd_2560_1440_25fps.mp4',
+      poster: 'https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&q=80',
+    },
   },
 }
 
@@ -104,10 +125,10 @@ export function ServicesSection({ services }: ServicesSectionProps) {
           </p>
         </motion.div>
 
-        {/* Services Grid - Apple Fitness+ Style */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Services Grid - Video Hover Effect Style */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
           {displayServices.map((service, index) => {
-            const imageData = categoryImages[service.category] || categoryImages.pilates
+            const mediaData = categoryMedia[service.category] || categoryMedia.pilates
 
             return (
               <motion.div
@@ -119,24 +140,45 @@ export function ServicesSection({ services }: ServicesSectionProps) {
               >
                 <Link href={`/servizi/${service.slug}`} className="group block">
                   <motion.div
-                    className="relative overflow-hidden rounded-2xl aspect-[4/3] shadow-lg"
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ duration: 0.3, ease: 'easeOut' }}
+                    className="relative overflow-hidden rounded-2xl aspect-[4/3] shadow-2xl transition-shadow duration-500 group-hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)]"
+                    whileHover={{ scale: 1.02, y: -4 }}
+                    transition={{ duration: 0.4, ease: 'easeOut' }}
                   >
-                    {/* Background Image */}
-                    <div className="absolute inset-0">
+                    {/* Background Image (default) */}
+                    <div className="absolute inset-0 transition-opacity duration-700 group-hover:opacity-0">
                       <Image
-                        src={imageData.src}
-                        alt={imageData.alt}
+                        src={mediaData.image.src}
+                        alt={mediaData.image.alt}
                         fill
-                        className="object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-110"
+                        className="object-cover scale-105"
                         sizes="(max-width: 768px) 100vw, 33vw"
                         priority={index === 0}
                       />
                     </div>
 
-                    {/* Gradient Overlay (bottom to top) */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                    {/* Video (appears on hover) */}
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                      <video
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        poster={mediaData.video.poster}
+                        className="w-full h-full object-cover"
+                      >
+                        <source src={mediaData.video.src} type="video/mp4" />
+                      </video>
+                    </div>
+
+                    {/* Animated Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent group-hover:from-black/80 group-hover:via-black/40 transition-all duration-500" />
+
+                    {/* Particles Effect (CSS only) */}
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000">
+                      <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-white/30 rounded-full animate-float" />
+                      <div className="absolute top-1/2 right-1/3 w-1.5 h-1.5 bg-white/20 rounded-full animate-float-delayed" />
+                      <div className="absolute bottom-1/3 left-1/2 w-1 h-1 bg-white/25 rounded-full animate-float-slow" />
+                    </div>
 
                     {/* Urgency Badge (top right) */}
                     {urgencyBadges[service.category] && (

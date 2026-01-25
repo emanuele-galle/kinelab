@@ -41,7 +41,7 @@ export function Footer({ businessInfo }: FooterProps) {
 
   return (
     <footer className="bg-[--color-bg-dark] text-white">
-      <div className="container py-16 lg:py-20">
+      <div className="container py-8 lg:py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           {/* Brand */}
           <div className="lg:col-span-1">
@@ -162,7 +162,7 @@ export function Footer({ businessInfo }: FooterProps) {
 
       {/* Bottom Bar */}
       <div className="border-t border-white/10">
-        <div className="container py-6 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="container py-4 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-white/40 text-sm">
             &copy; {currentYear} {companyName}. Tutti i diritti riservati.
           </p>
