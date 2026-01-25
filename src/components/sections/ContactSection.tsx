@@ -34,7 +34,7 @@ export function ContactSection({ businessInfo }: ContactSectionProps) {
       title: 'Telefono',
       content: phone,
       link: `tel:${phoneLink}`,
-      note: whatsapp ? 'Non riesci a prenotare? Contattaci su WhatsApp' : undefined,
+      note: whatsapp ? 'Hai domande? Contattaci su WhatsApp' : undefined,
     },
     {
       icon: Mail,

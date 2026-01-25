@@ -2,7 +2,8 @@
 
 import { motion } from 'motion/react'
 import Link from 'next/link'
-import { ArrowRight, Clock, Users, Activity, Dumbbell, User, Flame, TrendingUp } from 'lucide-react'
+import Image from 'next/image'
+import { ArrowRight, Clock, Users, Flame, TrendingUp } from 'lucide-react'
 import type { Service } from '@/lib/payload'
 
 // Urgency badges per categoria (scarcity + popularity)
@@ -12,25 +13,20 @@ const urgencyBadges: Record<string, { text: string; icon: 'flame' | 'trending'; 
   functional: null, // No badge per questo
 }
 
-// Icone per categoria
-const categoryIcons: Record<string, React.ReactNode> = {
-  pilates: (
-    <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <circle cx="12" cy="12" r="10" />
-      <path d="M12 6v12M6 12h12" />
-    </svg>
-  ),
-  functional: (
-    <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <path d="M4 12h16M12 4l8 8-8 8" />
-    </svg>
-  ),
-  personal: (
-    <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <circle cx="12" cy="8" r="4" />
-      <path d="M4 20c0-4.418 3.582-8 8-8s8 3.582 8 8" />
-    </svg>
-  ),
+// Immagini placeholder da Unsplash (fitness professionali)
+const categoryImages: Record<string, { src: string; alt: string }> = {
+  pilates: {
+    src: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=80',
+    alt: 'Pilates training session',
+  },
+  functional: {
+    src: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&q=80',
+    alt: 'Functional training workout',
+  },
+  personal: {
+    src: 'https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&q=80',
+    alt: 'Personal training one-on-one',
+  },
 }
 
 // Fallback servizi se il CMS non ne ha
@@ -108,110 +104,120 @@ export function ServicesSection({ services }: ServicesSectionProps) {
           </p>
         </motion.div>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {displayServices.map((service, index) => (
-            <motion.div
-              key={service.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-            >
-              <Link href={`/servizi/${service.slug}`} className="group block h-full">
-                <div className="card card-bordered bg-white p-8 h-full flex flex-col relative overflow-hidden">
-                  {/* Urgency Badge */}
-                  {urgencyBadges[service.category] && (
-                    <div className={`absolute top-4 right-4 ${urgencyBadges[service.category]!.color} text-white text-xs font-medium px-2.5 py-1 rounded-full flex items-center gap-1 shadow-sm`}>
-                      {urgencyBadges[service.category]!.icon === 'flame' ? (
-                        <Flame className="w-3 h-3" />
-                      ) : (
-                        <TrendingUp className="w-3 h-3" />
-                      )}
-                      {urgencyBadges[service.category]!.text}
-                    </div>
-                  )}
+        {/* Services Grid - Apple Fitness+ Style */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {displayServices.map((service, index) => {
+            const imageData = categoryImages[service.category] || categoryImages.pilates
 
-                  {/* Decorative gradient on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-[--color-accent]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                  <div className="relative z-10">
-                    {/* Icon with animated background */}
-                    <motion.div
-                      className="icon-container mb-6 text-[--color-primary] group-hover:border-[--color-accent] group-hover:bg-[--color-accent]/10 transition-all duration-300"
-                      whileHover={{ scale: 1.05, rotate: 3 }}
-                    >
-                      {categoryIcons[service.category] || <Activity className="w-7 h-7" />}
-                    </motion.div>
-
-                    {/* Title */}
-                    <h3 className="text-xl mb-2 group-hover:text-[--color-primary] transition-colors">
-                      {service.name}
-                    </h3>
-
-                    {/* Meta info */}
-                    <div className="flex items-center gap-4 mb-4 text-xs text-[--color-text-muted]">
-                      <span className="inline-flex items-center gap-1">
-                        <Clock className="w-3.5 h-3.5" />
-                        {service.duration || 60} min
-                      </span>
-                      <span className="inline-flex items-center gap-1">
-                        <Users className="w-3.5 h-3.5" />
-                        {categoryType[service.category] || 'Individuale'}
-                      </span>
+            return (
+              <motion.div
+                key={service.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+              >
+                <Link href={`/servizi/${service.slug}`} className="group block">
+                  <motion.div
+                    className="relative overflow-hidden rounded-2xl aspect-[4/3] shadow-lg"
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.3, ease: 'easeOut' }}
+                  >
+                    {/* Background Image */}
+                    <div className="absolute inset-0">
+                      <Image
+                        src={imageData.src}
+                        alt={imageData.alt}
+                        fill
+                        className="object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-110"
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        priority={index === 0}
+                      />
                     </div>
 
-                    {/* Description */}
-                    <p className="text-[--color-text-muted] text-sm leading-relaxed mb-6 flex-grow">
-                      {service.shortDescription || 'Sessioni professionali per il tuo benessere.'}
-                    </p>
+                    {/* Gradient Overlay (bottom to top) */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
-                    {/* Features tags */}
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {(categoryFeatures[service.category] || ['Professionale']).map((feature) => (
-                        <span
-                          key={feature}
-                          className="px-2.5 py-1 bg-[--color-bg-accent] rounded-full text-xs text-[--color-text-muted]"
-                        >
-                          {feature}
+                    {/* Urgency Badge (top right) */}
+                    {urgencyBadges[service.category] && (
+                      <div className={`absolute top-4 right-4 ${urgencyBadges[service.category]!.color} text-white text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg backdrop-blur-sm`}>
+                        {urgencyBadges[service.category]!.icon === 'flame' ? (
+                          <Flame className="w-3.5 h-3.5" />
+                        ) : (
+                          <TrendingUp className="w-3.5 h-3.5" />
+                        )}
+                        {urgencyBadges[service.category]!.text}
+                      </div>
+                    )}
+
+                    {/* Content (bottom) */}
+                    <div className="absolute inset-x-0 bottom-0 p-6 text-white">
+                      {/* Category label */}
+                      <p className="text-xs font-semibold tracking-widest uppercase mb-2 opacity-90">
+                        {service.category}
+                      </p>
+
+                      {/* Service name */}
+                      <h3 className="text-2xl font-bold mb-3 tracking-tight">
+                        {service.name}
+                      </h3>
+
+                      {/* Meta info */}
+                      <div className="flex items-center gap-4 text-sm mb-3 opacity-90">
+                        <span className="inline-flex items-center gap-1.5">
+                          <Clock className="w-4 h-4" />
+                          {service.duration || 60} min
                         </span>
-                      ))}
-                    </div>
+                        <span className="inline-flex items-center gap-1.5">
+                          <Users className="w-4 h-4" />
+                          {categoryType[service.category] || 'Individuale'}
+                        </span>
+                      </div>
 
-                    {/* Price and CTA */}
-                    <div className="flex items-center justify-between pt-4 border-t border-[--color-border-light]">
-                      <div>
+                      {/* Price */}
+                      <div className="flex items-center justify-between">
                         {service.originalPrice && service.originalPrice > 0 ? (
-                          <div className="flex flex-col">
-                            <span className="text-[--color-text-light] text-sm line-through">
+                          <div className="flex items-baseline gap-2">
+                            <span className="text-white/60 text-sm line-through">
                               €{service.originalPrice}
                             </span>
-                            <div>
-                              <span className="text-[--color-accent] font-medium text-lg">
-                                {service.price === 0 ? 'GRATIS' : `€${service.price}`}
-                              </span>
-                              <span className="text-[--color-text-muted] text-sm">/sessione</span>
-                            </div>
+                            <span className="text-xl font-bold">
+                              {service.price === 0 ? 'GRATIS' : `€${service.price}`}
+                            </span>
                           </div>
                         ) : (
-                          <>
-                            <span className="text-[--color-accent] font-medium text-lg">
-                              da €{service.price || '50'}
-                            </span>
-                            <span className="text-[--color-text-muted] text-sm">/sessione</span>
-                          </>
+                          <span className="text-xl font-bold">
+                            da €{service.price || '50'}
+                          </span>
                         )}
+
+                        {/* CTA Arrow (appears on hover) */}
+                        <motion.div
+                          className="flex items-center justify-center w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm"
+                          initial={{ opacity: 0, x: -10 }}
+                          whileHover={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <ArrowRight className="w-5 h-5 text-white group-hover:translate-x-1 transition-transform" />
+                        </motion.div>
                       </div>
-                      <span className="inline-flex items-center gap-2 text-[--color-primary] text-sm font-medium group-hover:gap-3 transition-all">
-                        Prenota
-                        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                      </span>
+
+                      {/* Hover: Show description */}
+                      <motion.div
+                        className="mt-3 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        initial={{ height: 0 }}
+                        whileHover={{ height: 'auto' }}
+                      >
+                        <p className="line-clamp-2">
+                          {service.shortDescription || 'Sessioni professionali per il tuo benessere.'}
+                        </p>
+                      </motion.div>
                     </div>
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
+                  </motion.div>
+                </Link>
+              </motion.div>
+            )
+          })}
         </div>
 
         {/* Bottom CTA */}

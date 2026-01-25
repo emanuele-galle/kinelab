@@ -136,7 +136,7 @@ export function LocalBusinessSchema({ businessInfo, services }: LocalBusinessSch
         name: 'Come posso prenotare una lezione a KineLab?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: `Puoi prenotare online sul sito kinelab.fodivps2.cloud, telefonando al ${phone} o via WhatsApp.`,
+          text: `Puoi prenotare online sul sito kinelab.fodivps2.cloud o telefonando al ${phone}. Per informazioni puoi contattarci anche su WhatsApp.`,
         },
       },
       {

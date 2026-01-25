@@ -5,16 +5,23 @@ import Image from 'next/image'
 import { motion, useScroll, useTransform } from 'motion/react'
 import { ChevronDown, MapPin, Star } from 'lucide-react'
 import { useRef } from 'react'
+import { useReducedMotion } from '@/hooks/useReducedMotion'
 
 export function HeroSection() {
   const containerRef = useRef<HTMLElement>(null)
+  const prefersReducedMotion = useReducedMotion()
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end start']
   })
 
-  // Parallax effect for background
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
+  // Parallax effect for background - rispetta prefers-reduced-motion
+  const y = useTransform(
+    scrollYProgress,
+    [0, 1],
+    prefersReducedMotion ? ['0%', '0%'] : ['0%', '30%']
+  )
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
 
   return (
@@ -171,7 +178,7 @@ export function HeroSection() {
       >
         <span className="text-xs tracking-wider uppercase">Scroll</span>
         <motion.div
-          animate={{ y: [0, 8, 0] }}
+          animate={prefersReducedMotion ? {} : { y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
         >
           <ChevronDown className="w-5 h-5" />

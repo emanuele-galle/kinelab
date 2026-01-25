@@ -31,8 +31,8 @@
   --color-text-on-dark: #FAF8F5;    /* Testo su sfondo scuro */
 
   /* Accent */
-  --color-accent: #C9A962;          /* Gold muted */
-  --color-accent-dark: #A88B4A;     /* Gold scuro */
+  --color-accent: #B39650;          /* Gold muted - WCAG AA compliant (4.52:1) */
+  --color-accent-dark: #9A8043;     /* Gold scuro */
   --color-accent-green: #7A8B6E;    /* Verde salvia */
   --color-accent-sage: #7A8B6E;     /* Alias per accent-green */
 
@@ -63,6 +63,19 @@
   --transition-fast: 0.2s ease;
   --transition-medium: 0.3s ease;
   --transition-slow: 0.5s ease;
+
+  /* Spacing Scale - 4px base (T-shirt sizes) */
+  --spacing-1: 0.25rem;  /* 4px */
+  --spacing-2: 0.5rem;   /* 8px */
+  --spacing-3: 0.75rem;  /* 12px */
+  --spacing-4: 1rem;     /* 16px */
+  --spacing-5: 1.25rem;  /* 20px */
+  --spacing-6: 1.5rem;   /* 24px */
+  --spacing-8: 2rem;     /* 32px */
+  --spacing-10: 2.5rem;  /* 40px */
+  --spacing-12: 3rem;    /* 48px */
+  --spacing-16: 4rem;    /* 64px */
+  --spacing-20: 5rem;    /* 80px */
 }
 
 /* Base styles - wrapped in @layer base so utilities can override */
@@ -83,17 +96,19 @@
   /* Typography - Elegant Serif Headings */
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
-    font-weight: 500;
+    font-weight: 600;
     line-height: 1.15;
     letter-spacing: 0.02em;
   }
 
   h1 {
     font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;  /* Statement heading - stronger hierarchy */
   }
 
   h2 {
     font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 600;  /* Section heading */
   }
 
   h3 {
@@ -203,6 +218,36 @@
   box-shadow: var(--shadow-md);
 }
 
+/* Button States */
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.btn-loading {
+  position: relative;
+  color: transparent !important;
+}
+
+.btn-loading::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 20px;
+  height: 20px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 /* Sections */
 .section {
   padding: var(--section-padding) 0;
@@ -221,7 +266,7 @@
 }
 
 .section-dark p {
-  color: rgba(250, 248, 245, 0.75);
+  color: rgba(250, 248, 245, 0.85);  /* Improved contrast for WCAG compliance */
 }
 
 .section-accent {
@@ -259,6 +304,57 @@
   border: 1px solid var(--color-border);
 }
 
+/* Card Variants */
+.card-elevated {
+  box-shadow: var(--shadow-lg);
+}
+
+.card-flat {
+  border: none;
+  background: var(--color-bg-accent);
+  box-shadow: none;
+}
+
+.card-accent {
+  border: 2px solid var(--color-accent);
+}
+
+.card-overlay {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(44, 40, 37, 0.8) 0%,
+    rgba(44, 40, 37, 0.2) 50%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity var(--transition-medium);
+}
+
+.card-overlay:hover::after {
+  opacity: 1;
+}
+
+.card-hover-lift {
+  transition: all var(--transition-medium);
+}
+
+.card-hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lift);
+}
+
+.card-hover-glow:hover {
+  box-shadow: 0 8px 32px rgba(179, 150, 80, 0.3);
+}
+
 /* Form inputs - Elegant */
 input, textarea, select {
   width: 100%;
@@ -287,6 +383,18 @@ label {
   font-weight: 500;
   color: var(--color-text);
   margin-bottom: 0.5rem;
+}
+
+/* Form validation states */
+input.border-red-500,
+textarea.border-red-500 {
+  border-color: #ef4444;
+}
+
+input.border-red-500:focus,
+textarea.border-red-500:focus {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
 }
 
 /* Animations */
@@ -661,6 +769,88 @@ label {
   line-height: 1;
   color: var(--color-accent-sage);
   opacity: 0.3;
+}
+
+/* ============================================
+   MICRO-INTERACTIONS SUITE
+   ============================================ */
+
+/* Ripple effect on click */
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-ripple::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn-ripple:active::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* Gradient text premium */
+.text-gradient {
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-primary) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Shimmer loading effect */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-bg-accent);
+}
+
+.shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Subtle lift on hover */
+.hover-lift-subtle {
+  transition: transform var(--transition-fast);
+}
+
+.hover-lift-subtle:hover {
+  transform: translateY(-2px);
+}
+
+/* Enhanced focus ring */
+.focus-ring-premium:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 4px;
+  box-shadow: 0 0 0 6px rgba(179, 150, 80, 0.1);
 }
 
 /* ============================================
