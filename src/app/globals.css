@@ -36,6 +36,21 @@
   --color-accent-green: #7A8B6E;    /* Verde salvia */
   --color-accent-sage: #7A8B6E;     /* Alias per accent-green */
 
+  /* Category Accent Colors (Premium Brand Differentiation) */
+  --color-category-pilates: #7A8B6E;      /* Soft sage green - calming, wellness */
+  --color-category-functional: #E87722;   /* Vibrant orange - energetic, powerful */
+  --color-category-personal: #2C3E50;     /* Deep navy - professional, exclusive */
+
+  /* Glassmorphism */
+  --glass-bg: rgba(255, 255, 255, 0.15);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --glass-blur: blur(20px);
+
+  /* Social Proof Colors */
+  --rating-gold: #FFD700;
+  --urgency-red: #FF4444;
+  --booking-green: #00C853;
+
   /* Border */
   --color-border: #E5DED4;
   --color-border-light: #F0EBE3;
@@ -63,6 +78,19 @@
   --transition-fast: 0.2s ease;
   --transition-medium: 0.3s ease;
   --transition-slow: 0.5s ease;
+
+  /* Spring Physics Config */
+  --spring-stiffness: 150;
+  --spring-damping: 15;
+
+  /* Timing - Premium */
+  --duration-fast: 300ms;
+  --duration-normal: 500ms;
+  --duration-slow: 800ms;
+
+  /* Easing - Spring & Smooth */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
 
   /* Spacing Scale - 4px base (T-shirt sizes) */
   --spacing-1: 0.25rem;  /* 4px */
@@ -271,6 +299,23 @@
 
 .section-accent {
   background: var(--color-bg-accent);
+}
+
+.section-premium {
+  padding: 140px 0;
+  background: var(--color-bg-accent);
+}
+
+@media (max-width: 1024px) {
+  .section-premium {
+    padding: 100px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-premium {
+    padding: 80px 0;
+  }
 }
 
 /* Container */
@@ -772,6 +817,40 @@ textarea.border-red-500:focus {
 }
 
 /* ============================================
+   GLASSMORPHISM UTILITIES
+   ============================================ */
+
+.glassmorphic-panel {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+}
+
+.glassmorphic-light {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.glassmorphic-dark {
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Fallback for browsers without backdrop-filter support */
+@supports not (backdrop-filter: blur(20px)) {
+  .glassmorphic-panel,
+  .glassmorphic-light,
+  .glassmorphic-dark {
+    background: rgba(255, 255, 255, 0.9);
+  }
+}
+
+/* ============================================
    MICRO-INTERACTIONS SUITE
    ============================================ */
 
@@ -930,61 +1009,106 @@ textarea.border-red-500:focus {
    ANIMATIONS - Floating particles & effects
    ============================================ */
 
+/* ============================================
+   PREMIUM PARTICLE ANIMATIONS (Enhanced)
+   ============================================ */
+
 @keyframes float {
   0%, 100% {
-    transform: translateY(0) translateX(0);
+    transform: translateY(0) translateX(0) rotate(0deg);
     opacity: 0.3;
   }
   25% {
-    transform: translateY(-20px) translateX(10px);
-    opacity: 0.6;
+    transform: translateY(-25px) translateX(12px) rotate(90deg);
+    opacity: 0.7;
   }
   50% {
-    transform: translateY(-40px) translateX(-5px);
-    opacity: 0.8;
+    transform: translateY(-50px) translateX(-8px) rotate(180deg);
+    opacity: 0.9;
   }
   75% {
-    transform: translateY(-30px) translateX(15px);
+    transform: translateY(-35px) translateX(18px) rotate(270deg);
     opacity: 0.5;
   }
 }
 
 @keyframes float-delayed {
   0%, 100% {
-    transform: translateY(0) translateX(0);
+    transform: translateY(0) translateX(0) scale(1);
     opacity: 0.2;
   }
   33% {
-    transform: translateY(-30px) translateX(-10px);
-    opacity: 0.7;
+    transform: translateY(-40px) translateX(-15px) scale(1.3);
+    opacity: 0.8;
   }
   66% {
-    transform: translateY(-15px) translateX(8px);
+    transform: translateY(-20px) translateX(12px) scale(0.9);
     opacity: 0.4;
   }
 }
 
 @keyframes float-slow {
   0%, 100% {
-    transform: translateY(0) scale(1);
+    transform: translateY(0) translateX(0) scale(1) rotate(0deg);
     opacity: 0.25;
   }
+  33% {
+    transform: translateY(-30px) translateX(10px) scale(1.4) rotate(120deg);
+    opacity: 0.7;
+  }
+  66% {
+    transform: translateY(-15px) translateX(-5px) scale(0.8) rotate(240deg);
+    opacity: 0.5;
+  }
+}
+
+@keyframes float-fast {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.4;
+  }
   50% {
-    transform: translateY(-25px) scale(1.2);
-    opacity: 0.6;
+    transform: translateY(-35px) translateX(20px);
+    opacity: 0.8;
+  }
+}
+
+@keyframes float-bounce {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-45px) scale(1.5);
+    opacity: 0.9;
   }
 }
 
 .animate-float {
   animation: float 6s ease-in-out infinite;
+  will-change: transform, opacity;
 }
 
 .animate-float-delayed {
   animation: float-delayed 8s ease-in-out infinite;
   animation-delay: 1s;
+  will-change: transform, opacity;
 }
 
 .animate-float-slow {
   animation: float-slow 10s ease-in-out infinite;
   animation-delay: 2s;
+  will-change: transform, opacity;
+}
+
+.animate-float-fast {
+  animation: float-fast 4s ease-in-out infinite;
+  animation-delay: 0.5s;
+  will-change: transform, opacity;
+}
+
+.animate-float-bounce {
+  animation: float-bounce 7s ease-in-out infinite;
+  animation-delay: 1.5s;
+  will-change: transform, opacity;
 }

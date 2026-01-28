@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Mail, Phone, MapPin, Instagram, Facebook } from 'lucide-react'
+import { Mail, Phone, MapPin, Instagram, Facebook, Clock, ArrowRight } from 'lucide-react'
 import type { BusinessInfo } from '@/lib/payload'
 
 const footerLinks = {
@@ -7,14 +7,12 @@ const footerLinks = {
     { name: 'Home', href: '/' },
     { name: 'Chi Siamo', href: '/#chi-siamo' },
     { name: 'Servizi', href: '/#servizi' },
-    { name: 'Galleria', href: '/#gallery' },
     { name: 'Team', href: '/#team' },
-    { name: 'Prenota', href: '/prenota' },
   ],
   servizi: [
-    { name: 'Pilates', href: '/#servizi' },
-    { name: 'Functional Training', href: '/#servizi' },
-    { name: 'Personal Training', href: '/#servizi' },
+    { name: 'Pilates', href: '/servizi/pilates' },
+    { name: 'Functional Training', href: '/servizi/functional' },
+    { name: 'Personal Training', href: '/servizi/personal' },
   ],
 }
 
@@ -37,151 +35,234 @@ export function Footer({ businessInfo }: FooterProps) {
   const facebook = businessInfo?.facebook
 
   // Formatta telefono per link tel:
-  const phoneLink = phone.replace(/\s/g, '').replace('+39', '+39')
+  const phoneLink = phone.replace(/\s/g, '')
 
   return (
-    <footer className="bg-[--color-bg-dark] text-white">
-      <div className="container py-8 lg:py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
-          {/* Brand */}
-          <div className="lg:col-span-1">
-            <Link
-              href="/"
-              className="inline-block text-2xl font-medium tracking-tight mb-6"
-              style={{ fontFamily: 'var(--font-display)' }}
-            >
-              KineLab
-            </Link>
-            <p className="text-white/60 text-sm leading-relaxed mb-6">
-              Uno spazio dedicato al benessere del corpo e della mente,
-              con un approccio curato e personalizzato.
-            </p>
-            {/* Social links - mostrati solo se configurati nel CMS */}
-            {(instagram || facebook) && (
-              <div className="flex gap-3">
-                {instagram && (
+    <footer className="bg-[#2C2825] text-white relative overflow-hidden">
+      {/* Decorative Top Line */}
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#B39650] to-transparent" />
+
+      {/* Main Footer Content */}
+      <div className="container">
+        {/* Top Section - Logo + CTA */}
+        <div className="py-16 lg:py-20 border-b border-white/10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+            {/* Left: Brand */}
+            <div>
+              <Link
+                href="/"
+                className="inline-block text-5xl lg:text-6xl font-bold tracking-tight mb-6 hover:text-[#B39650] transition-colors"
+                style={{ fontFamily: 'var(--font-display)' }}
+              >
+                KineLab
+              </Link>
+              <p className="text-white/80 text-xl leading-relaxed max-w-md">
+                Il tuo spazio per il benessere del corpo e della mente
+              </p>
+            </div>
+
+            {/* Right: CTA */}
+            <div className="flex flex-col sm:flex-row gap-4 lg:justify-end">
+              <Link
+                href="/prenota"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#B39650] text-[#2C2825] text-lg font-bold rounded-xl hover:bg-[#9A8043] transition-all hover:scale-105 hover:shadow-xl shadow-lg"
+              >
+                Prenota Ora
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+              <a
+                href={`tel:${phoneLink}`}
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 backdrop-blur-sm text-white text-lg font-semibold rounded-xl hover:bg-white/20 transition-all border-2 border-white/20"
+              >
+                <Phone className="w-5 h-5" />
+                Chiamaci
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+        {/* Middle Section - Links Grid */}
+        <div className="py-16 lg:py-20">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+
+            {/* Column 1: Navigation */}
+            <div>
+              <h3 className="text-white font-bold text-lg mb-6 uppercase tracking-wide">
+                Navigazione
+              </h3>
+              <ul className="space-y-4">
+                {footerLinks.esplora.map((link) => (
+                  <li key={link.name}>
+                    <Link
+                      href={link.href}
+                      className="text-white/70 hover:text-[#B39650] text-base transition-colors inline-flex items-center gap-2 group"
+                    >
+                      <span className="w-0 group-hover:w-4 h-[2px] bg-[#B39650] transition-all" />
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Column 2: Services */}
+            <div>
+              <h3 className="text-white font-bold text-lg mb-6 uppercase tracking-wide">
+                Servizi
+              </h3>
+              <ul className="space-y-4">
+                {footerLinks.servizi.map((link) => (
+                  <li key={link.name}>
+                    <Link
+                      href={link.href}
+                      className="text-white/70 hover:text-[#B39650] text-base transition-colors inline-flex items-center gap-2 group"
+                    >
+                      <span className="w-0 group-hover:w-4 h-[2px] bg-[#B39650] transition-all" />
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Column 3: Contacts */}
+            <div>
+              <h3 className="text-white font-bold text-lg mb-6 uppercase tracking-wide">
+                Contatti
+              </h3>
+              <ul className="space-y-5">
+                <li>
                   <a
-                    href={instagram}
+                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${address}, ${postalCode} ${city}`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-[--color-bg-dark] transition-colors"
-                    aria-label="Instagram"
+                    className="flex items-start gap-3 text-white/70 hover:text-white transition-colors group"
                   >
-                    <Instagram className="w-4 h-4" />
+                    <MapPin className="w-5 h-5 text-[#B39650] flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
+                    <span className="text-base">
+                      {address}, {postalCode} {city}
+                    </span>
                   </a>
-                )}
-                {facebook && (
+                </li>
+                <li>
                   <a
-                    href={facebook}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-[--color-bg-dark] transition-colors"
-                    aria-label="Facebook"
+                    href={`tel:${phoneLink}`}
+                    className="flex items-center gap-3 text-white/70 hover:text-white transition-colors group"
                   >
-                    <Facebook className="w-4 h-4" />
+                    <Phone className="w-5 h-5 text-[#B39650] flex-shrink-0 group-hover:scale-110 transition-transform" />
+                    <span className="text-base">{phone}</span>
                   </a>
-                )}
+                </li>
+                <li>
+                  <a
+                    href={`mailto:${email}`}
+                    className="flex items-center gap-3 text-white/70 hover:text-white transition-colors group"
+                  >
+                    <Mail className="w-5 h-5 text-[#B39650] flex-shrink-0 group-hover:scale-110 transition-transform" />
+                    <span className="text-base break-all">{email}</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Column 4: Opening Hours + Social */}
+            <div>
+              <h3 className="text-white font-bold text-lg mb-6 uppercase tracking-wide">
+                Orari
+              </h3>
+              <div className="space-y-3 mb-8">
+                <div className="flex justify-between text-base">
+                  <span className="text-white/70">Lun - Ven</span>
+                  <span className="text-white font-semibold">7:00 - 21:00</span>
+                </div>
+                <div className="flex justify-between text-base">
+                  <span className="text-white/70">Sabato</span>
+                  <span className="text-white font-semibold">9:00 - 13:00</span>
+                </div>
+                <div className="flex justify-between text-base">
+                  <span className="text-white/70">Domenica</span>
+                  <span className="text-white/50">Chiuso</span>
+                </div>
               </div>
-            )}
-          </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-medium mb-6 text-white text-sm tracking-wider uppercase">
-              Esplora
-            </h4>
-            <ul className="space-y-3">
-              {footerLinks.esplora.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="text-white/60 hover:text-white text-sm transition-colors"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+              {/* Social Links */}
+              {(instagram || facebook) && (
+                <div>
+                  <h4 className="text-white font-semibold text-sm mb-4 uppercase tracking-wide">
+                    Seguici
+                  </h4>
+                  <div className="flex gap-3">
+                    {instagram && (
+                      <a
+                        href={instagram}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-11 h-11 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center hover:bg-[#B39650] hover:border-[#B39650] hover:scale-110 transition-all"
+                        aria-label="Instagram"
+                      >
+                        <Instagram className="w-5 h-5" />
+                      </a>
+                    )}
+                    {facebook && (
+                      <a
+                        href={facebook}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-11 h-11 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center hover:bg-[#B39650] hover:border-[#B39650] hover:scale-110 transition-all"
+                        aria-label="Facebook"
+                      >
+                        <Facebook className="w-5 h-5" />
+                      </a>
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
 
-          {/* Services */}
-          <div>
-            <h4 className="font-medium mb-6 text-white text-sm tracking-wider uppercase">
-              Servizi
-            </h4>
-            <ul className="space-y-3">
-              {footerLinks.servizi.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="text-white/60 hover:text-white text-sm transition-colors"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h4 className="font-medium mb-6 text-white text-sm tracking-wider uppercase">
-              Contatti
-            </h4>
-            <ul className="space-y-4">
-              <li className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 text-[--color-accent] flex-shrink-0 mt-0.5" />
-                <span className="text-white/60 text-sm">
-                  {address}
-                  <br />
-                  {postalCode} {city}
-                </span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Phone className="w-4 h-4 text-[--color-accent] flex-shrink-0" />
-                <a
-                  href={`tel:${phoneLink}`}
-                  className="text-white/60 hover:text-white text-sm transition-colors"
-                >
-                  {phone}
-                </a>
-              </li>
-              <li className="flex items-center gap-3">
-                <Mail className="w-4 h-4 text-[--color-accent] flex-shrink-0" />
-                <a
-                  href={`mailto:${email}`}
-                  className="text-white/60 hover:text-white text-sm transition-colors"
-                >
-                  {email}
-                </a>
-              </li>
-            </ul>
           </div>
         </div>
-      </div>
 
-      {/* Bottom Bar */}
-      <div className="border-t border-white/10">
-        <div className="container py-4 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-white/40 text-sm">
-            &copy; {currentYear} {companyName}. Tutti i diritti riservati.
-          </p>
-          <div className="flex gap-6 text-sm">
-            <Link
-              href="/privacy"
-              className="text-white/40 hover:text-white transition-colors"
-            >
-              Privacy Policy
-            </Link>
-            <Link
-              href="/cookie"
-              className="text-white/40 hover:text-white transition-colors"
-            >
-              Cookie Policy
-            </Link>
+        {/* Bottom Section - Legal */}
+        <div className="py-8 border-t border-white/10">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-sm">
+
+            {/* Copyright */}
+            <p className="text-white/50 text-center md:text-left">
+              &copy; {currentYear} {companyName}. Tutti i diritti riservati.
+            </p>
+
+            {/* Legal Links */}
+            <div className="flex flex-wrap justify-center gap-6">
+              <Link
+                href="/privacy"
+                className="text-white/50 hover:text-white transition-colors"
+              >
+                Privacy Policy
+              </Link>
+              <Link
+                href="/cookie"
+                className="text-white/50 hover:text-white transition-colors"
+              >
+                Cookie Policy
+              </Link>
+              <Link
+                href="/termini"
+                className="text-white/50 hover:text-white transition-colors"
+              >
+                Termini e Condizioni
+              </Link>
+            </div>
+
+            {/* VAT */}
+            <p className="text-white/50 text-center md:text-right">
+              P.IVA {vatNumber}
+            </p>
+
           </div>
-          <p className="text-white/40 text-xs">P.IVA {vatNumber}</p>
         </div>
+
       </div>
     </footer>
   )
