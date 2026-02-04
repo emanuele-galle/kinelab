@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion, useScroll, useTransform } from 'motion/react'
-import { ChevronDown, MapPin, Star } from 'lucide-react'
+import { ChevronDown, Star } from 'lucide-react'
 import { useRef } from 'react'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 
@@ -27,7 +27,7 @@ export function HeroSection() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[85svh] md:min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-[85svh] md:min-h-screen flex items-center justify-center overflow-hidden pt-24 md:pt-0"
     >
       {/* Background Image with Parallax */}
       <motion.div
@@ -61,7 +61,7 @@ export function HeroSection() {
 
       {/* Content */}
       <motion.div
-        className="relative z-10 container text-center text-white px-4 pt-24 md:pt-0"
+        className="relative z-10 container text-center text-white px-4"
         style={{ opacity }}
       >
         <motion.div
@@ -70,17 +70,6 @@ export function HeroSection() {
           transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
           className="max-w-3xl mx-auto"
         >
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6"
-          >
-            <MapPin className="w-4 h-4 text-[--color-accent]" />
-            <span className="text-sm text-white/90">Studio Pilates Milano</span>
-          </motion.div>
-
           {/* Decorative Line */}
           <motion.div
             initial={{ width: 0 }}

@@ -197,9 +197,6 @@ export function Header({ businessInfo }: HeaderProps) {
                     className="object-contain object-left"
                   />
                 </Link>
-                <p className="text-[--color-text-muted] text-sm mt-1">
-                  Studio Pilates Milano
-                </p>
               </div>
 
               {/* Navigation Links */}

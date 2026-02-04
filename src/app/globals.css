@@ -108,6 +108,11 @@
 
 /* Base styles - wrapped in @layer base so utilities can override */
 @layer base {
+  html,
+  body {
+    overflow-x: clip;
+  }
+
   html {
     scroll-behavior: smooth;
   }

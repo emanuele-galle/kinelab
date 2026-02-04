@@ -32,6 +32,7 @@ services:
       - "traefik.http.routers.kinelab-preview.entrypoints=websecure"
       - "traefik.http.routers.kinelab-preview.tls=true"
       - "traefik.http.routers.kinelab-preview.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.kinelab-preview.middlewares=security-headers@file"
 
       # Service
       - "traefik.http.services.kinelab-preview.loadbalancer.server.port=3000"
