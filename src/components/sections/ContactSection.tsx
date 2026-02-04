@@ -71,7 +71,7 @@ export function ContactSection({ businessInfo }: ContactSectionProps) {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-12">
           {/* Contact Info - 2 columns */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}

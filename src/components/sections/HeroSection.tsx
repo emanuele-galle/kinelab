@@ -27,7 +27,7 @@ export function HeroSection() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-[85svh] md:min-h-screen flex items-center justify-center overflow-hidden"
     >
       {/* Background Image with Parallax */}
       <motion.div
@@ -35,7 +35,7 @@ export function HeroSection() {
         style={{ y }}
       >
         <Image
-          src="https://images.pexels.com/photos/4056535/pexels-photo-4056535.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1280"
+          src="https://images.pexels.com/photos/18136885/pexels-photo-18136885.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1280"
           alt="Studio Pilates KineLab Milano - Ambiente luminoso e professionale"
           fill
           priority
@@ -61,7 +61,7 @@ export function HeroSection() {
 
       {/* Content */}
       <motion.div
-        className="relative z-10 container text-center text-white px-4"
+        className="relative z-10 container text-center text-white px-4 pt-24 md:pt-0"
         style={{ opacity }}
       >
         <motion.div
@@ -94,7 +94,7 @@ export function HeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.6 }}
-            className="text-sm tracking-[0.2em] uppercase text-white mb-4 drop-shadow-md"
+            className="text-sm tracking-[0.15em] md:tracking-[0.2em] uppercase text-white mb-4 drop-shadow-md"
           >
             Pilates · Functional Training · Personal Training
           </motion.p>
@@ -127,7 +127,7 @@ export function HeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.7, duration: 0.8 }}
-            className="text-white/90 text-base md:text-lg max-w-xl mx-auto mb-10 leading-relaxed drop-shadow-md"
+            className="text-white/90 text-base md:text-lg max-w-lg md:max-w-xl mx-auto mb-10 leading-relaxed drop-shadow-md"
           >
             Uno spazio intimo a Milano dedicato alla trasformazione del tuo corpo
             attraverso metodi scientifici e attenzione personalizzata.
@@ -174,7 +174,7 @@ export function HeroSection() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.7 }}
         transition={{ delay: 1.2, duration: 0.6 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 text-white"
       >
         <span className="text-xs tracking-wider uppercase">Scroll</span>
         <motion.div

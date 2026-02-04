@@ -20,8 +20,8 @@ export function StickyMobileCTA({ businessInfo }: StickyMobileCTAProps) {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Show after scrolling past hero (100vh)
-      const heroHeight = window.innerHeight
+      // Show after scrolling past hero section
+      const heroHeight = document.querySelector('section')?.offsetHeight || window.innerHeight
       setIsVisible(window.scrollY > heroHeight * 0.8)
     }
 

@@ -227,7 +227,7 @@ export function TeamSection({ members }: TeamSectionProps) {
           transition={{ delay: 0.3 }}
           className="mt-20 py-12 px-8 bg-[--color-bg-accent] rounded-2xl max-w-4xl mx-auto"
         >
-          <div className="grid grid-cols-3 gap-8">
+          <div className="grid grid-cols-3 gap-4 md:gap-8">
             {teamValues.map((stat, index) => (
               <motion.div
                 key={stat.label}

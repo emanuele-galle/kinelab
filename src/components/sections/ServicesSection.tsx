@@ -3,7 +3,7 @@
 import { motion } from 'motion/react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { ArrowRight, Clock, Users, Flame, TrendingUp, Zap } from 'lucide-react'
 import type { Service } from '@/lib/payload'
 import { RatingDisplay } from '@/components/ui/RatingDisplay'
@@ -106,32 +106,32 @@ const categoryMedia: Record<string, {
 }> = {
   pilates: {
     image: {
-      src: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=80',
-      alt: 'Pilates training session',
+      src: 'https://images.pexels.com/photos/25596671/pexels-photo-25596671.jpeg?auto=compress&cs=tinysrgb&w=800',
+      alt: 'Pilates Cadillac studio professionale',
     },
     video: {
       src: 'https://videos.pexels.com/video-files/6740304/6740304-uhd_2560_1440_25fps.mp4',
-      poster: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=80',
+      poster: 'https://images.pexels.com/photos/25596671/pexels-photo-25596671.jpeg?auto=compress&cs=tinysrgb&w=800',
     },
   },
   functional: {
     image: {
-      src: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&q=80',
-      alt: 'Functional training workout',
+      src: 'https://images.pexels.com/photos/866027/pexels-photo-866027.jpeg?auto=compress&cs=tinysrgb&w=800',
+      alt: 'Functional training in spazio luminoso',
     },
     video: {
       src: 'https://videos.pexels.com/video-files/4662346/4662346-uhd_2560_1440_25fps.mp4',
-      poster: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&q=80',
+      poster: 'https://images.pexels.com/photos/866027/pexels-photo-866027.jpeg?auto=compress&cs=tinysrgb&w=800',
     },
   },
   personal: {
     image: {
-      src: 'https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&q=80',
-      alt: 'Personal training one-on-one',
+      src: 'https://images.pexels.com/photos/25596681/pexels-photo-25596681.jpeg?auto=compress&cs=tinysrgb&w=800',
+      alt: 'Personal training one-on-one con trainer',
     },
     video: {
       src: 'https://videos.pexels.com/video-files/4662389/4662389-uhd_2560_1440_25fps.mp4',
-      poster: 'https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&q=80',
+      poster: 'https://images.pexels.com/photos/25596681/pexels-photo-25596681.jpeg?auto=compress&cs=tinysrgb&w=800',
     },
   },
 }
@@ -197,7 +197,12 @@ interface ServiceCardProps {
 
 function ServiceCard({ service, index }: ServiceCardProps) {
   const [showPricing, setShowPricing] = useState(false)
+  const [hasHover, setHasHover] = useState(false)
   const { elementRef, magneticStyle } = useMagneticCursor({ strength: 8, radius: 100 })
+
+  useEffect(() => {
+    setHasHover(window.matchMedia('(hover: hover)').matches)
+  }, [])
 
   const mediaData = categoryMedia[service.category] || categoryMedia.pilates
   const socialProof = socialProofData[service.category]
@@ -213,7 +218,7 @@ function ServiceCard({ service, index }: ServiceCardProps) {
     >
       <Link href={`/servizi/${service.slug}`} className="group block">
         <motion.div
-          className="relative overflow-hidden rounded-2xl aspect-[3/4] shadow-2xl"
+          className="relative overflow-hidden rounded-2xl aspect-[4/5] md:aspect-[3/4] shadow-2xl"
           whileHover={{ scale: 1.05, y: -12 }}
           transition={{ duration: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
           onHoverStart={() => setShowPricing(true)}
@@ -243,8 +248,8 @@ function ServiceCard({ service, index }: ServiceCardProps) {
           {/* Animated Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent group-hover:from-black/80 group-hover:via-black/40 transition-all duration-500" />
 
-          {/* Enhanced Particle System (12-15 particles) */}
-          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none">
+          {/* Enhanced Particle System (12-15 particles) - hidden on mobile */}
+          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none hidden md:block">
             {/* Particle 1 */}
             <div className="absolute top-[20%] left-[15%] w-2 h-2 bg-white/30 rounded-full animate-float" />
             <div className="absolute top-[35%] left-[25%] w-1.5 h-1.5 bg-white/25 rounded-full animate-float-delayed" />
@@ -281,7 +286,7 @@ function ServiceCard({ service, index }: ServiceCardProps) {
           )}
 
           {/* Main Content (bottom - Premium Hierarchy) */}
-          <div className="absolute inset-x-0 bottom-0 p-10 text-white">
+          <div className="absolute inset-x-0 bottom-0 p-5 md:p-10 text-white">
             {/* TIER 1: Category + Service Name */}
             <div className="mb-4">
               <p
@@ -290,7 +295,7 @@ function ServiceCard({ service, index }: ServiceCardProps) {
               >
                 {service.category}
               </p>
-              <h3 className="text-4xl font-bold mb-3 tracking-tight leading-tight">
+              <h3 className="text-2xl md:text-4xl font-bold mb-3 tracking-tight leading-tight">
                 {service.name}
               </h3>
             </div>
@@ -321,7 +326,7 @@ function ServiceCard({ service, index }: ServiceCardProps) {
             </div>
 
             {/* TIER 4: Meta Info (Duration, Type, Difficulty) */}
-            <div className="flex items-center gap-4 text-sm mb-4 opacity-90">
+            <div className="flex items-center gap-2 md:gap-4 flex-wrap text-sm mb-4 opacity-90">
               <span className="inline-flex items-center gap-1.5">
                 <Clock className="w-4 h-4" />
                 {service.duration || 60} min
@@ -360,11 +365,11 @@ function ServiceCard({ service, index }: ServiceCardProps) {
                 </span>
               )}
 
-              {/* Magnetic CTA Button */}
+              {/* Magnetic CTA Button - magnetic effect only on hover-capable devices */}
               <motion.div
                 ref={elementRef as React.RefObject<HTMLDivElement>}
                 className="flex items-center justify-center w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm cursor-pointer"
-                style={magneticStyle}
+                style={hasHover ? magneticStyle : undefined}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -372,16 +377,21 @@ function ServiceCard({ service, index }: ServiceCardProps) {
               </motion.div>
             </div>
 
-            {/* Hover: Show description */}
-            <motion.div
-              className="mt-4 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              initial={{ height: 0 }}
-              whileHover={{ height: 'auto' }}
-            >
+            {/* Description - always visible on mobile, hover on desktop */}
+            <div className="mt-3 text-sm leading-relaxed md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
               <p className="line-clamp-2">
                 {service.shortDescription || 'Sessioni professionali per il tuo benessere.'}
               </p>
-            </motion.div>
+            </div>
+
+            {/* Mobile pricing hint */}
+            <div className="mt-3 md:hidden flex gap-2 text-xs text-white/60">
+              <span>1 sed. €{service.price || 50}</span>
+              <span>·</span>
+              <span>5 sed. -{5}%</span>
+              <span>·</span>
+              <span>10 sed. -{10}%</span>
+            </div>
           </div>
 
           {/* Glassmorphic Pricing Panel (appears on hover) */}
@@ -414,7 +424,7 @@ export function ServicesSection({ services }: ServicesSectionProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20 max-w-2xl mx-auto"
+          className="text-center mb-12 md:mb-20 max-w-2xl mx-auto"
         >
           <p className="text-[--color-primary] text-sm tracking-[0.15em] uppercase mb-4">
             I Nostri Servizi
@@ -428,7 +438,7 @@ export function ServicesSection({ services }: ServicesSectionProps) {
         </motion.div>
 
         {/* Services Grid - Enhanced Spacing (40px gap, larger cards) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 relative max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10 relative max-w-7xl mx-auto">
           {displayServices.map((service, index) => (
             <ServiceCard key={service.id} service={service} index={index} />
           ))}

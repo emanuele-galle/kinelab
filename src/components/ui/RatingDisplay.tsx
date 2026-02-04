@@ -21,7 +21,7 @@ export function RatingDisplay({
   const stars = Array.from({ length: 5 }, (_, i) => i + 1)
 
   return (
-    <div className={`flex items-center gap-3 ${className}`}>
+    <div className={`flex items-center flex-wrap gap-2 md:gap-3 ${className}`}>
       {/* Star Rating */}
       <div className="flex items-center gap-1">
         {stars.map((star) => (
@@ -46,7 +46,7 @@ export function RatingDisplay({
 
       {/* Booking Count (if provided) */}
       {showBookings && bookings && (
-        <div className="ml-2 px-2 py-0.5 rounded-full bg-white/10 backdrop-blur-sm text-xs text-white/90">
+        <div className="hidden md:block ml-2 px-2 py-0.5 rounded-full bg-white/10 backdrop-blur-sm text-xs text-white/90">
           {bookings} prenotazioni questa settimana
         </div>
       )}

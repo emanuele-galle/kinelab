@@ -7,38 +7,38 @@ import { X, ChevronLeft, ChevronRight, Expand, ZoomIn } from 'lucide-react'
 
 const galleryImages = [
   {
-    src: 'https://images.pexels.com/photos/4056535/pexels-photo-4056535.jpeg?auto=compress&cs=tinysrgb&w=800&h=600',
-    alt: 'Sessione Pilates Mat',
-    title: 'Pilates Mat',
-    description: 'Sessioni di gruppo in ambiente rilassante',
+    src: 'https://images.pexels.com/photos/18136885/pexels-photo-18136885.jpeg?auto=compress&cs=tinysrgb&w=800&h=600',
+    alt: 'Reformer studio con luce calda',
+    title: 'Il Nostro Studio',
+    description: 'Ambiente caldo e professionale',
     className: 'md:col-span-2 md:row-span-2',
   },
   {
-    src: 'https://images.pexels.com/photos/4498151/pexels-photo-4498151.jpeg?auto=compress&cs=tinysrgb&w=800&h=600',
-    alt: 'Stretching guidato',
-    title: 'Stretching',
-    description: 'Flessibilita e mobilita',
-    className: 'md:col-span-1 md:row-span-1',
-  },
-  {
-    src: 'https://images.pexels.com/photos/4498482/pexels-photo-4498482.jpeg?auto=compress&cs=tinysrgb&w=800&h=600',
-    alt: 'Pilates Reformer',
-    title: 'Reformer',
+    src: 'https://images.pexels.com/photos/25596671/pexels-photo-25596671.jpeg?auto=compress&cs=tinysrgb&w=800&h=600',
+    alt: 'Pilates Cadillac',
+    title: 'Pilates Cadillac',
     description: 'Attrezzatura professionale',
     className: 'md:col-span-1 md:row-span-1',
   },
   {
-    src: 'https://images.pexels.com/photos/4056723/pexels-photo-4056723.jpeg?auto=compress&cs=tinysrgb&w=800&h=600',
-    alt: 'Functional Training',
-    title: 'Training Funzionale',
-    description: 'Allenamento personalizzato',
+    src: 'https://images.pexels.com/photos/25599839/pexels-photo-25599839.jpeg?auto=compress&cs=tinysrgb&w=800&h=600',
+    alt: 'Tower Reformer esercizio',
+    title: 'Reformer',
+    description: 'Tecnica ed eleganza',
     className: 'md:col-span-1 md:row-span-1',
   },
   {
-    src: 'https://images.pexels.com/photos/6111616/pexels-photo-6111616.jpeg?auto=compress&cs=tinysrgb&w=800&h=600',
-    alt: 'Studio ambiente',
-    title: 'Il Nostro Studio',
-    description: 'Spazio accogliente e luminoso',
+    src: 'https://images.pexels.com/photos/25596681/pexels-photo-25596681.jpeg?auto=compress&cs=tinysrgb&w=800&h=600',
+    alt: 'Trainer guida cliente su reformer',
+    title: 'Personal Training',
+    description: 'Attenzione personalizzata 1-on-1',
+    className: 'md:col-span-1 md:row-span-1',
+  },
+  {
+    src: 'https://images.pexels.com/photos/866027/pexels-photo-866027.jpeg?auto=compress&cs=tinysrgb&w=800&h=600',
+    alt: 'Functional training in coppia',
+    title: 'Training Funzionale',
+    description: 'Energia e lavoro di squadra',
     className: 'md:col-span-2 md:row-span-1',
   },
 ]
@@ -89,7 +89,7 @@ export function GallerySection() {
         </motion.div>
 
         {/* Asymmetric Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[180px] md:auto-rows-[200px] gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[180px] md:auto-rows-[200px] gap-2 md:gap-4">
           {galleryImages.map((image, index) => (
             <motion.div
               key={index}
