@@ -121,7 +121,7 @@ export function ExitIntentPopup() {
                     </h4>
                     <p className="text-[--color-text-muted] text-sm">
                       Lascia la tua email e prenota una lezione di prova gratuita
-                      per scoprire il metodo KineLab.
+                      per scoprire il metodo KinèLAB.
                     </p>
                   </div>
 

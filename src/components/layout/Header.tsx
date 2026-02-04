@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'motion/react'
 import { Menu, X, Phone, MapPin, Clock, ChevronRight } from 'lucide-react'
 import type { BusinessInfo } from '@/lib/payload'
@@ -66,12 +67,17 @@ export function Header({ businessInfo }: HeaderProps) {
             {/* Logo */}
             <Link
               href="/"
-              className={`text-2xl font-medium tracking-tight transition-colors duration-300 ${
-                isScrolled ? 'text-[--color-text]' : 'text-white'
-              }`}
-              style={{ fontFamily: 'var(--font-display)' }}
+              className="relative h-14 w-[200px] lg:h-16 lg:w-[240px] transition-all duration-300"
             >
-              KineLab
+              <Image
+                src="/images/logo-header.png"
+                alt="KinèLAB"
+                fill
+                className={`object-contain object-left transition-all duration-300 ${
+                  isScrolled ? '' : 'brightness-0 invert'
+                }`}
+                priority
+              />
             </Link>
 
             {/* Desktop Navigation */}
@@ -182,10 +188,14 @@ export function Header({ businessInfo }: HeaderProps) {
                 <Link
                   href="/"
                   onClick={closeMobileMenu}
-                  className="text-2xl font-medium text-[--color-text]"
-                  style={{ fontFamily: 'var(--font-display)' }}
+                  className="relative block h-14 w-[200px]"
                 >
-                  KineLab
+                  <Image
+                    src="/images/logo-header.png"
+                    alt="KinèLAB"
+                    fill
+                    className="object-contain object-left"
+                  />
                 </Link>
                 <p className="text-[--color-text-muted] text-sm mt-1">
                   Studio Pilates Milano
