@@ -67,7 +67,7 @@ export function Header({ businessInfo }: HeaderProps) {
             {/* Logo */}
             <Link
               href="/"
-              className="relative h-14 w-[200px] lg:h-16 lg:w-[240px] transition-all duration-300"
+              className="relative h-16 w-[200px] lg:h-16 lg:w-[240px] transition-all duration-300"
             >
               <Image
                 src="/images/logo-header.png"

@@ -199,7 +199,7 @@ export function Footer({ businessInfo }: FooterProps) {
         </div>
 
         {/* Legal Bar */}
-        <div className="py-6 border-t border-white/10">
+        <div className="py-6 pb-24 md:pb-6 border-t border-white/10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/40">
             <p>&copy; {currentYear} {companyName}. P.IVA {vatNumber}</p>
             <div className="flex gap-6">

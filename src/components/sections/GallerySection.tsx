@@ -146,7 +146,8 @@ export function GallerySection() {
           transition={{ delay: 0.3 }}
           className="text-center text-[--color-text-muted] text-sm mt-8"
         >
-          Clicca sulle immagini per ingrandirle
+          <span className="hidden md:inline">Clicca sulle immagini per ingrandirle</span>
+          <span className="md:hidden">Tocca le immagini per ingrandirle</span>
         </motion.p>
       </div>
 
