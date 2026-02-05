@@ -202,6 +202,10 @@ export function Footer({ businessInfo }: FooterProps) {
         <div className="py-6 pb-24 md:pb-6 border-t border-white/10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/40">
             <p>&copy; {currentYear} {companyName}. P.IVA {vatNumber}</p>
+            <p className="text-white/30">Realizzato da{" "}
+              <a href="https://www.fodisrl.it" target="_blank" rel="noopener noreferrer" className="hover:text-white/70 transition-colors">
+                Fodi S.r.l.
+              </a></p>
             <div className="flex gap-6">
               <Link href="/privacy" className="hover:text-white/70 transition-colors">
                 Privacy
