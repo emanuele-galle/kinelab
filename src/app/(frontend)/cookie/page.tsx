@@ -120,6 +120,23 @@ export default function CookiePage() {
               Telefono: +39 340 945 3175
             </p>
           </section>
+          <section className="mb-8">
+            <h2>8. Sviluppo e Gestione Tecnica del Sito</h2>
+            <p>Questo sito web è stato realizzato e viene gestito da:</p>
+            <p>
+              <strong>FODI S.r.l. – Startup Innovativa</strong>
+              <br />
+              Via Santicelli 18/A, 88068 Soverato (CZ)
+              <br />
+              P.IVA: 03856160793
+              <br />
+              Email: <a href="mailto:info@fodisrl.it">info@fodisrl.it</a>
+              <br />
+              Tel: +39 0963 576433
+              <br />
+              Web: <a href="https://www.fodisrl.it" target="_blank" rel="noopener noreferrer">www.fodisrl.it</a>
+            </p>
+          </section>
         </div>
       </div>
     </div>
