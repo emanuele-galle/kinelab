@@ -133,6 +133,23 @@ export default function TerminiPage() {
               <li>Indirizzo: Via Pascoli 15, 20129 Milano</li>
             </ul>
 
+            
+            <div className="mt-16 pt-8 border-t border-white/10">
+              <h2 className="text-2xl font-bold text-white mb-4">Sviluppo e Gestione Tecnica del Sito</h2>
+              <p className="text-white/70">Questo sito web è stato realizzato e viene gestito da:</p>
+              <div className="mt-4 p-6 rounded-xl bg-white/5 border border-white/10">
+                <p className="font-bold text-white text-lg">FODI S.r.l.</p>
+                <ul className="mt-2 space-y-1 text-white/70">
+                  <li>Sede legale: Via Fontana del Campo SNC, 87040 Castrolibero (CS)</li>
+                  <li>P.IVA / C.F.: 03856160793</li>
+                  <li>Email: <a href="mailto:info@fodisrl.it" className="text-emerald-400 hover:underline">info@fodisrl.it</a></li>
+                  <li>Telefono: +39 351 944 3088</li>
+                  <li>Sito web: <a href="https://www.fodisrl.it" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:underline">www.fodisrl.it</a></li>
+                </ul>
+                <p className="mt-3 text-white/60 text-sm">Per segnalazioni tecniche relative al funzionamento del sito, contattare direttamente FODI S.r.l.</p>
+              </div>
+            </div>
+
             <div className="mt-12 p-6 bg-[--color-bg-accent] rounded-lg">
               <p className="text-sm text-[--color-text-muted] mb-0">
                 <strong>KineLab SSD</strong><br />
