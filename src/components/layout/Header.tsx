@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'motion/react'
 import { Menu, X, Phone, MapPin, Clock, ChevronRight } from 'lucide-react'
-import type { BusinessInfo } from '@/lib/payload'
+import type { BusinessInfo } from '@/data'
 
 const navigation = [
   { name: 'Servizi', href: '/#servizi' },

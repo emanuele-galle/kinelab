@@ -3,7 +3,7 @@
 import { motion } from 'motion/react'
 import { MapPin, Phone, Mail, Clock } from 'lucide-react'
 import Link from 'next/link'
-import type { BusinessInfo } from '@/lib/payload'
+import type { BusinessInfo } from '@/data'
 
 interface ContactSectionProps {
   businessInfo?: BusinessInfo

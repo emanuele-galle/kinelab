@@ -21,7 +21,6 @@ services:
     # Nessuna porta pubblica - accesso solo via Traefik
     networks:
       - traefik-public
-      - panel-internal
     labels:
       # Traefik routing
       - "traefik.enable=true"
@@ -45,10 +44,8 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
-      start_period: 60s
+      start_period: 30s
 
 networks:
   traefik-public:
-    external: true
-  panel-internal:
     external: true

@@ -7,16 +7,9 @@ import { TeamSection } from '@/components/sections/TeamSection'
 import { CTASection } from '@/components/sections/CTASection'
 import { ContactSection } from '@/components/sections/ContactSection'
 import { LocalBusinessSchema } from '@/components/seo/LocalBusinessSchema'
-import { getServices, getTeamMembers, getBusinessInfo } from '@/lib/payload'
+import { services, team, businessInfo } from '@/data'
 
-export default async function HomePage() {
-  // Fetch dati dal CMS
-  const [services, teamMembers, businessInfo] = await Promise.all([
-    getServices(),
-    getTeamMembers(),
-    getBusinessInfo(),
-  ])
-
+export default function HomePage() {
   return (
     <>
       <LocalBusinessSchema businessInfo={businessInfo} services={services} />
@@ -25,7 +18,7 @@ export default async function HomePage() {
       <ServicesSection services={services} />
       <WhyUsSection />
       <GallerySection />
-      <TeamSection members={teamMembers} />
+      <TeamSection members={team} />
       <CTASection />
       <ContactSection businessInfo={businessInfo} />
     </>

@@ -4,64 +4,9 @@ import { motion } from 'motion/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Instagram, Award, Calendar, Quote, Sparkles } from 'lucide-react'
-import type { TeamMember } from '@/lib/payload'
+import type { TeamMember } from '@/data'
 
-// Extended team member type with extra fields for display
-interface ExtendedTeamMember extends TeamMember {
-  yearsExperience?: number
-  specialty?: string
-  quote?: string
-}
-
-// Fallback team con dati realistici
-const defaultTeam: ExtendedTeamMember[] = [
-  {
-    id: '1',
-    name: 'Giulia Moretti',
-    role: 'Fondatrice & Head Trainer',
-    shortBio: 'Appassionata di movimento consapevole, Giulia ha fondato KineLab per creare uno spazio dove corpo e mente si incontrano. Specializzata in Pilates e rieducazione posturale.',
-    photo: { url: '/images/reformer-gruppo-3.jpg' },
-    certifications: [
-      { certification: 'Pilates Mat & Reformer' },
-      { certification: 'Rieducazione Posturale' },
-      { certification: 'Personal Trainer' },
-    ],
-    yearsExperience: 8,
-    specialty: 'Pilates Reformer',
-    quote: 'Il movimento e la medicina del futuro.',
-    instagram: 'https://instagram.com/kinelab',
-  },
-  {
-    id: '2',
-    name: 'Marco Benedetti',
-    role: 'Functional Training Coach',
-    shortBio: 'Con un background in scienze motorie e anni di esperienza nel fitness funzionale, Marco aiuta i clienti a raggiungere performance ottimali nella vita quotidiana e nello sport.',
-    photo: { url: '/images/personal-training-1.jpg' },
-    certifications: [
-      { certification: 'Functional Training' },
-      { certification: 'Kettlebell Specialist' },
-      { certification: 'TRX Certified' },
-    ],
-    yearsExperience: 6,
-    specialty: 'Functional Training',
-    quote: 'Allena il movimento, non i muscoli.',
-  },
-  {
-    id: '3',
-    name: 'Elena Rossi',
-    role: 'Pilates & Yoga Instructor',
-    shortBio: 'Elena unisce la precisione del Pilates alla fluidita dello Yoga. Il suo approccio olistico aiuta a trovare equilibrio tra forza e flessibilita, fisico e mentale.',
-    photo: { url: '/images/reformer-gruppo-1.jpg' },
-    certifications: [
-      { certification: 'Pilates Mat' },
-      { certification: 'Hatha Yoga' },
-      { certification: 'Stretching Terapeutico' },
-    ],
-    yearsExperience: 5,
-    specialty: 'Pilates Mat & Yoga',
-    quote: 'Respira, muoviti, vivi.',
-  },
-]
+import { team as defaultTeam } from '@/data'
 
 // Valori del team
 const teamValues = [
@@ -75,8 +20,7 @@ interface TeamSectionProps {
 }
 
 export function TeamSection({ members }: TeamSectionProps) {
-  // Usa membri dal CMS o fallback
-  const displayMembers: ExtendedTeamMember[] = members && members.length > 0 ? members : defaultTeam
+  const displayMembers: TeamMember[] = members && members.length > 0 ? members : defaultTeam
 
   return (
     <section id="team" className="section bg-[--color-bg]">
@@ -107,7 +51,7 @@ export function TeamSection({ members }: TeamSectionProps) {
           'md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto'
         }`}>
           {displayMembers.map((member, index) => {
-            const imageUrl = member.photo?.url || '/images/studio-panoramic.jpg'
+            const imageUrl = member.photo || '/images/studio-panoramic.jpg'
             const certifications = member.certifications?.map(c => c.certification) || ['Pilates', 'Functional']
 
             return (

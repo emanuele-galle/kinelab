@@ -5,7 +5,7 @@ import { Footer } from '@/components/layout/Footer'
 import { StickyMobileCTA } from '@/components/ui/StickyMobileCTA'
 import { ExitIntentPopup } from '@/components/ui/ExitIntentPopup'
 import { SocialProofNotification } from '@/components/ui/SocialProofNotification'
-import { getBusinessInfo } from '@/lib/payload'
+import { businessInfo } from '@/data'
 import '../globals.css'
 
 const cormorant = Cormorant_Garamond({
@@ -91,13 +91,11 @@ export const metadata: Metadata = {
   },
 }
 
-export default async function FrontendLayout({
+export default function FrontendLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const businessInfo = await getBusinessInfo()
-
   return (
     <html lang="it" className={`${cormorant.variable} ${dmSans.variable}`}>
       <body className="antialiased">

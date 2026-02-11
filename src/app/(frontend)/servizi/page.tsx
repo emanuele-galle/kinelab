@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight, Clock, Users, Flame, TrendingUp } from 'lucide-react'
-import { getServices, getBusinessInfo, type Service } from '@/lib/payload'
+import { services } from '@/data'
 
 export const metadata: Metadata = {
   title: 'Servizi | Pilates, Functional & Personal Training | KineLab Milano',
@@ -13,46 +13,6 @@ export const metadata: Metadata = {
   },
 }
 
-// Fallback servizi dettagliati
-const defaultServices: (Service & { fullDescription: string; benefits: string[]; targetAudience: string })[] = [
-  {
-    id: '1',
-    name: 'Pilates',
-    slug: 'pilates',
-    category: 'pilates',
-    shortDescription: 'Migliora postura, flessibilita e forza del core attraverso movimenti controllati e consapevoli.',
-    duration: 55,
-    price: 50,
-    fullDescription: 'Il Pilates e un metodo di allenamento che sviluppa il corpo in modo uniforme, corregge le posture sbagliate, ripristina la vitalita fisica, rinvigorisce la mente ed eleva lo spirito.',
-    benefits: ['Miglioramento postura', 'Rinforzo core', 'Aumento flessibilita', 'Riduzione stress'],
-    targetAudience: 'Adatto a tutti i livelli, ideale per chi cerca un allenamento consapevole e rigenerante.',
-  },
-  {
-    id: '2',
-    name: 'Functional Training',
-    slug: 'functional',
-    category: 'functional',
-    shortDescription: 'Allenamento funzionale per migliorare la qualita dei movimenti quotidiani.',
-    duration: 50,
-    price: 45,
-    fullDescription: 'L\'allenamento funzionale si concentra su movimenti che replicano le attivita quotidiane, migliorando forza, equilibrio e coordinazione in modo integrato.',
-    benefits: ['Forza funzionale', 'Coordinazione', 'Equilibrio', 'Prevenzione infortuni'],
-    targetAudience: 'Perfetto per chi vuole migliorare le performance nella vita quotidiana e nello sport.',
-  },
-  {
-    id: '3',
-    name: 'Personal Training',
-    slug: 'personal',
-    category: 'personal',
-    shortDescription: 'Sessioni individuali personalizzate per raggiungere i tuoi obiettivi specifici.',
-    duration: 60,
-    price: 70,
-    fullDescription: 'Un percorso completamente personalizzato, studiato sulle tue esigenze, obiettivi e condizioni fisiche. Il massimo dell\'attenzione dedicata esclusivamente a te.',
-    benefits: ['Programma su misura', 'Attenzione dedicata', 'Risultati ottimizzati', 'Flessibilita orari'],
-    targetAudience: 'Ideale per chi ha obiettivi specifici o necessita di un approccio completamente personalizzato.',
-  },
-]
-
 // Urgency badges
 const urgencyBadges: Record<string, { text: string; icon: 'flame' | 'trending'; color: string } | null> = {
   pilates: { text: 'Piu richiesto', icon: 'flame', color: 'bg-orange-500' },
@@ -60,22 +20,14 @@ const urgencyBadges: Record<string, { text: string; icon: 'flame' | 'trending'; 
   functional: null,
 }
 
-// Immagini per categoria
+// Immagini per categoria (fallback se service.image mancante)
 const categoryImages: Record<string, string> = {
   pilates: '/images/reformer-gruppo-2.jpg',
   functional: '/images/studio-functional-area.jpg',
   personal: '/images/reformer-singolo.jpg',
 }
 
-export default async function ServiziPage() {
-  const [services, businessInfo] = await Promise.all([
-    getServices(),
-    getBusinessInfo(),
-  ])
-
-  // Usa servizi dal CMS o fallback
-  const displayServices = services.length > 0 ? services : defaultServices
-
+export default function ServiziPage() {
   return (
     <>
       {/* Hero */}
@@ -99,10 +51,10 @@ export default async function ServiziPage() {
       <section className="section">
         <div className="container">
           <div className="space-y-16">
-            {displayServices.map((service, index) => {
+            {services.map((service, index) => {
               const isEven = index % 2 === 0
               const badge = urgencyBadges[service.category]
-              const image = service.image?.url || categoryImages[service.category] || categoryImages.pilates
+              const image = service.image || categoryImages[service.category] || categoryImages.pilates
 
               return (
                 <div

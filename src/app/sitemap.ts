@@ -1,14 +1,10 @@
 import { MetadataRoute } from 'next'
-import { getServices } from '@/lib/payload'
+import { services } from '@/data'
 
-// Service slugs fallback
-const defaultServiceSlugs = ['pilates', 'functional', 'personal']
-
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://kinelab.fodivps2.cloud'
   const lastModified = new Date()
 
-  // Static pages
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
@@ -42,17 +38,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ]
 
-  // Service pages - try from CMS, fallback to defaults
-  let serviceSlugs: string[]
-  try {
-    const services = await getServices()
-    serviceSlugs = services.length > 0 ? services.map(s => s.slug) : defaultServiceSlugs
-  } catch {
-    serviceSlugs = defaultServiceSlugs
-  }
-
-  const servicePages: MetadataRoute.Sitemap = serviceSlugs.map(slug => ({
-    url: `${baseUrl}/servizi/${slug}`,
+  const servicePages: MetadataRoute.Sitemap = services.map(s => ({
+    url: `${baseUrl}/servizi/${s.slug}`,
     lastModified,
     changeFrequency: 'weekly',
     priority: 0.8,

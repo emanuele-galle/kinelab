@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Mail, Phone, MapPin, Instagram, Facebook, ArrowRight } from 'lucide-react'
-import type { BusinessInfo } from '@/lib/payload'
+import type { BusinessInfo } from '@/data'
 
 const links = [
   { name: 'Home', href: '/' },

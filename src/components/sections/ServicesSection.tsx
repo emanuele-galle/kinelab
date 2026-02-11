@@ -5,7 +5,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { ArrowRight, Clock, Users, Flame, TrendingUp, Zap } from 'lucide-react'
-import type { Service } from '@/lib/payload'
+import type { Service } from '@/data'
+import { services as defaultServices } from '@/data'
 import { RatingDisplay } from '@/components/ui/RatingDisplay'
 import { PricingPanel } from '@/components/ui/PricingPanel'
 import { useMagneticCursor } from '@/hooks/useMagneticCursor'
@@ -136,38 +137,6 @@ const categoryMedia: Record<string, {
   },
 }
 
-// ============================================
-// FALLBACK SERVICES (if CMS empty)
-// ============================================
-const defaultServices: Service[] = [
-  {
-    id: '1',
-    name: 'Pilates',
-    slug: 'pilates',
-    category: 'pilates',
-    shortDescription: 'Migliora postura, flessibilità e forza del core attraverso movimenti controllati e consapevoli.',
-    duration: 55,
-    price: 50,
-  },
-  {
-    id: '2',
-    name: 'Functional Training',
-    slug: 'functional',
-    category: 'functional',
-    shortDescription: 'Allenamento funzionale per migliorare la qualità dei movimenti quotidiani.',
-    duration: 50,
-    price: 45,
-  },
-  {
-    id: '3',
-    name: 'Personal Training',
-    slug: 'personal',
-    category: 'personal',
-    shortDescription: 'Sessioni individuali personalizzate per raggiungere i tuoi obiettivi specifici.',
-    duration: 60,
-    price: 70,
-  },
-]
 
 // ============================================
 // FEATURE BADGES

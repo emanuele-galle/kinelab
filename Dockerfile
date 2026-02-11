@@ -11,7 +11,7 @@ WORKDIR /app
 
 # Install dependencies
 COPY package.json package-lock.json* ./
-RUN npm ci --legacy-peer-deps
+RUN npm ci
 
 # Build the application
 FROM base AS builder
@@ -23,9 +23,6 @@ COPY . .
 # Set environment for build
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=production
-# Skip database validation during build
-ENV PAYLOAD_DROP_DATABASE=false
-ENV DATABASE_URL=postgresql://dummy:dummy@localhost:5432/dummy
 
 # Build Next.js
 RUN npm run build
@@ -53,7 +50,7 @@ USER nextjs
 EXPOSE 3000
 
 # Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
   CMD wget -q --spider http://localhost:3000 || exit 1
 
 CMD ["node", "server.js"]

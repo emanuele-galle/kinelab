@@ -1,13 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getPayload } from 'payload'
-import config from '@payload-config'
+import { createBooking, getBookedSlots } from '@/lib/timp'
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
     const { name, email, phone, service, date, time, message } = body
 
-    // Validate required fields
     if (!name || !email || !phone || !service || !date || !time) {
       return NextResponse.json(
         { error: 'Tutti i campi obbligatori devono essere compilati' },
@@ -15,7 +13,6 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!emailRegex.test(email)) {
       return NextResponse.json(
@@ -24,7 +21,6 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Validate phone format (Italian)
     const phoneRegex = /^(\+39)?[\s]?[0-9]{9,10}$/
     const cleanPhone = phone.replace(/\s/g, '')
     if (!phoneRegex.test(cleanPhone)) {
@@ -34,114 +30,17 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Initialize Payload
-    const payload = await getPayload({ config })
-
-    // Parse the date
-    const bookingDate = new Date(date)
-    const [hours, minutes] = time.split(':').map(Number)
-    bookingDate.setHours(hours, minutes, 0, 0)
-
-    // Check if slot is already booked
-    const existingBookings = await payload.find({
-      collection: 'bookings',
-      where: {
-        and: [
-          { date: { equals: bookingDate.toISOString() } },
-          { status: { not_equals: 'cancelled' } },
-        ],
-      },
+    const result = await createBooking({
+      name,
+      email,
+      phone: cleanPhone,
+      service,
+      date,
+      time,
+      message,
     })
 
-    if (existingBookings.docs.length > 0) {
-      return NextResponse.json(
-        { error: 'Questo orario e gia prenotato. Scegli un altro orario.' },
-        { status: 409 }
-      )
-    }
-
-    // Check if client exists or create new
-    let client = await payload.find({
-      collection: 'clients',
-      where: {
-        email: { equals: email },
-      },
-    })
-
-    let clientId: string | number
-
-    if (client.docs.length > 0) {
-      clientId = client.docs[0].id
-    } else {
-      // Create new client
-      const newClient = await payload.create({
-        collection: 'clients',
-        data: {
-          name,
-          email,
-          phone: cleanPhone,
-          status: 'active',
-          notes: message ? `Prima richiesta: ${message}` : '',
-        },
-      })
-      clientId = newClient.id
-    }
-
-    // Get service
-    const services = await payload.find({
-      collection: 'services',
-      where: {
-        slug: { equals: service },
-      },
-    })
-
-    const serviceDoc = services.docs.length > 0 ? services.docs[0] : null
-    const serviceId: string | number | null = serviceDoc ? serviceDoc.id : null
-
-    // Create booking
-    const booking = await payload.create({
-      collection: 'bookings',
-      data: {
-        client: clientId,
-        clientName: name,
-        clientEmail: email,
-        clientPhone: cleanPhone,
-        service: serviceId,
-        date: bookingDate.toISOString(),
-        time: time,
-        duration: serviceDoc?.duration || 60,
-        status: 'pending',
-        timpSyncStatus: 'pending',
-        notes: message || '',
-      },
-    })
-
-    // Trigger N8N webhook for email notification
-    const webhookUrl = process.env.N8N_WEBHOOK_URL
-    if (webhookUrl) {
-      fetch(webhookUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          booking_id: booking.id,
-          client_name: name,
-          client_email: email,
-          client_phone: cleanPhone,
-          service_name: serviceDoc?.name || service,
-          service_slug: service,
-          date: bookingDate.toISOString(),
-          time,
-          duration: serviceDoc?.duration || 60,
-          message: message || '',
-        }),
-      }).catch(err => console.error('N8N webhook error:', err))
-    }
-
-    return NextResponse.json({
-      success: true,
-      message: 'Prenotazione inviata con successo!',
-      bookingId: booking.id,
-    })
+    return NextResponse.json(result)
   } catch (error) {
     console.error('Booking error:', error)
     return NextResponse.json(
@@ -151,7 +50,6 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// Get booked slots for a specific date
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url)
@@ -164,33 +62,7 @@ export async function GET(request: NextRequest) {
       )
     }
 
-    const payload = await getPayload({ config })
-    const date = new Date(dateStr)
-
-    // Get start and end of the day
-    const startOfDay = new Date(date)
-    startOfDay.setHours(0, 0, 0, 0)
-
-    const endOfDay = new Date(date)
-    endOfDay.setHours(23, 59, 59, 999)
-
-    const bookings = await payload.find({
-      collection: 'bookings',
-      where: {
-        and: [
-          { date: { greater_than_equal: startOfDay.toISOString() } },
-          { date: { less_than_equal: endOfDay.toISOString() } },
-          { status: { not_equals: 'cancelled' } },
-        ],
-      },
-    })
-
-    // Extract booked times
-    const bookedSlots = bookings.docs.map(booking => {
-      const bookingDate = new Date(booking.date as string)
-      return `${bookingDate.getHours().toString().padStart(2, '0')}:00`
-    })
-
+    const bookedSlots = await getBookedSlots(dateStr)
     return NextResponse.json({ bookedSlots })
   } catch (error) {
     console.error('Get bookings error:', error)

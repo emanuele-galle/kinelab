@@ -1,4 +1,4 @@
-import type { BusinessInfo, Service } from '@/lib/payload'
+import type { BusinessInfo, Service } from '@/data'
 
 interface LocalBusinessSchemaProps {
   businessInfo?: BusinessInfo
