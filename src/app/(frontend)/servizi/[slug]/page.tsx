@@ -127,9 +127,9 @@ const serviceDetails: Record<string, {
 
 // Immagini per categoria
 const categoryImages: Record<string, string> = {
-  pilates: 'https://images.pexels.com/photos/4056535/pexels-photo-4056535.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800',
-  functional: 'https://images.pexels.com/photos/4056723/pexels-photo-4056723.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800',
-  personal: 'https://images.pexels.com/photos/6740056/pexels-photo-6740056.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800',
+  pilates: '/images/reformer-gruppo-2.jpg',
+  functional: '/images/studio-functional-area.jpg',
+  personal: '/images/reformer-singolo.jpg',
 }
 
 // Fallback services

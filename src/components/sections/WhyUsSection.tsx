@@ -71,8 +71,8 @@ export function WhyUsSection() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="https://images.pexels.com/photos/3822864/pexels-photo-3822864.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1280"
-          alt="Ambiente wellness e benessere - KineLab Milano"
+          src="/images/studio-equipment.jpg"
+          alt="Attrezzature Pilates Reformer - KineLab Milano"
           fill
           className="object-cover"
         />

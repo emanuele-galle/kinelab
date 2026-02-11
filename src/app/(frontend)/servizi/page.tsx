@@ -62,9 +62,9 @@ const urgencyBadges: Record<string, { text: string; icon: 'flame' | 'trending'; 
 
 // Immagini per categoria
 const categoryImages: Record<string, string> = {
-  pilates: 'https://images.pexels.com/photos/4056535/pexels-photo-4056535.jpeg?auto=compress&cs=tinysrgb&w=800&h=600',
-  functional: 'https://images.pexels.com/photos/4056723/pexels-photo-4056723.jpeg?auto=compress&cs=tinysrgb&w=800&h=600',
-  personal: 'https://images.pexels.com/photos/6740056/pexels-photo-6740056.jpeg?auto=compress&cs=tinysrgb&w=800&h=600',
+  pilates: '/images/reformer-gruppo-2.jpg',
+  functional: '/images/studio-functional-area.jpg',
+  personal: '/images/reformer-singolo.jpg',
 }
 
 export default async function ServiziPage() {

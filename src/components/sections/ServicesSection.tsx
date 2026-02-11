@@ -106,32 +106,32 @@ const categoryMedia: Record<string, {
 }> = {
   pilates: {
     image: {
-      src: 'https://images.pexels.com/photos/25596671/pexels-photo-25596671.jpeg?auto=compress&cs=tinysrgb&w=800',
-      alt: 'Pilates Cadillac studio professionale',
+      src: '/images/reformer-gruppo-1.jpg',
+      alt: 'Lezione Pilates Reformer di gruppo - KineLab Milano',
     },
     video: {
-      src: 'https://videos.pexels.com/video-files/6740304/6740304-uhd_2560_1440_25fps.mp4',
-      poster: 'https://images.pexels.com/photos/25596671/pexels-photo-25596671.jpeg?auto=compress&cs=tinysrgb&w=800',
+      src: '',
+      poster: '/images/reformer-gruppo-1.jpg',
     },
   },
   functional: {
     image: {
-      src: 'https://images.pexels.com/photos/866027/pexels-photo-866027.jpeg?auto=compress&cs=tinysrgb&w=800',
-      alt: 'Functional training in spazio luminoso',
+      src: '/images/studio-functional-area.jpg',
+      alt: 'Area Functional Training con power rack - KineLab Milano',
     },
     video: {
-      src: 'https://videos.pexels.com/video-files/4662346/4662346-uhd_2560_1440_25fps.mp4',
-      poster: 'https://images.pexels.com/photos/866027/pexels-photo-866027.jpeg?auto=compress&cs=tinysrgb&w=800',
+      src: '',
+      poster: '/images/studio-functional-area.jpg',
     },
   },
   personal: {
     image: {
-      src: 'https://images.pexels.com/photos/25596681/pexels-photo-25596681.jpeg?auto=compress&cs=tinysrgb&w=800',
-      alt: 'Personal training one-on-one con trainer',
+      src: '/images/personal-training-1.jpg',
+      alt: 'Sessione Personal Training con trainer - KineLab Milano',
     },
     video: {
-      src: 'https://videos.pexels.com/video-files/4662389/4662389-uhd_2560_1440_25fps.mp4',
-      poster: 'https://images.pexels.com/photos/25596681/pexels-photo-25596681.jpeg?auto=compress&cs=tinysrgb&w=800',
+      src: '',
+      poster: '/images/personal-training-1.jpg',
     },
   },
 }

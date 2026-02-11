@@ -35,8 +35,8 @@ export function HeroSection() {
         style={{ y }}
       >
         <Image
-          src="https://images.pexels.com/photos/18136885/pexels-photo-18136885.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1280"
-          alt="Studio Pilates KineLab Milano - Ambiente luminoso e professionale"
+          src="/images/studio-panoramic.jpg"
+          alt="Studio Pilates KineLab Milano - Sala Reformer con attrezzature professionali"
           fill
           priority
           className="object-cover"

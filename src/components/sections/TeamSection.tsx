@@ -20,7 +20,7 @@ const defaultTeam: ExtendedTeamMember[] = [
     name: 'Giulia Moretti',
     role: 'Fondatrice & Head Trainer',
     shortBio: 'Appassionata di movimento consapevole, Giulia ha fondato KineLab per creare uno spazio dove corpo e mente si incontrano. Specializzata in Pilates e rieducazione posturale.',
-    photo: { url: 'https://images.pexels.com/photos/6740056/pexels-photo-6740056.jpeg?auto=compress&cs=tinysrgb&w=600&h=800' },
+    photo: { url: '/images/reformer-gruppo-3.jpg' },
     certifications: [
       { certification: 'Pilates Mat & Reformer' },
       { certification: 'Rieducazione Posturale' },
@@ -36,7 +36,7 @@ const defaultTeam: ExtendedTeamMember[] = [
     name: 'Marco Benedetti',
     role: 'Functional Training Coach',
     shortBio: 'Con un background in scienze motorie e anni di esperienza nel fitness funzionale, Marco aiuta i clienti a raggiungere performance ottimali nella vita quotidiana e nello sport.',
-    photo: { url: 'https://images.pexels.com/photos/6740050/pexels-photo-6740050.jpeg?auto=compress&cs=tinysrgb&w=600&h=800' },
+    photo: { url: '/images/personal-training-1.jpg' },
     certifications: [
       { certification: 'Functional Training' },
       { certification: 'Kettlebell Specialist' },
@@ -51,7 +51,7 @@ const defaultTeam: ExtendedTeamMember[] = [
     name: 'Elena Rossi',
     role: 'Pilates & Yoga Instructor',
     shortBio: 'Elena unisce la precisione del Pilates alla fluidita dello Yoga. Il suo approccio olistico aiuta a trovare equilibrio tra forza e flessibilita, fisico e mentale.',
-    photo: { url: 'https://images.pexels.com/photos/6740748/pexels-photo-6740748.jpeg?auto=compress&cs=tinysrgb&w=600&h=800' },
+    photo: { url: '/images/reformer-gruppo-1.jpg' },
     certifications: [
       { certification: 'Pilates Mat' },
       { certification: 'Hatha Yoga' },
@@ -107,7 +107,7 @@ export function TeamSection({ members }: TeamSectionProps) {
           'md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto'
         }`}>
           {displayMembers.map((member, index) => {
-            const imageUrl = member.photo?.url || 'https://images.pexels.com/photos/6740056/pexels-photo-6740056.jpeg?auto=compress&cs=tinysrgb&w=600&h=800'
+            const imageUrl = member.photo?.url || '/images/studio-panoramic.jpg'
             const certifications = member.certifications?.map(c => c.certification) || ['Pilates', 'Functional']
 
             return (

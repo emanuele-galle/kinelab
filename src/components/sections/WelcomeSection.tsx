@@ -20,8 +20,8 @@ export function WelcomeSection() {
           >
             <div className="relative aspect-[4/5] rounded-[--radius-lg] overflow-hidden">
               <Image
-                src="https://images.pexels.com/photos/4498574/pexels-photo-4498574.jpeg?auto=compress&cs=tinysrgb&w=800"
-                alt="KineLab Studio - Pilates Milano"
+                src="/images/studio-main-room.jpg"
+                alt="KineLab Studio Milano - Sala Reformer con muro in mattoni"
                 fill
                 className="object-cover"
               />

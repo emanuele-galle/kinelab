@@ -10,8 +10,8 @@ export function CTASection() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="https://images.pexels.com/photos/3822903/pexels-photo-3822903.jpeg?auto=compress&cs=tinysrgb&w=1920"
-          alt="Meditation peaceful"
+          src="/images/studio-reformers-angle.jpg"
+          alt="Studio KineLab Milano - Reformer Pilates"
           fill
           className="object-cover"
         />

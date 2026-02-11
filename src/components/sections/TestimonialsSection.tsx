@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react'
-import Image from 'next/image'
 
 const testimonials = [
   {
@@ -11,7 +10,7 @@ const testimonials = [
     name: 'Giulia M.',
     role: 'Cliente da 2 anni',
     quote: 'KineLab ha completamente trasformato il mio approccio al benessere. Le sessioni di Pilates mi hanno aiutato a ritrovare equilibrio e serenita nella vita di tutti i giorni.',
-    image: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=200',
+    initials: 'GM',
     rating: 5,
     service: 'Pilates',
   },
@@ -20,7 +19,7 @@ const testimonials = [
     name: 'Marco R.',
     role: 'Cliente da 1 anno',
     quote: 'Dopo anni di mal di schiena, il Functional Training con il team KineLab mi ha dato una nuova vita. Professionalita e attenzione alla persona sono uniche.',
-    image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=200',
+    initials: 'MR',
     rating: 5,
     service: 'Functional Training',
   },
@@ -29,7 +28,7 @@ const testimonials = [
     name: 'Sara L.',
     role: 'Cliente da 6 mesi',
     quote: 'L\'ambiente e accogliente e rilassante. Ogni sessione e un momento di cura per me stessa. Non potrei chiedere di meglio per il mio percorso di benessere.',
-    image: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=200',
+    initials: 'SL',
     rating: 5,
     service: 'Personal Training',
   },
@@ -137,13 +136,10 @@ export function TestimonialsSection() {
 
                 {/* Author */}
                 <div className="flex flex-col items-center gap-4">
-                  <div className="relative w-16 h-16 rounded-full overflow-hidden ring-4 ring-[--color-surface-sage] shadow-lg">
-                    <Image
-                      src={testimonials[currentIndex].image}
-                      alt={testimonials[currentIndex].name}
-                      fill
-                      className="object-cover"
-                    />
+                  <div className="w-16 h-16 rounded-full ring-4 ring-[--color-surface-sage] shadow-lg bg-[--color-primary] flex items-center justify-center">
+                    <span className="text-white text-lg font-medium">
+                      {testimonials[currentIndex].initials}
+                    </span>
                   </div>
                   <div>
                     <p className="font-medium text-[--color-primary]">
