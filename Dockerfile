@@ -24,6 +24,9 @@ COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=production
 
+# Make .env.docker available to Next.js at build time
+RUN cp .env.docker .env.production.local
+
 # Build Next.js
 RUN npm run build
 

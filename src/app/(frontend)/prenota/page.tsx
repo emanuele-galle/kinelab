@@ -1,17 +1,14 @@
-import BookingFlow from './BookingFlow'
-import type { ServiceData } from './BookingFlow'
-import { services } from '@/data'
+import { businessInfo } from '@/data'
+import { BookingPage } from './BookingPage'
 
 export default function PrenotaPage() {
-  const serviceData: ServiceData[] = services.map(s => ({
-    id: s.id,
-    name: s.name,
-    slug: s.slug,
-    shortDescription: s.shortDescription,
-    duration: s.duration || 60,
-    price: s.price,
-    category: s.category,
-  }))
+  const bookingUrl = process.env.TIMP_BOOKING_URL || ''
 
-  return <BookingFlow services={serviceData} />
+  return (
+    <BookingPage
+      bookingUrl={bookingUrl}
+      phone={businessInfo.phone}
+      whatsapp={businessInfo.whatsapp}
+    />
+  )
 }
