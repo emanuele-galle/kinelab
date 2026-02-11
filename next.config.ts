@@ -42,7 +42,7 @@ const nextConfig: NextConfig = {
               "img-src 'self' data: https: blob:",
               "media-src 'self' https://player.vimeo.com blob:",
               "font-src 'self' data: https://fonts.gstatic.com",
-              "connect-src 'self' https://api.fodivps2.cloud wss://fodivps2.cloud wss://api.fodivps2.cloud https://maps.googleapis.com",
+              "connect-src 'self' https://api.fodivps2.cloud wss://fodivps2.cloud wss://api.fodivps2.cloud https://maps.googleapis.com https://api.timp.pro",
               "frame-src 'self' https://maps.google.com https://www.google.com https://maps.googleapis.com https://*.google.com",
               "frame-ancestors 'none'",
               "base-uri 'self'",

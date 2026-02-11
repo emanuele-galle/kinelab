@@ -87,7 +87,7 @@ export async function POST(request: NextRequest) {
       clientId = newClient.id
     }
 
-    // Get service ID
+    // Get service
     const services = await payload.find({
       collection: 'services',
       where: {
@@ -95,23 +95,47 @@ export async function POST(request: NextRequest) {
       },
     })
 
-    const serviceId: string | number | null = services.docs.length > 0 ? services.docs[0].id : null
+    const serviceDoc = services.docs.length > 0 ? services.docs[0] : null
+    const serviceId: string | number | null = serviceDoc ? serviceDoc.id : null
 
     // Create booking
     const booking = await payload.create({
       collection: 'bookings',
       data: {
         client: clientId,
+        clientName: name,
+        clientEmail: email,
+        clientPhone: cleanPhone,
         service: serviceId,
         date: bookingDate.toISOString(),
-        time: time, // Salva l'orario come campo separato (formato HH:MM)
+        time: time,
+        duration: serviceDoc?.duration || 60,
         status: 'pending',
+        timpSyncStatus: 'pending',
         notes: message || '',
       },
     })
 
-    // TODO: Trigger N8N webhook for email notification
-    // await triggerN8NWebhook({ booking, client: { name, email, phone }, service })
+    // Trigger N8N webhook for email notification
+    const webhookUrl = process.env.N8N_WEBHOOK_URL
+    if (webhookUrl) {
+      fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          booking_id: booking.id,
+          client_name: name,
+          client_email: email,
+          client_phone: cleanPhone,
+          service_name: serviceDoc?.name || service,
+          service_slug: service,
+          date: bookingDate.toISOString(),
+          time,
+          duration: serviceDoc?.duration || 60,
+          message: message || '',
+        }),
+      }).catch(err => console.error('N8N webhook error:', err))
+    }
 
     return NextResponse.json({
       success: true,

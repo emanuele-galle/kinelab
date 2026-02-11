@@ -141,6 +141,31 @@ export const Bookings: CollectionConfig = {
         position: 'sidebar',
       },
     },
+    {
+      name: 'timpSyncStatus',
+      type: 'select',
+      label: 'Sync TIMP',
+      defaultValue: 'pending',
+      options: [
+        { label: 'In Attesa', value: 'pending' },
+        { label: 'Notificato', value: 'notified' },
+        { label: 'Sincronizzato', value: 'synced' },
+        { label: 'Errore', value: 'error' },
+      ],
+      admin: {
+        position: 'sidebar',
+        description: 'Stato sincronizzazione con TIMP',
+      },
+    },
+    {
+      name: 'timpBookingId',
+      type: 'text',
+      label: 'TIMP Booking ID',
+      admin: {
+        position: 'sidebar',
+        description: 'ID prenotazione su TIMP (cross-reference)',
+      },
+    },
   ],
   hooks: {
     beforeChange: [

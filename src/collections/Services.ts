@@ -34,6 +34,7 @@ export const Services: CollectionConfig = {
         { label: 'Pilates', value: 'pilates' },
         { label: 'Functional Training', value: 'functional' },
         { label: 'Personal Training', value: 'personal' },
+        { label: 'Yoga', value: 'yoga' },
       ],
     },
     {
@@ -115,6 +116,15 @@ export const Services: CollectionConfig = {
       type: 'checkbox',
       label: 'Attivo',
       defaultValue: true,
+    },
+    {
+      name: 'timpActivityId',
+      type: 'text',
+      label: 'TIMP Activity ID',
+      admin: {
+        position: 'sidebar',
+        description: 'ID attivita su TIMP per sync futuro',
+      },
     },
     {
       type: 'collapsible',
