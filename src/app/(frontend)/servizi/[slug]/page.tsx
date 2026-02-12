@@ -129,17 +129,14 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                 {displayService.shortDescription}
               </p>
 
-              {/* Price */}
-              <div className="mb-8 p-4 bg-white rounded-lg border border-[--color-border]">
-                <div className="flex items-baseline gap-2">
-                  <span className="text-3xl font-medium text-[--color-accent]">
-                    da €{displayService.price || 45}
-                  </span>
-                  <span className="text-[--color-text-muted]">/sessione</span>
-                </div>
-                <p className="text-sm text-[--color-text-light] mt-1">
-                  Pacchetti disponibili con sconti progressivi
-                </p>
+              {/* Price hint */}
+              <div className="mb-8 flex items-center gap-3">
+                <span className="text-2xl font-medium text-[--color-accent]">
+                  da €{displayService.price || 45}/sessione
+                </span>
+                <a href="#listino" className="text-sm text-[--color-primary] underline underline-offset-2 hover:no-underline">
+                  Vedi listino
+                </a>
               </div>
 
               {/* CTAs */}
@@ -209,7 +206,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
 
       {/* Pricing Table */}
       {displayService.pricingModes && displayService.pricingModes.length > 0 && (
-        <section id="listino" className="section">
+        <section id="listino" className="section scroll-mt-24">
           <div className="container">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-2xl text-center mb-4">Listino Prezzi</h2>
