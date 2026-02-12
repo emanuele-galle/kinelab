@@ -317,16 +317,16 @@ function ServiceCard({ service, index }: ServiceCardProps) {
               )}
             </div>
 
-            {/* TIER 5: Price + CTA */}
+            {/* TIER 5: Price by mode + CTA */}
             <div className="flex items-center justify-between">
-              {service.originalPrice && service.originalPrice > 0 ? (
-                <div className="flex items-baseline gap-2">
-                  <span className="text-white/60 text-sm line-through">
-                    €{service.originalPrice}
-                  </span>
-                  <span className="text-xl font-bold">
-                    {service.price === 0 ? 'GRATIS' : `€${service.price}`}
-                  </span>
+              {service.pricingModes && service.pricingModes.length > 0 ? (
+                <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                  {service.pricingModes.map((mode) => (
+                    <span key={mode.name} className="text-white text-sm">
+                      <span className="text-white/60 text-xs">{mode.name}</span>{' '}
+                      <span className="font-bold">€{mode.singlePrice}</span>
+                    </span>
+                  ))}
                 </div>
               ) : (
                 <span className="text-xl font-bold">
@@ -352,18 +352,6 @@ function ServiceCard({ service, index }: ServiceCardProps) {
                 {service.shortDescription || 'Sessioni professionali per il tuo benessere.'}
               </p>
             </div>
-
-            {/* Mobile pricing hint */}
-            {service.pricingModes && (
-              <div className="mt-3 md:hidden flex flex-wrap gap-2 text-xs text-white/60">
-                {service.pricingModes.map((mode, i) => (
-                  <span key={mode.name}>
-                    {i > 0 && '· '}
-                    {mode.name} da €{mode.singlePrice}
-                  </span>
-                ))}
-              </div>
-            )}
           </div>
 
           {/* Glassmorphic Pricing Panel (appears on hover) */}
