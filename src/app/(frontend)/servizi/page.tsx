@@ -95,7 +95,9 @@ export default function ServiziPage() {
                       </span>
                       <span className="inline-flex items-center gap-1.5">
                         <Users className="w-4 h-4" />
-                        {service.category === 'personal' ? 'Solo individuale' : 'Individuale / Gruppo'}
+                        {service.category === 'personal' ? 'Individuale / Coppia' :
+                         service.category === 'functional' ? 'Small Group (3 persone)' :
+                         'One to One / Coppia / Small Group'}
                       </span>
                     </div>
 
@@ -103,12 +105,25 @@ export default function ServiziPage() {
                       {service.shortDescription || 'Sessioni professionali per il tuo benessere.'}
                     </p>
 
-                    {/* Price */}
+                    {/* Price by mode */}
                     <div className="mb-6">
-                      <span className="text-2xl font-medium text-[--color-accent]">
-                        da {service.price || 50}
-                      </span>
-                      <span className="text-[--color-text-muted] ml-1">/sessione</span>
+                      {service.pricingModes && service.pricingModes.length > 0 ? (
+                        <div className="flex flex-wrap gap-x-4 gap-y-2">
+                          {service.pricingModes.map((mode) => (
+                            <div key={mode.name} className="flex items-baseline gap-1.5">
+                              <span className="text-sm text-[--color-text-muted]">{mode.name}</span>
+                              <span className="text-xl font-medium text-[--color-accent]">€{mode.singlePrice}</span>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <div>
+                          <span className="text-2xl font-medium text-[--color-accent]">
+                            da €{service.price || 50}
+                          </span>
+                          <span className="text-[--color-text-muted] ml-1">/sessione</span>
+                        </div>
+                      )}
                     </div>
 
                     {/* CTA */}
