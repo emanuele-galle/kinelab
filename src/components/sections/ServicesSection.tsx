@@ -8,7 +8,6 @@ import { ArrowRight, Clock, Users, Flame, TrendingUp, Zap } from 'lucide-react'
 import type { Service } from '@/data'
 import { services as defaultServices } from '@/data'
 import { RatingDisplay } from '@/components/ui/RatingDisplay'
-import { PricingPanel } from '@/components/ui/PricingPanel'
 import { useMagneticCursor } from '@/hooks/useMagneticCursor'
 
 // ============================================
@@ -165,7 +164,6 @@ interface ServiceCardProps {
 }
 
 function ServiceCard({ service, index }: ServiceCardProps) {
-  const [showPricing, setShowPricing] = useState(false)
   const [hasHover, setHasHover] = useState(false)
   const { elementRef, magneticStyle } = useMagneticCursor({ strength: 8, radius: 100 })
 
@@ -190,8 +188,6 @@ function ServiceCard({ service, index }: ServiceCardProps) {
           className="relative overflow-hidden rounded-2xl aspect-[4/5] md:aspect-[3/4] shadow-2xl"
           whileHover={{ scale: 1.05, y: -12 }}
           transition={{ duration: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
-          onHoverStart={() => setShowPricing(true)}
-          onHoverEnd={() => setShowPricing(false)}
           style={{
             boxShadow: `0 20px 60px -15px rgba(0,0,0,0.3)`,
           }}
@@ -354,13 +350,6 @@ function ServiceCard({ service, index }: ServiceCardProps) {
             </div>
           </div>
 
-          {/* Glassmorphic Pricing Panel (appears on hover) */}
-          {service.pricingModes && service.pricingModes.length > 0 && (
-            <PricingPanel
-              pricingModes={service.pricingModes}
-              isVisible={showPricing}
-            />
-          )}
         </motion.div>
       </Link>
     </motion.div>
