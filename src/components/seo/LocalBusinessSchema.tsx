@@ -8,7 +8,7 @@ interface LocalBusinessSchemaProps {
 export function LocalBusinessSchema({ businessInfo, services }: LocalBusinessSchemaProps) {
   // Dati dal CMS con fallback
   const companyName = businessInfo?.companyName || 'KineLab - Studio di Movimento'
-  const phone = businessInfo?.phone || '+39 340 945 3175'
+  const phone = businessInfo?.phone || '+39 02 8233 7048'
   const email = businessInfo?.email || 'kinelabmilano@gmail.com'
   const address = businessInfo?.address || 'Via Pascoli 15'
   const city = businessInfo?.city || 'Milano'
@@ -61,12 +61,12 @@ export function LocalBusinessSchema({ businessInfo, services }: LocalBusinessSch
   const schema = {
     '@context': 'https://schema.org',
     '@type': ['LocalBusiness', 'SportsActivityLocation', 'HealthAndBeautyBusiness'],
-    '@id': 'https://kinelab.fodivps2.cloud/#organization',
+    '@id': 'https://kinelabmilano.it/#organization',
     name: companyName,
     alternateName: 'KINELAB SSD',
     description:
       'Studio di movimento a Milano specializzato in Pilates, Functional Training e Personal Training. Professionisti qualificati per il tuo benessere.',
-    url: 'https://kinelab.fodivps2.cloud',
+    url: 'https://kinelabmilano.it',
     telephone: phone,
     email: email,
     address: {
@@ -100,8 +100,8 @@ export function LocalBusinessSchema({ businessInfo, services }: LocalBusinessSch
     currenciesAccepted: 'EUR',
     paymentAccepted: ['Cash', 'Credit Card', 'Bank Transfer'],
     image: [
-      'https://kinelab.fodivps2.cloud/images/studio-1.jpg',
-      'https://kinelab.fodivps2.cloud/images/studio-2.jpg',
+      'https://kinelabmilano.it/images/studio-1.jpg',
+      'https://kinelabmilano.it/images/studio-2.jpg',
     ],
     sameAs: sameAs.length > 0 ? sameAs : undefined,
     hasOfferCatalog: {
@@ -136,7 +136,7 @@ export function LocalBusinessSchema({ businessInfo, services }: LocalBusinessSch
         name: 'Come posso prenotare una lezione a KineLab?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: `Puoi prenotare online sul sito kinelab.fodivps2.cloud o telefonando al ${phone}. Per informazioni puoi contattarci anche su WhatsApp.`,
+          text: `Puoi prenotare online sul sito kinelabmilano.it o telefonando al ${phone}. Per informazioni puoi contattarci anche su WhatsApp.`,
         },
       },
       {
@@ -162,18 +162,18 @@ export function LocalBusinessSchema({ businessInfo, services }: LocalBusinessSch
   const websiteSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    '@id': 'https://kinelab.fodivps2.cloud/#website',
-    url: 'https://kinelab.fodivps2.cloud',
+    '@id': 'https://kinelabmilano.it/#website',
+    url: 'https://kinelabmilano.it',
     name: companyName,
     description: 'Studio di Pilates e Movement a Milano',
     publisher: {
-      '@id': 'https://kinelab.fodivps2.cloud/#organization',
+      '@id': 'https://kinelabmilano.it/#organization',
     },
     potentialAction: {
       '@type': 'SearchAction',
       target: {
         '@type': 'EntryPoint',
-        urlTemplate: 'https://kinelab.fodivps2.cloud/search?q={search_term_string}',
+        urlTemplate: 'https://kinelabmilano.it/search?q={search_term_string}',
       },
       'query-input': 'required name=search_term_string',
     },
@@ -190,7 +190,7 @@ export function LocalBusinessSchema({ businessInfo, services }: LocalBusinessSch
       provider: {
         '@type': 'Organization',
         name: companyName,
-        sameAs: 'https://kinelab.fodivps2.cloud',
+        sameAs: 'https://kinelabmilano.it',
       },
       courseMode: ['onsite'],
       educationalLevel: 'Beginner to Advanced',
@@ -219,7 +219,7 @@ export function LocalBusinessSchema({ businessInfo, services }: LocalBusinessSch
       provider: {
         '@type': 'Organization',
         name: companyName,
-        sameAs: 'https://kinelab.fodivps2.cloud',
+        sameAs: 'https://kinelabmilano.it',
       },
       courseMode: ['onsite'],
       educationalLevel: 'Beginner to Advanced',
@@ -233,7 +233,7 @@ export function LocalBusinessSchema({ businessInfo, services }: LocalBusinessSch
       provider: {
         '@type': 'Organization',
         name: companyName,
-        sameAs: 'https://kinelab.fodivps2.cloud',
+        sameAs: 'https://kinelabmilano.it',
       },
       courseMode: ['onsite'],
       educationalLevel: 'All Levels',
@@ -250,19 +250,19 @@ export function LocalBusinessSchema({ businessInfo, services }: LocalBusinessSch
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://kinelab.fodivps2.cloud',
+        item: 'https://kinelabmilano.it',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Servizi',
-        item: 'https://kinelab.fodivps2.cloud/#servizi',
+        item: 'https://kinelabmilano.it/#servizi',
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: 'Prenota',
-        item: 'https://kinelab.fodivps2.cloud/prenota',
+        item: 'https://kinelabmilano.it/prenota',
       },
     ],
   }

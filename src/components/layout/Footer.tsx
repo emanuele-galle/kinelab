@@ -28,7 +28,7 @@ export function Footer({ businessInfo }: FooterProps) {
   const address = businessInfo?.address || 'Via Pascoli 15'
   const postalCode = businessInfo?.postalCode || '20129'
   const city = businessInfo?.city || 'Milano'
-  const phone = businessInfo?.phone || '+39 340 945 3175'
+  const phone = businessInfo?.phone || '+39 02 8233 7048'
   const email = businessInfo?.email || 'kinelabmilano@gmail.com'
   const companyName = businessInfo?.companyName || 'KINELAB SSD'
   const vatNumber = businessInfo?.vatNumber || '14460620967'

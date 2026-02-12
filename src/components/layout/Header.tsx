@@ -24,7 +24,7 @@ export function Header({ businessInfo }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   // Dati dal CMS con fallback
-  const phone = businessInfo?.phone || '+39 340 945 3175'
+  const phone = businessInfo?.phone || '+39 02 8233 7048'
   const phoneShort = phone.replace('+39 ', '').replace('+39', '')
   const phoneLink = phone.replace(/\s/g, '')
   const address = businessInfo?.address || 'Via Pascoli 15'

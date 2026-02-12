@@ -142,18 +142,18 @@ const categoryMedia: Record<string, {
 // FEATURE BADGES
 // ============================================
 const categoryFeatures: Record<string, string[]> = {
-  pilates: ['Mat Pilates', 'Reformer', 'Small Group'],
-  functional: ['Bodyweight', 'Kettlebell', 'TRX'],
-  personal: ['1-to-1', 'Programma su misura', 'Monitoraggio'],
+  pilates: ['Reformer', 'One to One', 'Coppia', 'Small Group'],
+  functional: ['Small Group', 'Kettlebell', 'TRX'],
+  personal: ['Individuale', 'Coppia', 'Programma su misura'],
 }
 
 // ============================================
 // SESSION TYPE
 // ============================================
 const categoryType: Record<string, string> = {
-  pilates: 'Individuale / Gruppo',
-  functional: 'Individuale / Gruppo',
-  personal: 'Solo individuale',
+  pilates: 'One to One / Coppia / Small Group',
+  functional: 'Small Group (3 persone)',
+  personal: 'Individuale / Coppia',
 }
 
 // ============================================
@@ -354,20 +354,25 @@ function ServiceCard({ service, index }: ServiceCardProps) {
             </div>
 
             {/* Mobile pricing hint */}
-            <div className="mt-3 md:hidden flex gap-2 text-xs text-white/60">
-              <span>1 sed. €{service.price || 50}</span>
-              <span>·</span>
-              <span>5 sed. -{5}%</span>
-              <span>·</span>
-              <span>10 sed. -{10}%</span>
-            </div>
+            {service.pricingModes && (
+              <div className="mt-3 md:hidden flex flex-wrap gap-2 text-xs text-white/60">
+                {service.pricingModes.map((mode, i) => (
+                  <span key={mode.name}>
+                    {i > 0 && '· '}
+                    {mode.name} da €{mode.singlePrice}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Glassmorphic Pricing Panel (appears on hover) */}
-          <PricingPanel
-            basePrice={service.price || 50}
-            isVisible={showPricing}
-          />
+          {service.pricingModes && service.pricingModes.length > 0 && (
+            <PricingPanel
+              pricingModes={service.pricingModes}
+              isVisible={showPricing}
+            />
+          )}
         </motion.div>
       </Link>
     </motion.div>

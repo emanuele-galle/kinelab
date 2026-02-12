@@ -69,8 +69,9 @@ export default async function ServiceDetailPage({ params }: PageProps) {
       },
     },
     offers: {
-      '@type': 'Offer',
-      price: displayService.price || 50,
+      '@type': 'AggregateOffer',
+      lowPrice: displayService.price || 45,
+      highPrice: displayService.pricingModes?.[0]?.singlePrice || displayService.price || 45,
       priceCurrency: 'EUR',
     },
   }
@@ -101,8 +102,8 @@ export default async function ServiceDetailPage({ params }: PageProps) {
             {/* Content */}
             <div>
               <p className="text-[--color-primary] text-sm tracking-[0.15em] uppercase mb-4">
-                {displayService.category === 'pilates' ? 'Pilates' :
-                 displayService.category === 'functional' ? 'Allenamento Funzionale' : 'Training Personalizzato'}
+                {displayService.category === 'pilates' ? 'Pilates Reformer' :
+                 displayService.category === 'functional' ? 'Allenamento Funzionale' : 'Personal Training'}
               </p>
               <h1 className="mb-6">{displayService.name}</h1>
 
@@ -114,7 +115,9 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                 </span>
                 <span className="inline-flex items-center gap-1.5">
                   <Users className="w-4 h-4" />
-                  {displayService.category === 'personal' ? 'Solo individuale' : 'Individuale / Gruppo'}
+                  {displayService.category === 'personal' ? 'Individuale / Coppia' :
+                   displayService.category === 'functional' ? 'Small Group (3 persone)' :
+                   'One to One / Coppia / Small Group'}
                 </span>
                 <span className="inline-flex items-center gap-1.5">
                   <MapPin className="w-4 h-4" />
@@ -130,12 +133,12 @@ export default async function ServiceDetailPage({ params }: PageProps) {
               <div className="mb-8 p-4 bg-white rounded-lg border border-[--color-border]">
                 <div className="flex items-baseline gap-2">
                   <span className="text-3xl font-medium text-[--color-accent]">
-                    da {displayService.price || 50}
+                    da €{displayService.price || 45}
                   </span>
                   <span className="text-[--color-text-muted]">/sessione</span>
                 </div>
                 <p className="text-sm text-[--color-text-light] mt-1">
-                  Pacchetti disponibili con sconti fino al 20%
+                  Pacchetti disponibili con sconti progressivi
                 </p>
               </div>
 
@@ -203,6 +206,78 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           </div>
         </div>
       </section>
+
+      {/* Pricing Table */}
+      {displayService.pricingModes && displayService.pricingModes.length > 0 && (
+        <section id="listino" className="section">
+          <div className="container">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-2xl text-center mb-4">Listino Prezzi</h2>
+              <p className="text-center text-[--color-text-muted] mb-12">
+                Sconti progressivi sui pacchetti piu grandi
+              </p>
+
+              <div className="space-y-8">
+                {displayService.pricingModes.map((mode) => (
+                  <div key={mode.name} className="bg-white rounded-xl border border-[--color-border] overflow-hidden">
+                    {/* Mode Header */}
+                    <div className="px-6 py-4 bg-[--color-bg-accent] border-b border-[--color-border]">
+                      <h3 className="text-lg font-semibold">{mode.name}</h3>
+                      {mode.description && (
+                        <p className="text-sm text-[--color-text-muted]">{mode.description}</p>
+                      )}
+                    </div>
+
+                    {/* Pricing Rows */}
+                    <div className="divide-y divide-[--color-border]">
+                      {/* Single Session */}
+                      <div className="px-6 py-4 flex items-center justify-between">
+                        <div>
+                          <span className="font-medium">Seduta singola</span>
+                        </div>
+                        <div className="text-right">
+                          <span className="text-xl font-bold text-[--color-accent]">{mode.singlePrice}€</span>
+                          <span className="text-[--color-text-muted] text-sm ml-1">/seduta</span>
+                        </div>
+                      </div>
+
+                      {/* Packages */}
+                      {mode.packages.map((pkg) => {
+                        const perSession = Math.floor(pkg.totalPrice / pkg.sessions)
+                        const savings = mode.singlePrice * pkg.sessions - pkg.totalPrice
+                        return (
+                          <div key={pkg.sessions} className={`px-6 py-4 flex items-center justify-between ${pkg.badge ? 'bg-[--color-accent]/5' : ''}`}>
+                            <div>
+                              <div className="flex items-center gap-2">
+                                <span className="font-medium">{pkg.sessions} lezioni</span>
+                                {pkg.badge && (
+                                  <span className="px-2 py-0.5 bg-[--color-accent] text-[--color-text] text-xs font-bold rounded-full">
+                                    {pkg.badge}
+                                  </span>
+                                )}
+                              </div>
+                              <span className="text-sm text-[--color-text-muted]">
+                                Validita {pkg.validity}
+                                {savings > 0 && ` · Risparmi ${savings}€`}
+                              </span>
+                            </div>
+                            <div className="text-right">
+                              <div>
+                                <span className="text-xl font-bold text-[--color-accent]">{pkg.totalPrice.toLocaleString('it-IT')}€</span>
+                              </div>
+                              <span className="text-sm text-[--color-text-muted]">{perSession}€/seduta</span>
+                            </div>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Target Audience */}
       <section className="section">

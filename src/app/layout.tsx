@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://kinelab.fodivps2.cloud'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://kinelabmilano.it'),
 }
 
 export default function RootLayout({

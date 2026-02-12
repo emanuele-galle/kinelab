@@ -25,7 +25,7 @@ export default function PrivacyPage() {
             <p>
               Email: kinelabmilano@gmail.com
               <br />
-              Telefono: +39 340 945 3175
+              Telefono: +39 02 8233 7048
               <br />
               P.IVA: 14460620967
             </p>
@@ -93,7 +93,7 @@ export default function PrivacyPage() {
               <br />
               Email: kinelabmilano@gmail.com
               <br />
-              Telefono: +39 340 945 3175
+              Telefono: +39 02 8233 7048
             </p>
           </section>
           <section className="mb-8">

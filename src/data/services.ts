@@ -3,23 +3,66 @@ import type { Service, ServiceDetails } from './types'
 export const services: Service[] = [
   {
     id: '1',
-    name: 'Pilates',
+    name: 'Pilates Reformer',
     slug: 'pilates',
     category: 'pilates',
     shortDescription: 'Migliora postura, flessibilita e forza del core attraverso movimenti controllati e consapevoli.',
     duration: 55,
-    price: 50,
+    price: 45,
     image: '/images/reformer-gruppo-1.jpg',
+    pricingModes: [
+      {
+        name: 'One to One',
+        singlePrice: 80,
+        packages: [
+          { sessions: 4, totalPrice: 280, validity: '30 giorni' },
+          { sessions: 12, totalPrice: 720, validity: '3 mesi', badge: 'Consigliato' },
+          { sessions: 24, totalPrice: 1320, validity: '6 mesi' },
+        ],
+      },
+      {
+        name: 'Coppia',
+        description: 'prezzo a persona',
+        singlePrice: 55,
+        packages: [
+          { sessions: 4, totalPrice: 200, validity: '30 giorni' },
+          { sessions: 12, totalPrice: 540, validity: '3 mesi', badge: 'Consigliato' },
+          { sessions: 24, totalPrice: 960, validity: '6 mesi' },
+        ],
+      },
+      {
+        name: 'Small Group',
+        description: '3 persone · prezzo a persona',
+        singlePrice: 45,
+        packages: [
+          { sessions: 4, totalPrice: 160, validity: '30 giorni' },
+          { sessions: 12, totalPrice: 420, validity: '3 mesi', badge: 'Consigliato' },
+          { sessions: 24, totalPrice: 720, validity: '6 mesi' },
+        ],
+      },
+    ],
   },
   {
     id: '2',
-    name: 'Functional Training',
+    name: 'Allenamento Funzionale',
     slug: 'functional',
     category: 'functional',
     shortDescription: 'Allenamento funzionale per migliorare la qualita dei movimenti quotidiani.',
     duration: 50,
-    price: 45,
+    price: 30,
     image: '/images/studio-functional-area.jpg',
+    pricingModes: [
+      {
+        name: 'Small Group',
+        description: '3 persone max · prezzo a persona',
+        singlePrice: 30,
+        packages: [
+          { sessions: 12, totalPrice: 336, validity: '3 mesi' },
+          { sessions: 24, totalPrice: 624, validity: '6 mesi', badge: 'Miglior Valore' },
+          { sessions: 48, totalPrice: 1152, validity: '12 mesi' },
+        ],
+      },
+    ],
   },
   {
     id: '3',
@@ -28,8 +71,29 @@ export const services: Service[] = [
     category: 'personal',
     shortDescription: 'Sessioni individuali personalizzate per raggiungere i tuoi obiettivi specifici.',
     duration: 60,
-    price: 70,
+    price: 40,
     image: '/images/personal-training-1.jpg',
+    pricingModes: [
+      {
+        name: 'Individuale',
+        singlePrice: 55,
+        packages: [
+          { sessions: 12, totalPrice: 630, validity: '3 mesi' },
+          { sessions: 24, totalPrice: 1200, validity: '6 mesi', badge: 'Miglior Valore' },
+          { sessions: 48, totalPrice: 2160, validity: '12 mesi' },
+        ],
+      },
+      {
+        name: 'Coppia',
+        description: 'prezzo a persona',
+        singlePrice: 40,
+        packages: [
+          { sessions: 12, totalPrice: 456, validity: '3 mesi' },
+          { sessions: 24, totalPrice: 864, validity: '6 mesi', badge: 'Miglior Valore' },
+          { sessions: 48, totalPrice: 1632, validity: '12 mesi' },
+        ],
+      },
+    ],
   },
 ]
 
@@ -128,7 +192,7 @@ export const serviceDetails: Record<string, ServiceDetails> = {
     faq: [
       {
         question: 'Quanto costa una sessione di Personal Training?',
-        answer: 'Le sessioni partono da 70 euro. Offriamo anche pacchetti che permettono un risparmio significativo. Contattaci per un preventivo personalizzato.',
+        answer: 'Le sessioni individuali partono da 55 euro, in coppia da 40 euro a persona. Offriamo pacchetti da 12, 24 e 48 lezioni con sconti progressivi. Contattaci per un preventivo personalizzato.',
       },
       {
         question: 'Quanto dura una sessione?',

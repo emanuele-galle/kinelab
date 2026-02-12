@@ -9,7 +9,7 @@ export const businessInfo: BusinessInfo = {
   city: 'Milano',
   postalCode: '20129',
   country: 'IT',
-  phone: '+39 340 945 3175',
+  phone: '+39 02 8233 7048',
   email: 'kinelabmilano@gmail.com',
   whatsapp: '+393409453175',
   openingHours: [

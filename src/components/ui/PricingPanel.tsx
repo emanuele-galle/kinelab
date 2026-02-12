@@ -1,49 +1,19 @@
 'use client'
 
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
-import { Check, Star } from 'lucide-react'
-
-interface Package {
-  sessions: number
-  totalPrice: number
-  pricePerSession: number
-  savings: number
-  savingsPercent: number
-  badge?: string
-}
+import { Star } from 'lucide-react'
+import type { PricingMode } from '@/data/types'
 
 interface PricingPanelProps {
-  basePrice: number
+  pricingModes: PricingMode[]
   isVisible: boolean
   className?: string
 }
 
-export function PricingPanel({ basePrice, isVisible, className = '' }: PricingPanelProps) {
-  // Calculate packages
-  const packages: Package[] = [
-    {
-      sessions: 1,
-      totalPrice: basePrice,
-      pricePerSession: basePrice,
-      savings: 0,
-      savingsPercent: 0,
-    },
-    {
-      sessions: 5,
-      totalPrice: basePrice * 5 * 0.95, // 5% discount
-      pricePerSession: basePrice * 0.95,
-      savings: basePrice * 5 * 0.05,
-      savingsPercent: 5,
-    },
-    {
-      sessions: 10,
-      totalPrice: basePrice * 10 * 0.9, // 10% discount
-      pricePerSession: basePrice * 0.9,
-      savings: basePrice * 10 * 0.1,
-      savingsPercent: 10,
-      badge: 'MIGLIOR VALORE',
-    },
-  ]
+export function PricingPanel({ pricingModes, isVisible, className = '' }: PricingPanelProps) {
+  const [activeMode, setActiveMode] = useState(0)
+  const mode = pricingModes[activeMode]
 
   return (
     <AnimatePresence>
@@ -53,74 +23,76 @@ export function PricingPanel({ basePrice, isVisible, className = '' }: PricingPa
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: '100%', opacity: 0 }}
           transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-          className={`absolute inset-x-0 bottom-0 glassmorphic-panel rounded-t-2xl p-6 ${className}`}
+          className={`absolute inset-x-0 bottom-0 rounded-t-2xl p-4 md:p-5 ${className}`}
           style={{
-            background: 'rgba(255, 255, 255, 0.15)',
+            background: 'rgba(0, 0, 0, 0.75)',
             backdropFilter: 'blur(20px)',
-            borderTop: '1px solid rgba(255, 255, 255, 0.18)',
+            borderTop: '1px solid rgba(255, 255, 255, 0.15)',
           }}
+          onClick={(e) => e.preventDefault()}
         >
-          <div className="space-y-3">
-            {packages.map((pkg) => (
+          {/* Mode Tabs */}
+          {pricingModes.length > 1 && (
+            <div className="flex gap-1.5 mb-3">
+              {pricingModes.map((m, i) => (
+                <button
+                  key={m.name}
+                  onClick={(e) => { e.preventDefault(); setActiveMode(i) }}
+                  className={`flex-1 px-2 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                    i === activeMode
+                      ? 'bg-[#B39650] text-white'
+                      : 'bg-white/10 text-white/70 hover:bg-white/20'
+                  }`}
+                >
+                  {m.name}
+                </button>
+              ))}
+            </div>
+          )}
+
+          {/* Mode description */}
+          {mode.description && (
+            <p className="text-white/50 text-[10px] mb-2 text-center">{mode.description}</p>
+          )}
+
+          {/* Packages */}
+          <div className="space-y-2">
+            {/* Single session */}
+            <div className="flex items-center justify-between p-2.5 rounded-lg bg-white/5 border border-white/10">
+              <span className="text-white text-sm">Seduta singola</span>
+              <span className="text-white font-bold">{mode.singlePrice}€</span>
+            </div>
+
+            {/* Package deals */}
+            {mode.packages.map((pkg) => (
               <div
                 key={pkg.sessions}
-                className={`relative flex items-center justify-between p-3 rounded-lg transition-all ${
+                className={`relative flex items-center justify-between p-2.5 rounded-lg transition-all ${
                   pkg.badge
-                    ? 'bg-white/20 border-2 border-[#B39650]'
+                    ? 'bg-white/15 border border-[#B39650]/60'
                     : 'bg-white/5 border border-white/10'
                 }`}
               >
-                {/* Badge */}
                 {pkg.badge && (
-                  <div className="absolute -top-2 -right-2 flex items-center gap-1 px-2 py-0.5 bg-[#B39650] text-white text-[10px] font-bold rounded-full shadow-lg">
-                    <Star className="w-2.5 h-2.5 fill-current" />
+                  <div className="absolute -top-2 -right-1 flex items-center gap-0.5 px-1.5 py-0.5 bg-[#B39650] text-white text-[9px] font-bold rounded-full">
+                    <Star className="w-2 h-2 fill-current" />
                     {pkg.badge}
                   </div>
                 )}
 
-                {/* Left: Package Info */}
-                <div className="flex-1">
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-white font-semibold">
-                      {pkg.sessions === 1 ? 'Sessione singola' : `Pacchetto ${pkg.sessions}`}
-                    </span>
-                    {pkg.sessions > 1 && (
-                      <span className="text-white/60 text-sm">
-                        ({pkg.sessions} sessioni)
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Price Per Session */}
-                  <div className="flex items-baseline gap-2 mt-1">
-                    <span className="text-white text-lg font-bold">
-                      €{pkg.pricePerSession.toFixed(2)}
-                    </span>
-                    <span className="text-white/60 text-xs">/ sessione</span>
-                  </div>
+                <div>
+                  <span className="text-white text-sm font-medium">{pkg.sessions} lezioni</span>
+                  <span className="text-white/50 text-xs ml-2">{pkg.validity}</span>
                 </div>
 
-                {/* Right: Total & Savings */}
                 <div className="text-right">
-                  <div className="text-white font-semibold">
-                    €{pkg.totalPrice.toFixed(2)}
-                  </div>
-                  {pkg.savings > 0 && (
-                    <div className="text-[#B39650] text-sm font-medium mt-0.5">
-                      Risparmi €{pkg.savings.toFixed(2)}
-                    </div>
-                  )}
+                  <span className="text-white font-bold">{pkg.totalPrice.toLocaleString('it-IT')}€</span>
+                  <span className="text-white/50 text-xs ml-1">
+                    ({Math.floor(pkg.totalPrice / pkg.sessions)}€/sed.)
+                  </span>
                 </div>
               </div>
             ))}
-          </div>
-
-          {/* Footer Info */}
-          <div className="mt-4 pt-3 border-t border-white/10">
-            <div className="flex items-start gap-2 text-white/70 text-xs">
-              <Check className="w-3.5 h-3.5 mt-0.5 flex-shrink-0" />
-              <p>I pacchetti hanno validità 3 mesi dall'acquisto</p>
-            </div>
           </div>
         </motion.div>
       )}

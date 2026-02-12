@@ -53,7 +53,7 @@ export default function TerminiPage() {
               Le prenotazioni possono essere effettuate tramite:
             </p>
             <ul>
-              <li>Telefono: +39 340 945 3175</li>
+              <li>Telefono: +39 02 8233 7048</li>
               <li>Email: kinelabmilano@gmail.com</li>
               <li>Modulo di prenotazione online</li>
             </ul>
@@ -129,7 +129,7 @@ export default function TerminiPage() {
             </p>
             <ul>
               <li>Email: kinelabmilano@gmail.com</li>
-              <li>Telefono: +39 340 945 3175</li>
+              <li>Telefono: +39 02 8233 7048</li>
               <li>Indirizzo: Via Pascoli 15, 20129 Milano</li>
             </ul>
 

@@ -14,7 +14,7 @@ export function StickyMobileCTA({ businessInfo }: StickyMobileCTAProps) {
   const [isVisible, setIsVisible] = useState(false)
 
   // Dati dal CMS con fallback
-  const phone = businessInfo?.phone || '+39 340 945 3175'
+  const phone = businessInfo?.phone || '+39 02 8233 7048'
   const phoneLink = phone.replace(/\s/g, '')
   const whatsappLink = `https://wa.me/${phoneLink.replace('+', '')}?text=Ciao! Vorrei informazioni sui vostri servizi.`
 

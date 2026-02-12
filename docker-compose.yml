@@ -33,6 +33,13 @@ services:
       - "traefik.http.routers.kinelab-preview.tls.certresolver=letsencrypt"
       - "traefik.http.routers.kinelab-preview.middlewares=security-headers@file"
 
+      # Router production (kinelabmilano.it)
+      - "traefik.http.routers.kinelab-prod.rule=Host(`kinelabmilano.it`) || Host(`www.kinelabmilano.it`)"
+      - "traefik.http.routers.kinelab-prod.entrypoints=websecure"
+      - "traefik.http.routers.kinelab-prod.tls=true"
+      - "traefik.http.routers.kinelab-prod.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.kinelab-prod.middlewares=security-headers@file"
+
       # Service
       - "traefik.http.services.kinelab-preview.loadbalancer.server.port=3000"
 

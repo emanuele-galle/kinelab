@@ -24,6 +24,20 @@ export interface BusinessInfo {
   longitude: number
 }
 
+export interface PricingPackage {
+  sessions: number
+  totalPrice: number
+  validity: string
+  badge?: string
+}
+
+export interface PricingMode {
+  name: string
+  description?: string
+  singlePrice: number
+  packages: PricingPackage[]
+}
+
 export interface Service {
   id: string
   name: string
@@ -33,6 +47,7 @@ export interface Service {
   duration?: number
   price?: number
   originalPrice?: number
+  pricingModes?: PricingMode[]
   icon?: string
   order?: number
   isActive?: boolean

@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 import { services } from '@/data'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://kinelab.fodivps2.cloud'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://kinelabmilano.it'
   const lastModified = new Date()
 
   const staticPages: MetadataRoute.Sitemap = [
