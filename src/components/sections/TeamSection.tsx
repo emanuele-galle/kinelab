@@ -3,17 +3,10 @@
 import { motion } from 'motion/react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Instagram, Award, Calendar, Quote, Sparkles } from 'lucide-react'
+import { Instagram, ArrowRight } from 'lucide-react'
 import type { TeamMember } from '@/data'
 
 import { team as defaultTeam } from '@/data'
-
-// Valori del team
-const teamValues = [
-  { number: '500+', label: 'Clienti Seguiti', icon: Sparkles },
-  { number: '8+', label: 'Anni di Esperienza', icon: Calendar },
-  { number: '15+', label: 'Certificazioni', icon: Award },
-]
 
 interface TeamSectionProps {
   members?: TeamMember[]
@@ -38,21 +31,17 @@ export function TeamSection({ members }: TeamSectionProps) {
           </p>
           <h2 className="mb-4">Il Nostro Team</h2>
           <div className="w-12 h-[1px] bg-[--color-primary] mx-auto mb-6" />
-          <p className="text-lg">
-            Professionisti certificati con anni di esperienza, uniti dalla passione
-            per il movimento consapevole e il benessere dei nostri clienti.
+          <p className="text-lg text-[--color-text-muted]">
+            Professionisti certificati uniti dalla passione per il movimento consapevole
+            e il benessere dei nostri clienti.
           </p>
         </motion.div>
 
-        {/* Team Grid - Dynamic layout based on number */}
-        <div className={`grid gap-8 ${
-          displayMembers.length === 1 ? 'max-w-md mx-auto' :
-          displayMembers.length === 2 ? 'md:grid-cols-2 max-w-3xl mx-auto' :
-          'md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto'
-        }`}>
+        {/* Team Grid */}
+        <div className="flex flex-wrap justify-center gap-5 lg:gap-6 max-w-[1100px] mx-auto">
           {displayMembers.map((member, index) => {
             const imageUrl = member.photo || '/images/studio-panoramic.jpg'
-            const certifications = member.certifications?.map(c => c.certification) || ['Pilates', 'Functional']
+            const hasBio = !!member.shortBio
 
             return (
               <motion.div
@@ -60,102 +49,57 @@ export function TeamSection({ members }: TeamSectionProps) {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group"
+                transition={{ duration: 0.5, delay: index * 0.08 }}
+                className="w-[calc(50%-0.625rem)] lg:w-[calc(33.333%-1rem)] group"
               >
-                <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-[--color-border]">
-                  {/* Photo Container */}
+                <div className="relative rounded-2xl overflow-hidden cursor-default">
+                  {/* Photo */}
                   <div className="relative aspect-[3/4] overflow-hidden">
                     <Image
                       src={imageUrl}
                       alt={member.name}
                       fill
-                      className="object-cover transition-all duration-700 group-hover:scale-105"
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                     />
 
-                    {/* Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                    {/* Base gradient - always visible */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
 
-                    {/* Experience Badge */}
-                    {member.yearsExperience && (
-                      <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-lg">
-                        <span className="text-xs font-medium text-[--color-primary]">
-                          {member.yearsExperience}+ anni esperienza
-                        </span>
+                    {/* Bio overlay - appears on hover */}
+                    {hasBio && (
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end">
+                        <div className="p-5 sm:p-6 pb-20 sm:pb-24">
+                          <p className="text-white/90 text-xs sm:text-sm leading-relaxed line-clamp-5 sm:line-clamp-6">
+                            {member.shortBio}
+                          </p>
+                        </div>
                       </div>
                     )}
 
-                    {/* Social on hover */}
+                    {/* Instagram icon */}
                     {member.instagram && (
-                      <motion.a
+                      <a
                         href={member.instagram}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/95 backdrop-blur-sm flex items-center justify-center text-[--color-text-muted] hover:text-[--color-primary] shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0"
-                        aria-label="Instagram"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.95 }}
+                        className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-[--color-text-muted] hover:text-[--color-primary] opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0"
+                        aria-label={`Instagram di ${member.name}`}
                       >
-                        <Instagram className="w-5 h-5" />
-                      </motion.a>
+                        <Instagram className="w-4 h-4" />
+                      </a>
                     )}
 
-                    {/* Name & Role Overlay */}
-                    <div className="absolute bottom-0 left-0 right-0 p-6">
-                      <h3 className="text-xl font-medium text-white mb-1">{member.name}</h3>
-                      <p className="text-[--color-accent] text-sm font-medium">
-                        {member.role || 'Trainer'}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Info */}
-                  <div className="p-6">
-                    {/* Quote */}
-                    {member.quote && (
-                      <div className="flex items-start gap-2 mb-4 pb-4 border-b border-[--color-border-light]">
-                        <Quote className="w-4 h-4 text-[--color-accent] flex-shrink-0 mt-0.5" />
-                        <p className="text-sm italic text-[--color-text-muted]">
-                          "{member.quote}"
+                    {/* Name & role - always visible at bottom */}
+                    <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 z-10">
+                      <h3 className="text-lg sm:text-xl font-semibold text-white mb-0.5 leading-tight">
+                        {member.name}
+                      </h3>
+                      {member.role && (
+                        <p className="text-white/80 text-xs sm:text-sm font-medium">
+                          {member.role}
                         </p>
-                      </div>
-                    )}
-
-                    {/* Bio */}
-                    <p className="text-[--color-text-muted] text-sm mb-5 leading-relaxed line-clamp-3">
-                      {member.shortBio || 'Professionista qualificato per il tuo benessere.'}
-                    </p>
-
-                    {/* Specialty Tag */}
-                    {member.specialty && (
-                      <div className="mb-4">
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[--color-accent]/10 text-[--color-accent-dark] rounded-full text-xs font-medium">
-                          <Sparkles className="w-3 h-3" />
-                          Specializzazione: {member.specialty}
-                        </span>
-                      </div>
-                    )}
-
-                    {/* Certifications */}
-                    <div className="flex flex-wrap gap-2 mb-5">
-                      {certifications.slice(0, 3).map((cert: string) => (
-                        <span
-                          key={cert}
-                          className="inline-flex items-center gap-1 px-2.5 py-1 bg-[--color-bg-accent] rounded-full text-xs text-[--color-text-muted]"
-                        >
-                          <Award className="w-3 h-3 text-[--color-primary]" />
-                          {cert}
-                        </span>
-                      ))}
+                      )}
                     </div>
-
-                    {/* CTA */}
-                    <Link
-                      href="/prenota"
-                      className="block w-full text-center py-2.5 px-4 border border-[--color-primary] text-[--color-primary] rounded-lg text-sm font-medium hover:bg-[--color-primary] hover:text-white transition-all duration-300"
-                    >
-                      Prenota con {member.name.split(' ')[0]}
-                    </Link>
                   </div>
                 </div>
               </motion.div>
@@ -163,54 +107,21 @@ export function TeamSection({ members }: TeamSectionProps) {
           })}
         </div>
 
-        {/* Team Stats */}
+        {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          className="mt-20 py-12 px-8 bg-[--color-bg-accent] rounded-2xl max-w-4xl mx-auto"
+          className="text-center mt-14"
         >
-          <div className="grid grid-cols-3 gap-4 md:gap-8">
-            {teamValues.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.4 + index * 0.1 }}
-                className="text-center"
-              >
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[--color-accent]/10 mb-3">
-                  <stat.icon className="w-5 h-5 text-[--color-accent]" />
-                </div>
-                <p className="text-3xl md:text-4xl font-medium text-[--color-primary] mb-1">
-                  {stat.number}
-                </p>
-                <p className="text-xs md:text-sm text-[--color-text-muted] uppercase tracking-wide">
-                  {stat.label}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Philosophy Quote */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5 }}
-          className="text-center mt-16 max-w-2xl mx-auto"
-        >
-          <Quote className="w-8 h-8 text-[--color-accent]/30 mx-auto mb-4" />
-          <p className="text-xl md:text-2xl text-[--color-text] font-light italic leading-relaxed mb-4">
-            "Crediamo che il movimento consapevole sia la chiave per una vita
-            piu equilibrata e soddisfacente."
-          </p>
-          <p className="text-sm text-[--color-text-muted]">
-            — La Filosofia KineLab
-          </p>
+          <Link
+            href="/prenota"
+            className="inline-flex items-center gap-2 px-8 py-3.5 bg-[--color-primary] text-white rounded-lg text-sm font-medium hover:bg-[--color-primary-dark] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
+          >
+            Prenota una Sessione
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </motion.div>
       </div>
     </section>

@@ -29,7 +29,7 @@ const nextConfig: NextConfig = {
               "media-src 'self' https://player.vimeo.com blob:",
               "font-src 'self' data: https://fonts.gstatic.com",
               "connect-src 'self' https://maps.googleapis.com",
-              "frame-src 'self' https://maps.google.com https://www.google.com https://maps.googleapis.com https://*.google.com https://web.timp.pro",
+              "frame-src 'self' https://maps.google.com https://www.google.com https://maps.googleapis.com https://*.google.com https://kinelab.timp.io",
               "frame-ancestors 'none'",
               "base-uri 'self'",
               "form-action 'self'",
