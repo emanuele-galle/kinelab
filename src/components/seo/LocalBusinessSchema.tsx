@@ -141,10 +141,10 @@ export function LocalBusinessSchema({ businessInfo, services }: LocalBusinessSch
       },
       {
         '@type': 'Question',
-        name: 'KineLab e adatto ai principianti?',
+        name: 'KinèLab è adatto ai principianti?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Assolutamente si! I nostri corsi sono adatti a tutti i livelli, dai principianti agli avanzati. Ogni programma viene personalizzato in base alle tue esigenze.',
+          text: 'Assolutamente sì! I nostri corsi sono adatti a tutti i livelli, dai principianti agli avanzati. Ogni programma viene personalizzato in base alle tue esigenze.',
         },
       },
       {
@@ -186,7 +186,7 @@ export function LocalBusinessSchema({ businessInfo, services }: LocalBusinessSch
       '@context': 'https://schema.org',
       '@type': 'Course',
       name: 'Corso di Pilates Mat',
-      description: 'Lezioni di Pilates a corpo libero per migliorare postura, forza e flessibilita. Adatto a tutti i livelli.',
+      description: 'Lezioni di Pilates a corpo libero per migliorare postura, forza e flessibilità. Adatto a tutti i livelli.',
       provider: {
         '@type': 'Organization',
         name: companyName,
@@ -229,7 +229,7 @@ export function LocalBusinessSchema({ businessInfo, services }: LocalBusinessSch
       '@context': 'https://schema.org',
       '@type': 'Course',
       name: 'Functional Training',
-      description: 'Allenamento funzionale personalizzato per migliorare forza, resistenza e mobilita nella vita quotidiana.',
+      description: 'Allenamento funzionale personalizzato per migliorare forza, resistenza e mobilità nella vita quotidiana.',
       provider: {
         '@type': 'Organization',
         name: companyName,

@@ -21,7 +21,7 @@ export default function CookiePage() {
             <p>
               I cookie sono piccoli file di testo che i siti web salvano sul tuo
               dispositivo durante la navigazione. Vengono utilizzati per migliorare
-              l&apos;esperienza di navigazione e per fornire funzionalita specifiche.
+              l&apos;esperienza di navigazione e per fornire funzionalità specifiche.
             </p>
           </section>
 
@@ -48,7 +48,7 @@ export default function CookiePage() {
 
           <section className="mb-8">
             <h2>3. Cookie di Terze Parti</h2>
-            <p>Il nostro sito puo includere contenuti di terze parti che potrebbero
+            <p>Il nostro sito può includere contenuti di terze parti che potrebbero
               impostare i propri cookie:</p>
             <ul>
               <li>
@@ -82,7 +82,7 @@ export default function CookiePage() {
             </ul>
             <p>
               Nota: disabilitare i cookie potrebbe influire sul funzionamento di
-              alcune funzionalita del sito.
+              alcune funzionalità del sito.
             </p>
           </section>
 
@@ -104,7 +104,7 @@ export default function CookiePage() {
           <section className="mb-8">
             <h2>6. Aggiornamenti</h2>
             <p>
-              Questa Cookie Policy puo essere aggiornata periodicamente. Ti
+              Questa Cookie Policy può essere aggiornata periodicamente. Ti
               invitiamo a consultare questa pagina regolarmente per eventuali
               modifiche.
             </p>

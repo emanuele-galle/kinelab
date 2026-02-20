@@ -17,7 +17,7 @@ const galleryImages = [
     src: '/images/studio-reformer-detail.jpg',
     alt: 'Dettaglio Reformer Pilates KineLab',
     title: 'Reformer Pilates',
-    description: 'Attrezzatura professionale di alta qualita',
+    description: 'Attrezzatura professionale di alta qualità',
     className: 'md:col-span-1 md:row-span-1',
   },
   {

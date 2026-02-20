@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 // Urgency badges
 const urgencyBadges: Record<string, { text: string; icon: 'flame' | 'trending'; color: string } | null> = {
-  pilates: { text: 'Piu richiesto', icon: 'flame', color: 'bg-orange-500' },
+  pilates: { text: 'Più richiesto', icon: 'flame', color: 'bg-orange-500' },
   personal: { text: 'Posti limitati', icon: 'trending', color: 'bg-red-500' },
   functional: null,
 }
@@ -132,7 +132,7 @@ export default function ServiziPage() {
                         href={`/servizi/${service.slug}`}
                         className="btn btn-outline group"
                       >
-                        Scopri di piu
+                        Scopri di più
                         <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
                       </Link>
                       <Link
@@ -157,7 +157,7 @@ export default function ServiziPage() {
             <h2 className="text-2xl md:text-3xl mb-4">Non sai quale servizio scegliere?</h2>
             <p className="text-[--color-text-muted] mb-8">
               Prenota una consulenza gratuita con i nostri trainer per trovare
-              il percorso piu adatto alle tue esigenze e obiettivi.
+              il percorso più adatto alle tue esigenze e obiettivi.
             </p>
             <Link
               href="/prenota"

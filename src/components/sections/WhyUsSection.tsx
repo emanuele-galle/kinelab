@@ -91,7 +91,7 @@ export function WhyUsSection() {
           className="text-center mb-16 max-w-2xl mx-auto"
         >
           <p className="text-[--color-accent] text-sm tracking-[0.15em] uppercase mb-4">
-            Perche Sceglierci
+            Perché Sceglierci
           </p>
           <h2 className="text-white mb-4 drop-shadow-lg">
             Perché scegliere KineLab

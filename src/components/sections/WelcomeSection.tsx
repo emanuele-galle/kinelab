@@ -54,7 +54,7 @@ export function WelcomeSection() {
             <div className="space-y-6 mb-10">
               <p className="text-lg leading-relaxed">
                 Uno spazio dedicato al benessere del corpo e della mente,
-                dove ogni persona viene accolta nella sua unicita.
+                dove ogni persona viene accolta nella sua unicità.
               </p>
               <p className="leading-relaxed">
                 KineLab nasce dall&apos;idea di creare un laboratorio del movimento:

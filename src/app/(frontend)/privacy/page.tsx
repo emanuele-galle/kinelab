@@ -19,7 +19,7 @@ export default function PrivacyPage() {
           <section className="mb-8">
             <h2>1. Titolare del Trattamento</h2>
             <p>
-              Il titolare del trattamento dei dati personali e KINELAB SSD, con sede
+              Il titolare del trattamento dei dati personali è KINELAB SSD, con sede
               in Via Pascoli 15, 20129 Milano.
             </p>
             <p>
@@ -43,7 +43,7 @@ export default function PrivacyPage() {
           </section>
 
           <section className="mb-8">
-            <h2>3. Finalita del Trattamento</h2>
+            <h2>3. Finalità del Trattamento</h2>
             <p>I dati personali sono trattati per:</p>
             <ul>
               <li>Gestire le prenotazioni e i contatti</li>
@@ -56,7 +56,7 @@ export default function PrivacyPage() {
           <section className="mb-8">
             <h2>4. Base Giuridica</h2>
             <p>
-              Il trattamento dei dati e basato sul consenso dell&apos;interessato e
+              Il trattamento dei dati è basato sul consenso dell&apos;interessato e
               sull&apos;esecuzione di un contratto.
             </p>
           </section>
@@ -65,7 +65,7 @@ export default function PrivacyPage() {
             <h2>5. Conservazione dei Dati</h2>
             <p>
               I dati personali sono conservati per il tempo necessario a
-              raggiungere le finalita per cui sono stati raccolti e comunque non
+              raggiungere le finalità per cui sono stati raccolti e comunque non
               oltre i termini previsti dalla legge.
             </p>
           </section>
@@ -79,7 +79,7 @@ export default function PrivacyPage() {
               <li>Cancellare i dati</li>
               <li>Limitare il trattamento</li>
               <li>Opporti al trattamento</li>
-              <li>Portabilita dei dati</li>
+              <li>Portabilità dei dati</li>
             </ul>
             <p>
               Per esercitare questi diritti, contattaci a kinelabmilano@gmail.com

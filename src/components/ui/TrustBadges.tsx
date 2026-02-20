@@ -37,7 +37,7 @@ const badges = [
   {
     icon: MapPin,
     value: 'Milano',
-    label: 'Centro Citta',
+    label: 'Centro Città',
     color: 'accent',
   },
 ]

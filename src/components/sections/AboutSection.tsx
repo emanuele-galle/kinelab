@@ -46,7 +46,7 @@ export function AboutSection() {
                 del corpo e della mente si incontrano in perfetta armonia.
               </p>
               <p className="leading-relaxed">
-                Ogni persona viene accolta nella sua unicita e guidata in un
+                Ogni persona viene accolta nella sua unicità e guidata in un
                 percorso di consapevolezza corporea costruito su misura.
               </p>
             </div>

@@ -20,13 +20,13 @@ const benefits = [
   {
     icon: Smile,
     title: 'Benessere Mentale',
-    description: 'Riduci lo stress e l\'ansia, trovando equilibrio e serenita nella pratica quotidiana.',
+    description: 'Riduci lo stress e l\'ansia, trovando equilibrio e serenità nella pratica quotidiana.',
     color: 'accent',
   },
   {
     icon: Zap,
     title: 'Energia Vitale',
-    description: 'Aumenta i livelli di energia e vitalita con allenamenti calibrati sulle tue esigenze.',
+    description: 'Aumenta i livelli di energia e vitalità con allenamenti calibrati sulle tue esigenze.',
     color: 'sage',
   },
   {
@@ -38,13 +38,13 @@ const benefits = [
   {
     icon: Heart,
     title: 'Salute del Cuore',
-    description: 'Rafforza il sistema cardiovascolare con attivita a basso impatto ma efficaci.',
+    description: 'Rafforza il sistema cardiovascolare con attività a basso impatto ma efficaci.',
     color: 'sage',
   },
   {
     icon: Feather,
-    title: 'Flessibilita',
-    description: 'Aumenta la mobilita articolare e la flessibilita muscolare in modo graduale e sicuro.',
+    title: 'Flessibilità',
+    description: 'Aumenta la mobilità articolare e la flessibilità muscolare in modo graduale e sicuro.',
     color: 'accent',
   },
 ]
@@ -65,12 +65,12 @@ export function BenefitsSection() {
           className="text-center mb-20"
         >
           <span className="text-[--color-accent-sage] text-sm tracking-widest uppercase mb-4 block">
-            Perche Sceglierci
+            Perché Sceglierci
           </span>
           <h2 className="section-title">I Benefici del Movimento</h2>
           <div className="divider" />
           <p className="section-subtitle">
-            Scopri come il nostro approccio olistico puo trasformare il tuo benessere fisico e mentale.
+            Scopri come il nostro approccio olistico può trasformare il tuo benessere fisico e mentale.
           </p>
         </motion.div>
 

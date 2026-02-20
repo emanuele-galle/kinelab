@@ -176,7 +176,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
       <section className="section">
         <div className="container">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl mb-6">Cos'e il {displayService.name}</h2>
+            <h2 className="text-2xl mb-6">Cos'è il {displayService.name}</h2>
             <div className="prose prose-lg text-[--color-text-muted] whitespace-pre-line">
               {details.fullDescription}
             </div>
@@ -211,7 +211,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
             <div className="max-w-4xl mx-auto">
               <h2 className="text-2xl text-center mb-4">Listino Prezzi</h2>
               <p className="text-center text-[--color-text-muted] mb-12">
-                Sconti progressivi sui pacchetti piu grandi
+                Sconti progressivi sui pacchetti più grandi
               </p>
 
               <div className="space-y-8">
@@ -254,7 +254,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                                 )}
                               </div>
                               <span className="text-sm text-[--color-text-muted]">
-                                Validita {pkg.validity}
+                                Validità {pkg.validity}
                                 {savings > 0 && ` · Risparmi ${savings}€`}
                               </span>
                             </div>
@@ -280,7 +280,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
       <section className="section">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-2xl mb-6">Per chi e adatto</h2>
+            <h2 className="text-2xl mb-6">Per chi è adatto</h2>
             <p className="text-lg text-[--color-text-muted]">
               {details.targetAudience}
             </p>

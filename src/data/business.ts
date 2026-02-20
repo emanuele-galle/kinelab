@@ -36,11 +36,11 @@ export function formatOpeningHours(info: BusinessInfo): string {
   }
 
   const dayNames: Record<string, string> = {
-    monday: 'Lunedi',
-    tuesday: 'Martedi',
-    wednesday: 'Mercoledi',
-    thursday: 'Giovedi',
-    friday: 'Venerdi',
+    monday: 'Lunedì',
+    tuesday: 'Martedì',
+    wednesday: 'Mercoledì',
+    thursday: 'Giovedì',
+    friday: 'Venerdì',
     saturday: 'Sabato',
     sunday: 'Domenica',
   }
