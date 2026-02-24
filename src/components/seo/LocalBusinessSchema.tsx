@@ -79,8 +79,8 @@ export function LocalBusinessSchema({ businessInfo, services }: LocalBusinessSch
     },
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: 45.4773,
-      longitude: 9.2068,
+      latitude: 45.4747459,
+      longitude: 9.2196959,
     },
     openingHoursSpecification: [
       {

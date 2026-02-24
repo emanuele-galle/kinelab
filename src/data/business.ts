@@ -21,8 +21,8 @@ export const businessInfo: BusinessInfo = {
     { day: 'saturday', open: '9:00', close: '13:00' },
     { day: 'sunday', isClosed: true },
   ],
-  latitude: 45.4773,
-  longitude: 9.2068,
+  latitude: 45.4747459,
+  longitude: 9.2196959,
 }
 
 export function formatAddress(info: BusinessInfo): string {

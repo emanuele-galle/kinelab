@@ -160,7 +160,7 @@ export function ContactSection({ businessInfo }: ContactSectionProps) {
             <div className="relative h-full min-h-[400px] lg:min-h-[500px] overflow-hidden rounded-[--radius-lg] bg-[--color-bg-accent] shadow-sm">
               {/* Google Maps Embed */}
               <iframe
-                src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2797.8!2d9.2!3d45.47!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDXCsDI4JzEyLjAiTiA5wrAxMicwMC4wIkU!5e0!3m2!1sit!2sit!4v1704067200000!5m2!1sit!2sit&q=${mapsQuery}`}
+                src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1399!2d9.2196959!3d45.4747459!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c7981142cc69%3A0x88b838707c93510b!2sKin%C3%A8lab%20Studio!5e0!3m2!1sit!2sit`}
                 width="100%"
                 height="100%"
                 style={{ border: 0, position: 'absolute', inset: 0 }}
