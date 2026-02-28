@@ -46,6 +46,23 @@ export function SocialProofNotification() {
   const [notification, setNotification] = useState<Notification | null>(null)
   const [isVisible, setIsVisible] = useState(false)
 
+  const showNotification = () => {
+    const newNotification: Notification = {
+      id: Date.now(),
+      name: getRandomItem(names),
+      service: getRandomItem(services),
+      time: getRandomItem(timeAgo),
+    }
+
+    setNotification(newNotification)
+    setIsVisible(true)
+
+    // Hide after 5 seconds
+    setTimeout(() => {
+      setIsVisible(false)
+    }, 5000)
+  }
+
   useEffect(() => {
     // Don't show on mobile for better UX
     const isMobile = window.matchMedia('(max-width: 768px)').matches
@@ -66,23 +83,6 @@ export function SocialProofNotification() {
       clearInterval(interval)
     }
   }, [])
-
-  const showNotification = () => {
-    const newNotification: Notification = {
-      id: Date.now(),
-      name: getRandomItem(names),
-      service: getRandomItem(services),
-      time: getRandomItem(timeAgo),
-    }
-
-    setNotification(newNotification)
-    setIsVisible(true)
-
-    // Hide after 5 seconds
-    setTimeout(() => {
-      setIsVisible(false)
-    }, 5000)
-  }
 
   return (
     <AnimatePresence>

@@ -71,12 +71,12 @@ export default function TerminiPage() {
             <h2>4. Pacchetti e Abbonamenti</h2>
             <p>
               I pacchetti di sessioni hanno una validità di 3 mesi dalla data di acquisto.
-              Non sono rimborsabili ma possono essere trasferiti ad un'altra persona previo accordo con la direzione.
+              Non sono rimborsabili ma possono essere trasferiti ad un&apos;altra persona previo accordo con la direzione.
             </p>
 
             <h2>5. Certificato Medico</h2>
             <p>
-              È richiesto un certificato medico di idoneità all'attività fisica non agonistica per tutti i clienti.
+              È richiesto un certificato medico di idoneità all&apos;attività fisica non agonistica per tutti i clienti.
               Il certificato deve essere valido e aggiornato secondo le normative vigenti.
             </p>
 

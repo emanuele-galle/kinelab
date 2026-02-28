@@ -24,7 +24,7 @@ export interface BusinessInfo {
   longitude: number
 }
 
-export interface PricingPackage {
+interface PricingPackage {
   sessions: number
   totalPrice: number
   validity: string
@@ -67,16 +67,6 @@ export interface TeamMember {
   instagram?: string
   order?: number
   isActive?: boolean
-}
-
-export interface Testimonial {
-  id: number
-  name: string
-  role: string
-  quote: string
-  initials: string
-  rating: number
-  service: string
 }
 
 export interface ServiceDetails {

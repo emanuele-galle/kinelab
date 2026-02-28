@@ -176,7 +176,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
       <section className="section">
         <div className="container">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl mb-6">Cos'è il {displayService.name}</h2>
+            <h2 className="text-2xl mb-6">Cos&apos;è il {displayService.name}</h2>
             <div className="prose prose-lg text-[--color-text-muted] whitespace-pre-line">
               {details.fullDescription}
             </div>

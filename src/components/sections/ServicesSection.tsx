@@ -3,7 +3,7 @@
 import { motion } from 'motion/react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { ArrowRight, Clock, Users, Flame, TrendingUp, Zap } from 'lucide-react'
 import type { Service } from '@/data'
 import { services as defaultServices } from '@/data'
@@ -165,10 +165,16 @@ interface ServiceCardProps {
 
 function ServiceCard({ service, index }: ServiceCardProps) {
   const [hasHover, setHasHover] = useState(false)
+  const hasHoverChecked = useRef(false)
   const { elementRef, magneticStyle } = useMagneticCursor({ strength: 8, radius: 100 })
 
   useEffect(() => {
-    setHasHover(window.matchMedia('(hover: hover)').matches)
+    if (!hasHoverChecked.current) {
+      hasHoverChecked.current = true
+      requestAnimationFrame(() => {
+        setHasHover(window.matchMedia('(hover: hover)').matches)
+      })
+    }
   }, [])
 
   const mediaData = categoryMedia[service.category] || categoryMedia.pilates
