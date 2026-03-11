@@ -32,11 +32,14 @@ export const team: TeamMember[] = [
   {
     id: '3',
     name: 'Cono',
-    role: '',
-    shortBio: '',
+    role: 'Creator & Massoterapista',
+    shortBio: 'Laureato in Scienze Motorie, Cono è massoterapista certificato e professionista del movimento con un approccio orientato al benessere globale della persona. Creator del progetto Kinèlab, si occupa di percorsi di allenamento finalizzati al miglioramento della qualità della vita, della mobilità e della funzionalità corporea. La sua esperienza si è sviluppata principalmente nel lavoro con persone in età adulta, accompagnandole in programmi personalizzati volti al mantenimento della salute e della forma fisica. Grazie alla formazione in ambito motorio e manuale, costruisce percorsi di lavoro progressivi e adattati alle esigenze individuali, con particolare attenzione alla postura, alla prevenzione e al movimento consapevole. Empatico, attento e orientato alla persona, si distingue per la capacità di creare un ambiente accogliente e rassicurante, favorendo un percorso di miglioramento fisico equilibrato e duraturo.',
     photo: '/images/cono.jpg',
-    certifications: [],
-    specialty: '',
+    certifications: [
+      { certification: 'Scienze Motorie' },
+      { certification: 'Massoterapista' },
+    ],
+    specialty: 'Benessere & Movimento Consapevole',
   },
   {
     id: '4',
