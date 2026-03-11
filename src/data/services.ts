@@ -44,28 +44,6 @@ export const services: Service[] = [
   },
   {
     id: '2',
-    name: 'Allenamento Funzionale',
-    slug: 'functional',
-    category: 'functional',
-    shortDescription: 'Allenamento funzionale per migliorare la qualità dei movimenti quotidiani.',
-    duration: 50,
-    price: 30,
-    image: '/images/studio-functional-area.jpg',
-    pricingModes: [
-      {
-        name: 'Small Group',
-        description: '3 persone max · prezzo a persona',
-        singlePrice: 30,
-        packages: [
-          { sessions: 12, totalPrice: 336, validity: '3 mesi' },
-          { sessions: 24, totalPrice: 624, validity: '6 mesi', badge: 'Miglior Valore' },
-          { sessions: 48, totalPrice: 1152, validity: '12 mesi' },
-        ],
-      },
-    ],
-  },
-  {
-    id: '3',
     name: 'Personal Training',
     slug: 'personal',
     category: 'personal',
@@ -91,6 +69,38 @@ export const services: Service[] = [
           { sessions: 12, totalPrice: 456, validity: '3 mesi' },
           { sessions: 24, totalPrice: 864, validity: '6 mesi', badge: 'Miglior Valore' },
           { sessions: 48, totalPrice: 1632, validity: '12 mesi' },
+        ],
+      },
+    ],
+  },
+  {
+    id: '3',
+    name: 'Kinè Method',
+    slug: 'kine-method',
+    category: 'method',
+    shortDescription: 'KINÈ METHOD è il metodo proprietario di KinèLab che integra forza in sala funzionale e controllo sul Reformer. Un percorso strutturato che unisce performance fisica, qualità del movimento e progressione tecnica.',
+    duration: 55,
+    price: 30,
+    image: '/images/studio-functional-area.jpg',
+    programs: [
+      {
+        name: 'KINÈ HYBRID GROUP',
+        description: 'Allenamento funzionale in small group (2/3 persone) e lavoro su Reformer. Percorso condiviso, sempre guidato dal trainer, con forte attenzione tecnica e progressione strutturata.',
+        format: 'Small Group (2/3 persone) + Reformer',
+        plans: [
+          { duration: '3 mesi', monthlyPrice: 270, perSession: 34, badge: 'Consigliato' },
+          { duration: '6 mesi', monthlyPrice: 255, perSession: 32 },
+          { duration: '12 mesi', monthlyPrice: 240, perSession: 30, badge: 'Miglior Valore' },
+        ],
+      },
+      {
+        name: 'KINÈ HYBRID PRO',
+        description: 'Personal Training individuale in sala funzionale e Reformer. Percorso completamente personalizzato, livello più esclusivo, programmazione mirata sugli obiettivi.',
+        format: 'Individuale + Reformer One to One',
+        plans: [
+          { duration: '3 mesi', monthlyPrice: 340, perSession: 43 },
+          { duration: '6 mesi', monthlyPrice: 325, perSession: 41, badge: 'Miglior Valore' },
+          { duration: '12 mesi', monthlyPrice: 300, perSession: 38 },
         ],
       },
     ],
@@ -133,41 +143,6 @@ export const serviceDetails: Record<string, ServiceDetails> = {
       },
     ],
   },
-  functional: {
-    fullDescription: `Il Functional Training, o allenamento funzionale, si basa su esercizi che mimano i movimenti naturali del corpo umano.
-    L'obiettivo è migliorare la capacità di svolgere le attività quotidiane in modo più efficiente e sicuro.
-
-    Utilizziamo attrezzi come kettlebell, TRX, palle mediche e il peso corporeo per creare workout dinamici che sviluppano forza, coordinazione, equilibrio e resistenza in modo integrato.`,
-    benefits: [
-      'Sviluppo di forza funzionale applicabile nella vita quotidiana',
-      'Miglioramento della coordinazione e dell\'equilibrio',
-      'Aumento della resistenza cardiovascolare',
-      'Prevenzione degli infortuni',
-      'Miglioramento delle performance sportive',
-      'Accelerazione del metabolismo',
-    ],
-    targetAudience: 'Ideale per chi vuole un allenamento dinamico e completo, per atleti che vogliono migliorare le loro performance, e per chiunque desideri sentirsi più forte e agile nelle attività quotidiane.',
-    methodology: [
-      'Assessment iniziale delle capacità motorie',
-      'Workout personalizzati in base agli obiettivi',
-      'Varietà di esercizi per stimolare il corpo a 360 gradi',
-      'Monitoraggio dei progressi e adattamento del programma',
-    ],
-    faq: [
-      {
-        question: 'È un allenamento intenso?',
-        answer: 'L\'intensità viene sempre adattata al tuo livello. Inizieremo con un approccio graduale per poi aumentare progressivamente la difficoltà man mano che migliori.',
-      },
-      {
-        question: 'Posso praticarlo se ho problemi alle articolazioni?',
-        answer: 'Sì, gli esercizi possono essere modificati per adattarsi a qualsiasi condizione. È importante comunicarci eventuali problemi durante la valutazione iniziale.',
-      },
-      {
-        question: 'Quali risultati posso aspettarmi?',
-        answer: 'Con costanza, noterai miglioramenti nella forza, nell\'energia quotidiana e nella composizione corporea già dopo 4-6 settimane.',
-      },
-    ],
-  },
   personal: {
     fullDescription: `Il Personal Training rappresenta il massimo della personalizzazione nel fitness.
     Un trainer certificato lavora esclusivamente con te, creando un percorso su misura basato sui tuoi obiettivi, condizioni fisiche, preferenze e disponibilità.
@@ -200,7 +175,48 @@ export const serviceDetails: Record<string, ServiceDetails> = {
       },
       {
         question: 'Posso combinare il Personal Training con altre discipline?',
-        answer: 'Certamente! Molti dei nostri clienti integrano sessioni di Personal Training con lezioni di Pilates o Functional Training per un approccio più completo.',
+        answer: 'Certamente! Il nostro Kinè Method integra proprio Personal Training e Pilates Reformer in un unico percorso strutturato.',
+      },
+    ],
+  },
+  method: {
+    fullDescription: `KINÈ METHOD è il metodo proprietario di KinèLab che integra forza in sala funzionale e controllo e tecnica sul Reformer.
+
+    Non si tratta di un semplice abbonamento combinato, ma di un percorso strutturato che unisce performance fisica, qualità del movimento e progressione tecnica.
+
+    All'interno del KINÈ METHOD si sviluppa il percorso KINÈ HYBRID: 2 allenamenti a settimana, 8 sedute mensili, con pagamento mensile anticipato e vincolo minimo in base alla durata scelta. Due programmi — KINÈ HYBRID GROUP e KINÈ HYBRID PRO — per adattarsi al tuo livello e ai tuoi obiettivi.`,
+    benefits: [
+      'Unione di forza e controllo in un unico percorso',
+      'Sviluppo muscolare equilibrato e funzionale',
+      'Miglioramento della mobilità e della postura',
+      'Prevenzione degli infortuni grazie al lavoro integrato',
+      'Percorso strutturato con progressione misurabile',
+      'Maggiore motivazione grazie alla varietà degli stimoli',
+    ],
+    targetAudience: 'Ideale per chi vuole un percorso completo e strutturato, per chi cerca varietà nell\'allenamento senza rinunciare alla qualità, e per chi desidera risultati visibili combinando forza e controllo in un unico metodo.',
+    methodology: [
+      'Assessment iniziale: forza, mobilità, postura',
+      'Scelta del programma: HYBRID GROUP o HYBRID PRO',
+      'Pianificazione settimanale: sessioni funzionale + Reformer',
+      'Monitoraggio mensile dei progressi',
+      'Adattamento continuo del programma in base ai risultati',
+    ],
+    faq: [
+      {
+        question: 'Cos\'è il KINÈ METHOD?',
+        answer: 'È il metodo proprietario di KinèLab che integra forza in sala funzionale e controllo sul Reformer. Non è un semplice abbonamento combinato, ma un percorso strutturato orientato alla performance intelligente.',
+      },
+      {
+        question: 'Qual è la differenza tra KINÈ HYBRID GROUP e KINÈ HYBRID PRO?',
+        answer: 'La differenza riguarda il grado di personalizzazione e il rapporto trainer/cliente. GROUP prevede sessioni in small group (2/3 persone) con forte attenzione tecnica. PRO offre allenamento individuale (1:1) con programmazione completamente mirata sui tuoi obiettivi.',
+      },
+      {
+        question: 'Come funziona il pagamento?',
+        answer: 'Il pagamento è mensile e anticipato. Scegli il vincolo minimo (3, 6 o 12 mesi): più lungo il piano, maggiore il risparmio per sessione. HYBRID GROUP da €240 a €270/mese, HYBRID PRO da €300 a €340/mese.',
+      },
+      {
+        question: 'Quante sessioni sono incluse al mese?',
+        answer: 'Il percorso KINÈ HYBRID prevede 2 allenamenti a settimana, per un totale di 8 sedute mensili distribuite tra sala funzionale e Reformer.',
       },
     ],
   },

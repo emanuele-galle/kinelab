@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Mail, Phone, MapPin, Instagram, Facebook, ArrowRight } from 'lucide-react'
+import { Mail, MessageCircle, MapPin, Instagram, Facebook, ArrowRight } from 'lucide-react'
 import type { BusinessInfo } from '@/data'
 
 const links = [
@@ -14,8 +14,8 @@ const links = [
 
 const services = [
   { name: 'Pilates', href: '/servizi/pilates' },
-  { name: 'Functional Training', href: '/servizi/functional' },
   { name: 'Personal Training', href: '/servizi/personal' },
+  { name: 'Kinè Method', href: '/servizi/kine-method' },
 ]
 
 interface FooterProps {
@@ -28,13 +28,13 @@ export function Footer({ businessInfo }: FooterProps) {
   const address = businessInfo?.address || 'Via Pascoli 15'
   const postalCode = businessInfo?.postalCode || '20129'
   const city = businessInfo?.city || 'Milano'
-  const phone = businessInfo?.phone || '+39 02 8233 7048'
   const email = businessInfo?.email || 'kinelabmilano@gmail.com'
   const companyName = businessInfo?.companyName || 'KINELAB SSD'
   const vatNumber = businessInfo?.vatNumber || '14460620967'
   const instagram = businessInfo?.instagram
   const facebook = businessInfo?.facebook
-  const phoneLink = phone.replace(/\s/g, '')
+  const whatsappNum = businessInfo?.whatsapp || '+393409453175'
+  const whatsappLink = `https://wa.me/${whatsappNum.replace('+', '')}?text=Ciao! Vorrei informazioni sui vostri servizi.`
 
   return (
     <footer className="bg-[#2C2825] text-white relative overflow-hidden">
@@ -67,11 +67,13 @@ export function Footer({ businessInfo }: FooterProps) {
               <ArrowRight className="w-4 h-4" />
             </Link>
             <a
-              href={`tel:${phoneLink}`}
+              href={whatsappLink}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 px-8 py-3.5 text-white font-medium rounded-lg border border-white/20 hover:bg-white/10 transition-all"
             >
-              <Phone className="w-4 h-4" />
-              Chiamaci
+              <MessageCircle className="w-4 h-4" />
+              WhatsApp
             </a>
           </div>
         </div>
@@ -126,11 +128,13 @@ export function Footer({ businessInfo }: FooterProps) {
                 </li>
                 <li>
                   <a
-                    href={`tel:${phoneLink}`}
+                    href={whatsappLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center gap-3 text-white/60 hover:text-white text-sm transition-colors"
                   >
-                    <Phone className="w-4 h-4 text-[#B39650] flex-shrink-0" />
-                    {phone}
+                    <MessageCircle className="w-4 h-4 text-[#B39650] flex-shrink-0" />
+                    WhatsApp
                   </a>
                 </li>
                 <li>

@@ -4,8 +4,8 @@ export const team: TeamMember[] = [
   {
     id: '1',
     name: 'Pasquale Casalnuovo',
-    role: 'Ideatore & Preparatore Atletico',
-    shortBio: 'Laureato in Scienze Motorie e specializzato in preparazione atletica, Pasquale è anche massoterapista certificato. Ideatore del progetto KinèLab, si occupa di allenamento, performance e preparazione fisica per sport specifici. Determinato e orientato agli obiettivi, accompagna le persone nel raggiungimento di risultati concreti e duraturi.',
+    role: 'Creator & Preparatore Atletico',
+    shortBio: 'Laureato in Scienze Motorie e specializzato in preparazione atletica, Pasquale è anche massoterapista certificato. Creator del progetto KinèLab, si occupa di allenamento, performance e preparazione fisica per sport specifici. Determinato e orientato agli obiettivi, accompagna le persone nel raggiungimento di risultati concreti e duraturi.',
     photo: '/images/pasquale.jpg',
     certifications: [
       { certification: 'Scienze Motorie' },
@@ -31,15 +31,6 @@ export const team: TeamMember[] = [
   },
   {
     id: '3',
-    name: 'Cristian',
-    role: '',
-    shortBio: '',
-    photo: '/images/cristian.jpg',
-    certifications: [],
-    specialty: '',
-  },
-  {
-    id: '4',
     name: 'Cono',
     role: '',
     shortBio: '',
@@ -48,7 +39,7 @@ export const team: TeamMember[] = [
     specialty: '',
   },
   {
-    id: '5',
+    id: '4',
     name: 'Roberta',
     role: '',
     shortBio: '',
