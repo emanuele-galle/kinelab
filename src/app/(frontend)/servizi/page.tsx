@@ -1,30 +1,30 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowRight, Clock, Users, Flame, TrendingUp } from 'lucide-react'
+import { ArrowRight, Clock, Users, Flame, TrendingUp, Zap } from 'lucide-react'
 import { services } from '@/data'
 
 export const metadata: Metadata = {
-  title: 'Servizi | Pilates, Functional & Personal Training | KineLab Milano',
-  description: 'Scopri i nostri servizi: Pilates Mat e Reformer, Functional Training e Personal Training. Programmi personalizzati per il tuo benessere a Milano.',
+  title: 'Servizi | Pilates, Personal Training & Kinè Method | KineLab Milano',
+  description: 'Scopri i nostri servizi: Pilates Reformer, Personal Training e il Kinè Method. Programmi personalizzati per il tuo benessere a Milano.',
   openGraph: {
     title: 'Servizi | KineLab Milano',
-    description: 'Pilates, Functional Training e Personal Training a Milano. Scopri il metodo KineLab.',
+    description: 'Pilates, Personal Training e Kinè Method a Milano. Scopri il metodo KineLab.',
   },
 }
 
 // Urgency badges
-const urgencyBadges: Record<string, { text: string; icon: 'flame' | 'trending'; color: string } | null> = {
+const urgencyBadges: Record<string, { text: string; icon: 'flame' | 'trending' | 'zap'; color: string } | null> = {
   pilates: { text: 'Più richiesto', icon: 'flame', color: 'bg-orange-500' },
   personal: { text: 'Posti limitati', icon: 'trending', color: 'bg-red-500' },
-  functional: null,
+  method: { text: 'Il Metodo', icon: 'zap', color: 'bg-rose-700' },
 }
 
 // Immagini per categoria (fallback se service.image mancante)
 const categoryImages: Record<string, string> = {
   pilates: '/images/reformer-gruppo-2.jpg',
-  functional: '/images/studio-functional-area.jpg',
   personal: '/images/reformer-singolo.jpg',
+  method: '/images/studio-functional-area.jpg',
 }
 
 export default function ServiziPage() {
@@ -75,6 +75,8 @@ export default function ServiziPage() {
                       <div className={`absolute top-4 left-4 ${badge.color} text-white text-xs font-medium px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg`}>
                         {badge.icon === 'flame' ? (
                           <Flame className="w-3.5 h-3.5" />
+                        ) : badge.icon === 'zap' ? (
+                          <Zap className="w-3.5 h-3.5" />
                         ) : (
                           <TrendingUp className="w-3.5 h-3.5" />
                         )}
@@ -96,7 +98,7 @@ export default function ServiziPage() {
                       <span className="inline-flex items-center gap-1.5">
                         <Users className="w-4 h-4" />
                         {service.category === 'personal' ? 'Individuale / Coppia' :
-                         service.category === 'functional' ? 'Small Group (3 persone)' :
+                         service.category === 'method' ? 'Small Group / Individuale' :
                          'One to One / Coppia / Small Group'}
                       </span>
                     </div>
@@ -107,7 +109,16 @@ export default function ServiziPage() {
 
                     {/* Price by mode */}
                     <div className="mb-6">
-                      {service.pricingModes && service.pricingModes.length > 0 ? (
+                      {service.programs && service.programs.length > 0 ? (
+                        <div className="flex flex-wrap gap-x-4 gap-y-2">
+                          {service.programs.map((program) => (
+                            <div key={program.name} className="flex items-baseline gap-1.5">
+                              <span className="text-sm text-[--color-text-muted]">{program.name}</span>
+                              <span className="text-xl font-medium text-[--color-accent]">da €{program.plans[program.plans.length - 1].monthlyPrice}/mese</span>
+                            </div>
+                          ))}
+                        </div>
+                      ) : service.pricingModes && service.pricingModes.length > 0 ? (
                         <div className="flex flex-wrap gap-x-4 gap-y-2">
                           {service.pricingModes.map((mode) => (
                             <div key={mode.name} className="flex items-baseline gap-1.5">

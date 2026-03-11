@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'motion/react'
-import { Phone, MessageCircle, ArrowRight } from 'lucide-react'
+import { MessageCircle, ArrowRight } from 'lucide-react'
 import type { BusinessInfo } from '@/data'
 
 interface StickyMobileCTAProps {
@@ -14,9 +14,8 @@ export function StickyMobileCTA({ businessInfo }: StickyMobileCTAProps) {
   const [isVisible, setIsVisible] = useState(false)
 
   // Dati dal CMS con fallback
-  const phone = businessInfo?.phone || '+39 02 8233 7048'
-  const phoneLink = phone.replace(/\s/g, '')
-  const whatsappLink = `https://wa.me/${phoneLink.replace('+', '')}?text=Ciao! Vorrei informazioni sui vostri servizi.`
+  const whatsapp = businessInfo?.whatsapp || '+393409453175'
+  const whatsappLink = `https://wa.me/${whatsapp.replace('+', '')}?text=Ciao! Vorrei informazioni sui vostri servizi.`
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,18 +42,10 @@ export function StickyMobileCTA({ businessInfo }: StickyMobileCTAProps) {
             <div className="flex items-center gap-2">
               {/* Quick actions */}
               <a
-                href={`tel:${phoneLink}`}
-                className="flex items-center justify-center w-10 h-10 rounded-xl bg-white/10 text-white/80 active:bg-white/20 transition-colors"
-                aria-label="Chiama"
-              >
-                <Phone className="w-4 h-4" />
-              </a>
-
-              <a
                 href={whatsappLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center w-10 h-10 rounded-xl bg-white/10 text-[#25D366] active:bg-white/20 transition-colors"
+                className="flex items-center justify-center w-10 h-10 rounded-xl bg-[#25D366]/20 text-[#25D366] active:bg-[#25D366]/30 transition-colors"
                 aria-label="WhatsApp"
               >
                 <MessageCircle className="w-4 h-4" />

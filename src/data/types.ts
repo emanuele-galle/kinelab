@@ -42,7 +42,7 @@ export interface Service {
   id: string
   name: string
   slug: string
-  category: 'pilates' | 'functional' | 'personal'
+  category: 'pilates' | 'personal' | 'method'
   shortDescription?: string
   duration?: number
   price?: number
@@ -52,6 +52,21 @@ export interface Service {
   order?: number
   isActive?: boolean
   image: string
+  programs?: MethodProgram[]
+}
+
+interface MethodPlan {
+  duration: string
+  monthlyPrice: number
+  perSession: number
+  badge?: string
+}
+
+export interface MethodProgram {
+  name: string
+  description: string
+  format: string
+  plans: MethodPlan[]
 }
 
 export interface TeamMember {

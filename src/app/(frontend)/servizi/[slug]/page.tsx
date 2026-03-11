@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowLeft, Clock, Users, CheckCircle, MapPin, Phone, Calendar } from 'lucide-react'
+import { ArrowLeft, Clock, Users, CheckCircle, MapPin, MessageCircle, Calendar } from 'lucide-react'
 import { services, serviceDetails, businessInfo } from '@/data'
 
 interface PageProps {
@@ -12,8 +12,8 @@ interface PageProps {
 // Immagini per categoria
 const categoryImages: Record<string, string> = {
   pilates: '/images/reformer-gruppo-2.jpg',
-  functional: '/images/studio-functional-area.jpg',
   personal: '/images/reformer-singolo.jpg',
+  method: '/images/studio-functional-area.jpg',
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -50,6 +50,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
 
   const details = serviceDetails[displayService.category] || serviceDetails.pilates
   const image = displayService.image || categoryImages[displayService.category] || categoryImages.pilates
+  const whatsappLink = `https://wa.me/${(businessInfo.whatsapp || '+393409453175').replace('+', '')}?text=Ciao! Vorrei informazioni sul ${displayService.name}.`
 
   // Schema.org markup for Course
   const schemaData = {
@@ -103,7 +104,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
             <div>
               <p className="text-[--color-primary] text-sm tracking-[0.15em] uppercase mb-4">
                 {displayService.category === 'pilates' ? 'Pilates Reformer' :
-                 displayService.category === 'functional' ? 'Allenamento Funzionale' : 'Personal Training'}
+                 displayService.category === 'method' ? 'Il Metodo KinèLab' : 'Personal Training'}
               </p>
               <h1 className="mb-6">{displayService.name}</h1>
 
@@ -116,7 +117,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                 <span className="inline-flex items-center gap-1.5">
                   <Users className="w-4 h-4" />
                   {displayService.category === 'personal' ? 'Individuale / Coppia' :
-                   displayService.category === 'functional' ? 'Small Group (3 persone)' :
+                   displayService.category === 'method' ? 'Small Group / Individuale' :
                    'One to One / Coppia / Small Group'}
                 </span>
                 <span className="inline-flex items-center gap-1.5">
@@ -149,11 +150,13 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                   Prenota Ora
                 </Link>
                 <a
-                  href={`tel:${businessInfo.phone.replace(/\s/g, '')}`}
+                  href={whatsappLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="btn btn-outline"
                 >
-                  <Phone className="w-5 h-5 mr-2" />
-                  Chiama
+                  <MessageCircle className="w-5 h-5 mr-2" />
+                  WhatsApp
                 </a>
               </div>
             </div>
@@ -276,6 +279,57 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         </section>
       )}
 
+      {/* Method Programs Pricing */}
+      {displayService.programs && displayService.programs.length > 0 && (
+        <section id="listino" className="section scroll-mt-24">
+          <div className="container">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-2xl text-center mb-4">Listino Prezzi</h2>
+              <p className="text-center text-[--color-text-muted] mb-12">
+                Abbonamenti mensili — più lungo il piano, maggiore il risparmio
+              </p>
+
+              <div className="grid md:grid-cols-2 gap-8">
+                {displayService.programs.map((program) => (
+                  <div key={program.name} className="bg-white rounded-xl border border-[--color-border] overflow-hidden">
+                    {/* Program Header */}
+                    <div className="px-6 py-5 bg-[--color-bg-accent] border-b border-[--color-border]">
+                      <h3 className="text-lg font-bold">{program.name}</h3>
+                      <p className="text-sm text-[--color-text-muted] mt-1">{program.format}</p>
+                    </div>
+
+                    {/* Plans */}
+                    <div className="divide-y divide-[--color-border]">
+                      {program.plans.map((plan) => (
+                        <div key={plan.duration} className={`px-6 py-4 flex items-center justify-between ${plan.badge ? 'bg-[--color-accent]/5' : ''}`}>
+                          <div>
+                            <div className="flex items-center gap-2">
+                              <span className="font-medium">{plan.duration}</span>
+                              {plan.badge && (
+                                <span className="px-2 py-0.5 bg-[--color-accent] text-[--color-text] text-xs font-bold rounded-full">
+                                  {plan.badge}
+                                </span>
+                              )}
+                            </div>
+                            <span className="text-sm text-[--color-text-muted]">
+                              €{plan.perSession}/sessione
+                            </span>
+                          </div>
+                          <div className="text-right">
+                            <span className="text-xl font-bold text-[--color-accent]">{plan.monthlyPrice}€</span>
+                            <span className="text-[--color-text-muted] text-sm ml-1">/mese</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Target Audience */}
       <section className="section">
         <div className="container">
@@ -355,11 +409,13 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                 Prenota Ora
               </Link>
               <a
-                href={`tel:${businessInfo.phone.replace(/\s/g, '')}`}
+                href={whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn bg-white/10 text-white hover:bg-white/20 border border-white/30 px-8"
               >
-                <Phone className="w-5 h-5 mr-2" />
-                Chiama
+                <MessageCircle className="w-5 h-5 mr-2" />
+                WhatsApp
               </a>
             </div>
           </div>

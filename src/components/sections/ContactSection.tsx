@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'motion/react'
-import { MapPin, Phone, Mail, Clock } from 'lucide-react'
+import { MapPin, MessageCircle, Mail, Clock } from 'lucide-react'
 import Link from 'next/link'
 import type { BusinessInfo } from '@/data'
 
@@ -14,10 +14,9 @@ export function ContactSection({ businessInfo }: ContactSectionProps) {
   const address = businessInfo?.address || 'Via Pascoli 15'
   const postalCode = businessInfo?.postalCode || '20129'
   const city = businessInfo?.city || 'Milano'
-  const phone = businessInfo?.phone || '+39 02 8233 7048'
-  const phoneLink = phone.replace(/\s/g, '')
   const email = businessInfo?.email || 'kinelabmilano@gmail.com'
-  const whatsapp = businessInfo?.whatsapp || phone
+  const whatsapp = businessInfo?.whatsapp || '+393409453175'
+  const whatsappLink = `https://wa.me/${whatsapp.replace('+', '')}?text=Ciao! Vorrei informazioni sui vostri servizi.`
   const fullAddress = `${address}, ${postalCode} ${city}`
   const mapsQuery = encodeURIComponent(`${address} ${city}`)
 
@@ -30,11 +29,11 @@ export function ContactSection({ businessInfo }: ContactSectionProps) {
       linkText: 'Apri in Maps',
     },
     {
-      icon: Phone,
-      title: 'Telefono',
-      content: phone,
-      link: `tel:${phoneLink}`,
-      note: whatsapp ? 'Hai domande? Contattaci su WhatsApp' : undefined,
+      icon: MessageCircle,
+      title: 'WhatsApp',
+      content: 'Scrivici su WhatsApp',
+      link: whatsappLink,
+      note: 'Rispondiamo in giornata',
     },
     {
       icon: Mail,

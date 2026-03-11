@@ -23,15 +23,15 @@ const categoryColors: Record<string, {
     badgeBg: 'rgba(122, 139, 110, 0.1)',
     glow: 'rgba(122, 139, 110, 0.3)',
   },
-  functional: {
-    accent: '#E87722',     // Vibrant orange - energetic, powerful
-    badgeBg: 'rgba(232, 119, 34, 0.1)',
-    glow: 'rgba(232, 119, 34, 0.3)',
-  },
   personal: {
     accent: '#2C3E50',     // Deep navy - professional, exclusive
     badgeBg: 'rgba(44, 62, 80, 0.1)',
     glow: 'rgba(44, 62, 80, 0.3)',
+  },
+  method: {
+    accent: '#8B2252',     // Bordeaux - distinctive, premium
+    badgeBg: 'rgba(139, 34, 82, 0.1)',
+    glow: 'rgba(139, 34, 82, 0.3)',
   },
 }
 
@@ -52,19 +52,19 @@ const socialProofData: Record<string, {
     difficulty: 'Principiante',
     difficultyColor: '#00C853', // Green
   },
-  functional: {
-    rating: 4.8,
-    reviews: 98,
-    bookings: 17,
-    difficulty: 'Intermedio',
-    difficultyColor: '#FF9800', // Orange
-  },
   personal: {
     rating: 5.0,
     reviews: 67,
     bookings: 8,
     difficulty: 'Avanzato',
     difficultyColor: '#FF5252', // Red
+  },
+  method: {
+    rating: 4.9,
+    reviews: 54,
+    bookings: 12,
+    difficulty: 'Intermedio',
+    difficultyColor: '#FF9800', // Orange
   },
 }
 
@@ -89,11 +89,11 @@ const urgencyBadges: Record<string, {
     color: 'bg-red-500',
     pulse: true,
   },
-  functional: {
-    text: 'Nuovo',
+  method: {
+    text: 'Il Metodo',
     icon: 'zap',
-    color: 'bg-blue-500',
-    pulse: false,
+    color: 'bg-rose-700',
+    pulse: true,
   },
 }
 
@@ -114,16 +114,6 @@ const categoryMedia: Record<string, {
       poster: '/images/reformer-gruppo-1.jpg',
     },
   },
-  functional: {
-    image: {
-      src: '/images/studio-functional-area.jpg',
-      alt: 'Area Functional Training con power rack - KineLab Milano',
-    },
-    video: {
-      src: '',
-      poster: '/images/studio-functional-area.jpg',
-    },
-  },
   personal: {
     image: {
       src: '/images/personal-training-1.jpg',
@@ -134,6 +124,16 @@ const categoryMedia: Record<string, {
       poster: '/images/personal-training-1.jpg',
     },
   },
+  method: {
+    image: {
+      src: '/images/studio-functional-area.jpg',
+      alt: 'Kinè Method - Sala funzionale e Reformer - KineLab Milano',
+    },
+    video: {
+      src: '',
+      poster: '/images/studio-functional-area.jpg',
+    },
+  },
 }
 
 
@@ -142,8 +142,8 @@ const categoryMedia: Record<string, {
 // ============================================
 const categoryFeatures: Record<string, string[]> = {
   pilates: ['Reformer', 'One to One', 'Coppia', 'Small Group'],
-  functional: ['Small Group', 'Kettlebell', 'TRX'],
   personal: ['Individuale', 'Coppia', 'Programma su misura'],
+  method: ['Funzionale + Reformer', 'Hybrid Group', 'Hybrid Pro'],
 }
 
 // ============================================
@@ -151,8 +151,8 @@ const categoryFeatures: Record<string, string[]> = {
 // ============================================
 const categoryType: Record<string, string> = {
   pilates: 'One to One / Coppia / Small Group',
-  functional: 'Small Group (3 persone)',
   personal: 'Individuale / Coppia',
+  method: 'Small Group / Individuale',
 }
 
 // ============================================
@@ -321,7 +321,16 @@ function ServiceCard({ service, index }: ServiceCardProps) {
 
             {/* TIER 5: Price by mode + CTA */}
             <div className="flex items-center justify-between">
-              {service.pricingModes && service.pricingModes.length > 0 ? (
+              {service.programs && service.programs.length > 0 ? (
+                <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                  {service.programs.map((program) => (
+                    <span key={program.name} className="text-white text-sm">
+                      <span className="text-white/60 text-xs">{program.name}</span>{' '}
+                      <span className="font-bold">da €{program.plans[program.plans.length - 1].monthlyPrice}/mese</span>
+                    </span>
+                  ))}
+                </div>
+              ) : service.pricingModes && service.pricingModes.length > 0 ? (
                 <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
                   {service.pricingModes.map((mode) => (
                     <span key={mode.name} className="text-white text-sm">

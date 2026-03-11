@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'motion/react'
-import { Menu, X, Phone, MapPin, Clock, ChevronRight } from 'lucide-react'
+import { Menu, X, MessageCircle, MapPin, Clock, ChevronRight } from 'lucide-react'
 import type { BusinessInfo } from '@/data'
 
 const navigation = [
@@ -12,6 +12,7 @@ const navigation = [
   { name: 'Chi Siamo', href: '/#chi-siamo' },
   { name: 'Galleria', href: '/#gallery' },
   { name: 'Team', href: '/#team' },
+  { name: 'Metodo', href: '/servizi/kine-method' },
   { name: 'Contatti', href: '/#contatti' },
 ]
 
@@ -24,9 +25,8 @@ export function Header({ businessInfo }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   // Dati dal CMS con fallback
-  const phone = businessInfo?.phone || '+39 02 8233 7048'
-  const phoneShort = phone.replace('+39 ', '').replace('+39', '')
-  const phoneLink = phone.replace(/\s/g, '')
+  const whatsapp = businessInfo?.whatsapp || '+393409453175'
+  const whatsappLink = `https://wa.me/${whatsapp.replace('+', '')}?text=Ciao! Vorrei informazioni sui vostri servizi.`
   const address = businessInfo?.address || 'Via Pascoli 15'
   const postalCode = businessInfo?.postalCode || '20129'
   const city = businessInfo?.city || 'Milano'
@@ -103,15 +103,17 @@ export function Header({ businessInfo }: HeaderProps) {
             {/* Desktop CTA */}
             <div className="hidden md:flex items-center gap-6">
               <a
-                href={`tel:${phoneLink}`}
+                href={whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`flex items-center gap-2 text-sm transition-colors duration-300 ${
                   isScrolled
                     ? 'text-[--color-text-muted] hover:text-[--color-primary]'
                     : 'text-white/80 hover:text-white'
                 }`}
               >
-                <Phone className="w-4 h-4" />
-                <span className="hidden lg:inline">{phoneShort}</span>
+                <MessageCircle className="w-4 h-4" />
+                <span className="hidden lg:inline">WhatsApp</span>
               </a>
               <Link
                 href="/prenota"
@@ -248,11 +250,13 @@ export function Header({ businessInfo }: HeaderProps) {
                 <h4 className="text-sm font-medium text-[--color-text] mb-4">Contatti</h4>
                 <div className="space-y-3 text-sm text-[--color-text-muted]">
                   <a
-                    href={`tel:${phoneLink}`}
+                    href={whatsappLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center gap-3 hover:text-[--color-primary] transition-colors"
                   >
-                    <Phone className="w-4 h-4 text-[--color-accent]" />
-                    {phone}
+                    <MessageCircle className="w-4 h-4 text-[--color-accent]" />
+                    WhatsApp
                   </a>
                   <div className="flex items-center gap-3">
                     <MapPin className="w-4 h-4 text-[--color-accent]" />

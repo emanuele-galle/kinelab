@@ -36,16 +36,8 @@ export function LocalBusinessSchema({ businessInfo, services }: LocalBusinessSch
           '@type': 'Offer',
           itemOffered: {
             '@type': 'Service',
-            name: 'Pilates',
-            description: 'Lezioni di Pilates individuali e in piccoli gruppi',
-          },
-        },
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'Functional Training',
-            description: 'Allenamento funzionale personalizzato',
+            name: 'Pilates Reformer',
+            description: 'Lezioni di Pilates individuali e in piccoli gruppi con Reformer',
           },
         },
         {
@@ -54,6 +46,14 @@ export function LocalBusinessSchema({ businessInfo, services }: LocalBusinessSch
             '@type': 'Service',
             name: 'Personal Training',
             description: 'Sessioni di allenamento one-to-one',
+          },
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Kinè Method',
+            description: 'Percorso integrato funzionale + Reformer',
           },
         },
       ]
@@ -65,7 +65,7 @@ export function LocalBusinessSchema({ businessInfo, services }: LocalBusinessSch
     name: companyName,
     alternateName: 'KINELAB SSD',
     description:
-      'Studio di movimento a Milano specializzato in Pilates, Functional Training e Personal Training. Professionisti qualificati per il tuo benessere.',
+      'Studio di movimento a Milano specializzato in Pilates, Personal Training e Kinè Method. Professionisti qualificati per il tuo benessere.',
     url: 'https://kinelabmilano.it',
     telephone: phone,
     email: email,
@@ -128,7 +128,7 @@ export function LocalBusinessSchema({ businessInfo, services }: LocalBusinessSch
         name: 'Quali servizi offre KineLab?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'KineLab offre Pilates, Functional Training e Personal Training con professionisti certificati.',
+          text: 'KineLab offre Pilates Reformer, Personal Training e il Kinè Method (percorso integrato funzionale + Reformer) con professionisti certificati.',
         },
       },
       {
@@ -136,7 +136,7 @@ export function LocalBusinessSchema({ businessInfo, services }: LocalBusinessSch
         name: 'Come posso prenotare una lezione a KineLab?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: `Puoi prenotare online sul sito kinelabmilano.it o telefonando al ${phone}. Per informazioni puoi contattarci anche su WhatsApp.`,
+          text: 'Puoi prenotare online sul sito kinelabmilano.it o contattandoci su WhatsApp. Rispondiamo in giornata.',
         },
       },
       {
@@ -228,8 +228,8 @@ export function LocalBusinessSchema({ businessInfo, services }: LocalBusinessSch
     {
       '@context': 'https://schema.org',
       '@type': 'Course',
-      name: 'Functional Training',
-      description: 'Allenamento funzionale personalizzato per migliorare forza, resistenza e mobilità nella vita quotidiana.',
+      name: 'Kinè Method',
+      description: 'Percorso integrato che unisce allenamento funzionale e Pilates Reformer per sviluppare forza e controllo in un unico metodo.',
       provider: {
         '@type': 'Organization',
         name: companyName,

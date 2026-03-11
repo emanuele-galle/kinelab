@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import { motion } from 'motion/react'
-import { CalendarDays, Clock, UserCheck, Phone, MessageCircle } from 'lucide-react'
+import { CalendarDays, Clock, UserCheck, MessageCircle } from 'lucide-react'
 import { useState } from 'react'
 
 interface BookingPageProps {
@@ -15,7 +15,7 @@ const steps = [
   {
     icon: CalendarDays,
     title: 'Scegli il servizio',
-    description: 'Pilates, Functional o Personal Training',
+    description: 'Pilates, Personal Training o Kinè Method',
   },
   {
     icon: Clock,
@@ -153,14 +153,7 @@ export function BookingPage({ bookingUrl, phone, whatsapp }: BookingPageProps) {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
-                href={`tel:${phoneLink}`}
-                className="btn btn-outline gap-3 min-w-[220px]"
-              >
-                <Phone className="w-4 h-4" />
-                {phone}
-              </a>
-              <a
-                href={`https://wa.me/${whatsappLink}`}
+                href={`https://wa.me/${whatsappLink}?text=Ciao! Vorrei prenotare una lezione.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-primary gap-3 min-w-[220px]"

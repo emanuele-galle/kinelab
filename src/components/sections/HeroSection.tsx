@@ -85,7 +85,7 @@ export function HeroSection() {
             transition={{ delay: 0.4, duration: 0.6 }}
             className="text-sm tracking-[0.15em] md:tracking-[0.2em] uppercase text-white mb-4 drop-shadow-md"
           >
-            Pilates · Functional Training · Personal Training
+            Pilates · Personal Training · Kinè Method
           </motion.p>
 
           {/* Main Heading */}
