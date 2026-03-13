@@ -33,7 +33,7 @@ export function Footer({ businessInfo }: FooterProps) {
   const vatNumber = businessInfo?.vatNumber || '14460620967'
   const instagram = businessInfo?.instagram
   const facebook = businessInfo?.facebook
-  const whatsappNum = businessInfo?.whatsapp || '+393409453175'
+  const whatsappNum = businessInfo?.whatsapp || '+390282337048'
   const whatsappLink = `https://wa.me/${whatsappNum.replace('+', '')}?text=Ciao! Vorrei informazioni sui vostri servizi.`
 
   return (

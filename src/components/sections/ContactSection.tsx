@@ -15,7 +15,7 @@ export function ContactSection({ businessInfo }: ContactSectionProps) {
   const postalCode = businessInfo?.postalCode || '20129'
   const city = businessInfo?.city || 'Milano'
   const email = businessInfo?.email || 'kinelabmilano@gmail.com'
-  const whatsapp = businessInfo?.whatsapp || '+393409453175'
+  const whatsapp = businessInfo?.whatsapp || '+390282337048'
   const whatsappLink = `https://wa.me/${whatsapp.replace('+', '')}?text=Ciao! Vorrei informazioni sui vostri servizi.`
   const fullAddress = `${address}, ${postalCode} ${city}`
   const mapsQuery = encodeURIComponent(`${address} ${city}`)

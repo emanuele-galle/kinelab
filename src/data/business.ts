@@ -11,7 +11,7 @@ export const businessInfo: BusinessInfo = {
   country: 'IT',
   phone: '+39 02 8233 7048',
   email: 'kinelabmilano@gmail.com',
-  whatsapp: '+393409453175',
+  whatsapp: '+390282337048',
   openingHours: [
     { day: 'monday', open: '7:00', close: '21:00' },
     { day: 'tuesday', open: '7:00', close: '21:00' },

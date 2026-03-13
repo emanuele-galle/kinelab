@@ -25,7 +25,7 @@ export function Header({ businessInfo }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   // Dati dal CMS con fallback
-  const whatsapp = businessInfo?.whatsapp || '+393409453175'
+  const whatsapp = businessInfo?.whatsapp || '+390282337048'
   const whatsappLink = `https://wa.me/${whatsapp.replace('+', '')}?text=Ciao! Vorrei informazioni sui vostri servizi.`
   const address = businessInfo?.address || 'Via Pascoli 15'
   const postalCode = businessInfo?.postalCode || '20129'

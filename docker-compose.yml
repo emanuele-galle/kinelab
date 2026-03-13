@@ -26,13 +26,6 @@ services:
       - "traefik.enable=true"
       - "traefik.docker.network=traefik-public"
 
-      # Router preview (kinelab.fodivps2.cloud)
-      - "traefik.http.routers.kinelab-preview.rule=Host(`kinelab.fodivps2.cloud`)"
-      - "traefik.http.routers.kinelab-preview.entrypoints=websecure"
-      - "traefik.http.routers.kinelab-preview.tls=true"
-      - "traefik.http.routers.kinelab-preview.tls.certresolver=letsencrypt"
-      - "traefik.http.routers.kinelab-preview.middlewares=security-headers@file"
-
       # Router production (kinelabmilano.it)
       - "traefik.http.routers.kinelab-prod.rule=Host(`kinelabmilano.it`) || Host(`www.kinelabmilano.it`)"
       - "traefik.http.routers.kinelab-prod.entrypoints=websecure"
@@ -41,7 +34,7 @@ services:
       - "traefik.http.routers.kinelab-prod.middlewares=security-headers@file"
 
       # Service
-      - "traefik.http.services.kinelab-preview.loadbalancer.server.port=3000"
+      - "traefik.http.services.kinelab-prod.loadbalancer.server.port=3000"
 
       # Metadata per VPS Panel
       - "com.docker.compose.project=kinelab"

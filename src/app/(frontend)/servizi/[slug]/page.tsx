@@ -50,7 +50,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
 
   const details = serviceDetails[displayService.category] || serviceDetails.pilates
   const image = displayService.image || categoryImages[displayService.category] || categoryImages.pilates
-  const whatsappLink = `https://wa.me/${(businessInfo.whatsapp || '+393409453175').replace('+', '')}?text=Ciao! Vorrei informazioni sul ${displayService.name}.`
+  const whatsappLink = `https://wa.me/${(businessInfo.whatsapp || '+390282337048').replace('+', '')}?text=Ciao! Vorrei informazioni sul ${displayService.name}.`
 
   // Schema.org markup for Course
   const schemaData = {

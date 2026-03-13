@@ -14,7 +14,7 @@ export function StickyMobileCTA({ businessInfo }: StickyMobileCTAProps) {
   const [isVisible, setIsVisible] = useState(false)
 
   // Dati dal CMS con fallback
-  const whatsapp = businessInfo?.whatsapp || '+393409453175'
+  const whatsapp = businessInfo?.whatsapp || '+390282337048'
   const whatsappLink = `https://wa.me/${whatsapp.replace('+', '')}?text=Ciao! Vorrei informazioni sui vostri servizi.`
 
   useEffect(() => {
